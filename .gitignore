@@ -1,0 +1,13 @@
+node_modules
+.pnpm-store
+.next
+dist
+coverage
+.turbo
+.DS_Store
+*.tsbuildinfo
+.env*
+!.env.example
+
+# Local planning/research workspace (never commit)
+docs-local/

@@ -1,0 +1,22 @@
+{
+  "name": "glinr-ui-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.6.1",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "check": "pnpm build && pnpm typecheck",
+    "hooks:install": "node tooling/scripts/install-git-hooks.mjs",
+    "hooks:pre-commit": "node tooling/scripts/pre-commit-check.mjs",
+    "prepare": "pnpm run hooks:install"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "turbo": "^2.5.0",
+    "typescript": "^5.7.3"
+  }
+}

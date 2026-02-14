@@ -1,0 +1,65 @@
+@import "@glinr/tokens/theme.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@layer components {
+  article :is(h1[id], h2[id], h3[id]) {
+    position: relative;
+    scroll-margin-top: 5.5rem;
+  }
+
+  article :is(h1[id], h2[id], h3[id]) > .docs-heading-anchor {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    padding-left: 0.5rem;
+    font-size: 0.8em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    color: rgb(115 115 115 / 0.95);
+    text-decoration: none;
+    transition: opacity 150ms ease, color 150ms ease;
+  }
+
+  article :is(h1[id], h2[id], h3[id]):hover > .docs-heading-anchor,
+  article :is(h1[id], h2[id], h3[id]):focus-within > .docs-heading-anchor {
+    opacity: 1;
+  }
+
+  .dark article :is(h1[id], h2[id], h3[id]) > .docs-heading-anchor {
+    color: rgb(212 212 212 / 0.9);
+  }
+
+  article :is(h1[id], h2[id], h3[id]) > .docs-heading-anchor:hover {
+    color: rgb(38 38 38);
+  }
+
+  .dark article :is(h1[id], h2[id], h3[id]) > .docs-heading-anchor:hover {
+    color: rgb(250 250 250);
+  }
+}

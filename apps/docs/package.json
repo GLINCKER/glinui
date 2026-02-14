@@ -1,0 +1,36 @@
+{
+  "name": "@glinr/docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "dev:restart": "sh -c 'PIDS=$(lsof -ti tcp:3001); if [ -n \"$PIDS\" ]; then kill $PIDS; fi; next dev -p 3001'",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'lint: @glinr/docs (todo)'",
+    "test": "echo 'test: @glinr/docs (todo)'"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^3.1.1",
+    "@next/mdx": "^15.3.0",
+    "@glinr/motion": "workspace:*",
+    "@glinr/registry": "workspace:*",
+    "@glinr/tokens": "workspace:*",
+    "@glinr/ui": "workspace:*",
+    "lucide-react": "^0.563.0",
+    "next": "^15.3.0",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.6",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  }
+}

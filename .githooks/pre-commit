@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [ -z "$ROOT" ]; then
+  echo "pre-commit: not inside a git repository, skipping."
+  exit 0
+fi
+
+cd "$ROOT"
+pnpm run hooks:pre-commit

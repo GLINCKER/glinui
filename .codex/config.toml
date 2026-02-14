@@ -1,0 +1,15 @@
+# Codex project configuration for Glinr UI
+# See: https://developers.openai.com/codex/config-reference/
+
+# Keep AGENTS.md lean — 32KB limit is fine for our slim file
+project_doc_max_bytes = 32768
+
+# Sandbox: allow workspace writes for building/testing
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = true  # needed for pnpm install, registry checks
+
+# Shell environment
+[shell_environment_policy]
+inherit = "all"

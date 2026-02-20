@@ -3,14 +3,16 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import * as React from "react"
+import Image from "next/image"
 import {
+  ArrowLeftRight,
   BookOpen,
   Boxes,
   Gem,
   Palette,
   PanelLeft,
   PanelLeftClose,
-  Sparkles
+  Shield
 } from "lucide-react"
 
 import { cn } from "@glinui/ui"
@@ -35,27 +37,30 @@ type NavItem = { href: string; label: string }
 const gettingStartedItems: NavItem[] = [
   { href: "/docs", label: "Docs Overview" },
   { href: "/docs/getting-started", label: "Introduction" },
-  { href: "/docs/directory", label: "Directory" },
-  { href: "/docs/shadcn-alternative", label: "Glin UI vs shadcn/ui" },
-  { href: "/docs/magicui-alternative", label: "Glin UI vs Magic UI" },
-  { href: "/docs/radix-ui-components", label: "Radix UI Components" },
-  { href: "/docs/glassmorphism-react-components", label: "Glassmorphism React" },
-  { href: "/docs/forms-recipes", label: "Form Recipes" }
+  { href: "/docs/directory", label: "Directory" }
 ]
 
 const accessibilityItems: NavItem[] = [
   { href: "/docs/accessibility", label: "Accessibility Hub" },
   { href: "/docs/forms-accessibility", label: "Forms Accessibility" },
+  { href: "/docs/forms-recipes", label: "Form Recipes" },
   { href: "/docs/screen-reader-testing", label: "Screen Reader Testing" },
   { href: "/docs/focus-management", label: "Focus Management" },
   { href: "/docs/color-contrast", label: "Color Contrast" }
 ]
 
 const designSystemItems: NavItem[] = [
-  { href: "/docs/api-metadata", label: "API Metadata" },
   { href: "/docs/tokens", label: "Tokens" },
   { href: "/docs/glass-physics", label: "Glass Physics" },
-  { href: "/docs/motion", label: "Motion" }
+  { href: "/docs/motion", label: "Motion" },
+  { href: "/docs/api-metadata", label: "API Metadata" }
+]
+
+const compareItems: NavItem[] = [
+  { href: "/docs/shadcn-alternative", label: "vs shadcn/ui" },
+  { href: "/docs/magicui-alternative", label: "vs Magic UI" },
+  { href: "/docs/radix-ui-components", label: "Radix UI Components" },
+  { href: "/docs/glassmorphism-react-components", label: "Glassmorphism React" }
 ]
 
 const SIDEBAR_SCROLL_KEY = "glinui-sidebar-scroll"
@@ -158,8 +163,9 @@ export function DocsSidebar({ collapsed, onCollapsedChange }: DocsSidebarProps) 
     <aside className={cn(sidebarSurface, "w-64")}>
       <header className="flex h-12 items-center justify-between border-b border-white/10 px-3 dark:border-white/[0.06]">
         <Link href="/" className="flex items-center gap-2">
-          <span className="inline-flex size-7 items-center justify-center rounded-lg border border-white/20 [border-top-color:var(--glass-refraction-top)] bg-[var(--glass-4-surface)] backdrop-blur-xl shadow-[var(--glass-4-shadow)] dark:border-white/[0.1]">
-            <Sparkles className="size-3.5 text-foreground" />
+          <span className="relative inline-flex shrink-0" style={{ width: 28, height: 28 }}>
+            <Image src="/glincker-logo.png" alt="Glin UI" width={28} height={28} unoptimized className="rounded-md dark:hidden" />
+            <Image src="/glincker-logo.png" alt="Glin UI" width={28} height={28} unoptimized className="hidden rounded-md invert dark:block" />
           </span>
           <span className="text-sm font-semibold tracking-wide">Glin UI</span>
         </Link>
@@ -184,7 +190,7 @@ export function DocsSidebar({ collapsed, onCollapsedChange }: DocsSidebarProps) 
           ))}
         </SidebarSection>
 
-        <SidebarSection title="Accessibility" icon={Sparkles}>
+        <SidebarSection title="Accessibility" icon={Shield}>
           {accessibilityItems.map((item) => (
             <NavLink key={item.href} href={item.href} label={item.label} active={isPathActive(normalizedPathname, item.href)} />
           ))}
@@ -215,6 +221,12 @@ export function DocsSidebar({ collapsed, onCollapsedChange }: DocsSidebarProps) 
 
         <SidebarSection title="Design System" icon={Palette}>
           {designSystemItems.map((item) => (
+            <NavLink key={item.href} href={item.href} label={item.label} active={isPathActive(normalizedPathname, item.href)} />
+          ))}
+        </SidebarSection>
+
+        <SidebarSection title="Compare" icon={ArrowLeftRight}>
+          {compareItems.map((item) => (
             <NavLink key={item.href} href={item.href} label={item.label} active={isPathActive(normalizedPathname, item.href)} />
           ))}
         </SidebarSection>

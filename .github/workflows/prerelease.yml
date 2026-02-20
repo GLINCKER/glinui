@@ -1,0 +1,57 @@
+name: Prerelease
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  prerelease:
+    name: Prerelease
+    if: contains(github.event.label.name, 'autorelease')
+    runs-on: ubuntu-latest
+    environment: npm-publish
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Build all packages
+        run: pnpm build
+
+      - name: Stamp beta versions
+        run: |
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          for pkg in packages/tokens packages/motion packages/registry packages/ui packages/cli; do
+            node -e "
+              const fs = require('fs');
+              const p = JSON.parse(fs.readFileSync('$pkg/package.json', 'utf8'));
+              p.version = '0.0.0-beta.${SHORT_SHA}';
+              fs.writeFileSync('$pkg/package.json', JSON.stringify(p, null, 2) + '\n');
+            "
+          done
+
+      - name: Publish beta packages
+        run: |
+          pnpm --filter @glinui/tokens publish --no-git-checks --access public --tag beta
+          pnpm --filter @glinui/motion publish --no-git-checks --access public --tag beta
+          pnpm --filter @glinui/registry publish --no-git-checks --access public --tag beta
+          pnpm --filter @glinui/ui publish --no-git-checks --access public --tag beta
+          pnpm --filter glinui publish --no-git-checks --access public --tag beta
+        env:
+          NPM_CONFIG_PROVENANCE: "true"
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -81,6 +81,12 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
                 <Link href="/docs/screen-reader-testing" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
                   A11y QA
                 </Link>
+                <Link href="/docs/focus-management" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
+                  Focus
+                </Link>
+                <Link href="/docs/color-contrast" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
+                  Contrast
+                </Link>
                 <Link href="/docs/tokens" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
                   Tokens
                 </Link>
@@ -89,6 +95,9 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
                 </Link>
                 <Link href="/docs/motion" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
                   Motion
+                </Link>
+                <Link href="/docs/glass-physics" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
+                  Glass Physics
                 </Link>
               </nav>
 
@@ -134,7 +143,7 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
           </main>
 
           <footer className="rounded-2xl border border-white/20 [border-top-color:var(--glass-refraction-top)] bg-[var(--glass-3-surface)] px-5 py-10 backdrop-blur-2xl shadow-[0_0_0_1px_rgb(255_255_255_/_0.08)_inset,var(--shadow-soft)] dark:border-white/[0.1] sm:px-8 sm:py-12">
-            <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+            <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
               <div className="space-y-5">
                 <div className="flex items-center gap-2.5">
                   <span className="inline-flex size-9 items-center justify-center rounded-xl border border-white/20 [border-top-color:var(--glass-refraction-top)] bg-[var(--glass-4-surface)] shadow-[var(--glass-4-shadow)]">
@@ -184,7 +193,17 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
                 <Link href="/docs/tokens" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Design Tokens</Link>
                 <Link href="/docs/motion" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Motion</Link>
                 <Link href="/docs/glass-physics" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Glass Physics</Link>
-                <Link href="/docs/accessibility" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Accessibility</Link>
+                <Link href="/docs/api-metadata" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">API Metadata</Link>
+              </div>
+
+              <div className="space-y-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-400 dark:text-neutral-500">Accessibility</p>
+                <Link href="/docs/accessibility" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Accessibility Hub</Link>
+                <Link href="/docs/forms-accessibility" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Forms A11y</Link>
+                <Link href="/docs/forms-recipes" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Form Recipes</Link>
+                <Link href="/docs/screen-reader-testing" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Screen Readers</Link>
+                <Link href="/docs/focus-management" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Focus Management</Link>
+                <Link href="/docs/color-contrast" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Color Contrast</Link>
               </div>
 
               <div className="space-y-3">

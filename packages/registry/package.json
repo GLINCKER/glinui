@@ -1,10 +1,28 @@
 {
   "name": "@glinui/registry",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GLINCKER/glinui",
+    "directory": "packages/registry"
+  },
+  "homepage": "https://glinui.com",
+  "bugs": "https://github.com/GLINCKER/glinui/issues",
+  "keywords": ["glinui", "glassmorphism", "liquid-glass", "react", "tailwindcss", "ui", "design-system"],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "pnpm registry:generate && tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",

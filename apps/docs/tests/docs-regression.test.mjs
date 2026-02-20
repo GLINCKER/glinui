@@ -317,8 +317,8 @@ test("docs scripts keep combined metadata generation hooks", () => {
 
   assert.match(packageJson, /"metadata:generate"/)
   assert.match(packageJson, /"registry:generate"/)
-  assert.match(packageJson, /"prebuild": "rm -rf \.next && pnpm metadata:generate"/)
-  assert.match(packageJson, /"pretest": "pnpm metadata:generate"/)
+  assert.match(packageJson, /"prebuild": "rm -rf \.next && pnpm metadata:generate && pnpm preregistry"/)
+  assert.match(packageJson, /"pretest": "pnpm metadata:generate && pnpm preregistry"/)
 })
 
 test("sitemap is generated from registry metadata", () => {

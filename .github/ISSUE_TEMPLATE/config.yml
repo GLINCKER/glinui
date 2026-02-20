@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://glinui.com
+    about: Check the docs before opening an issue.
+  - name: Discussions
+    url: https://github.com/GLINCKER/glinui/discussions
+    about: Ask questions and share ideas.

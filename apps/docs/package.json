@@ -4,22 +4,24 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "pnpm metadata:generate",
+    "preregistry": "node scripts/build-registry-endpoints.mjs",
+    "predev": "pnpm metadata:generate && pnpm preregistry",
     "dev": "WATCHPACK_POLLING=true next dev -p 3002",
     "dev:restart": "sh -c 'PIDS=$(lsof -ti tcp:3002); if [ -n \"$PIDS\" ]; then kill $PIDS; fi; WATCHPACK_POLLING=true next dev -p 3002'",
-    "prebuild": "rm -rf .next && pnpm metadata:generate",
+    "prebuild": "rm -rf .next && pnpm metadata:generate && pnpm preregistry",
     "build": "next build",
     "start": "next start -p 3002",
     "pretypecheck": "pnpm metadata:generate",
     "typecheck": "tsc --noEmit",
     "lint": "echo 'lint: @glinui/docs (todo)'",
-    "pretest": "pnpm metadata:generate",
+    "pretest": "pnpm metadata:generate && pnpm preregistry",
     "test": "node --test tests/**/*.test.mjs",
     "api:generate": "node scripts/generate-api-metadata.mjs",
     "api:audit": "node scripts/audit-api-tables.mjs",
     "api:cleanup-safe": "node scripts/cleanup-safe-api-tables.mjs",
     "registry:generate": "node scripts/generate-registry-metadata.mjs",
-    "metadata:generate": "pnpm api:generate && pnpm registry:generate"
+    "metadata:generate": "pnpm api:generate && pnpm registry:generate",
+    "registry:endpoints": "pnpm preregistry"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

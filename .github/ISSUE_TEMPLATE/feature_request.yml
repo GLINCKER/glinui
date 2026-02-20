@@ -1,0 +1,44 @@
+name: Feature Request
+description: Suggest a new component or enhancement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: Have an idea for Glin UI? We'd love to hear it.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Request Type
+      options:
+        - New Component
+        - Enhancement to Existing Component
+        - New Variant / Prop
+        - Documentation
+        - Tooling / DX
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the feature you'd like to see.
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: How would this feature be used? What problem does it solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples / References
+      description: Links to similar implementations, screenshots, or code snippets.
+    validations:
+      required: false

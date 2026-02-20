@@ -107,4 +107,52 @@ describe("diff command json", () => {
     expect(payload.stats.removed).toBeGreaterThan(0)
     expect(payload.hunks.length).toBeGreaterThan(0)
   })
+
+  it("emits upToDate json payload when local and registry sources match", async () => {
+    const cwd = await createTempProject()
+    const localFile = path.join(cwd, "src/components/ui/button.tsx")
+    await mkdir(path.dirname(localFile), { recursive: true })
+    const source = "export const Button = () => <button>Same</button>\n"
+    await writeFile(localFile, source, "utf8")
+
+    mockedFetch.mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          name: "button",
+          type: "primitive",
+          files: [
+            {
+              path: "packages/ui/src/components/button.tsx",
+              content: source
+            }
+          ]
+        }),
+        { status: 200 }
+      )
+    )
+
+    const logSpy = vi.spyOn(console, "log").mockImplementation(() => undefined)
+
+    const command = createDiffCommand()
+    await command.parseAsync(["button", "--cwd", cwd, "--json"], { from: "user" })
+
+    expect(logSpy).toHaveBeenCalledTimes(1)
+
+    const payloadRaw = String(logSpy.mock.calls[0]?.[0] ?? "")
+    const payload = JSON.parse(payloadRaw) as {
+      component: string
+      upToDate: boolean
+      stats: { added: number; removed: number }
+      hunks: unknown[]
+      localPath: string
+      registryPath: string
+    }
+
+    expect(payload.component).toBe("button")
+    expect(payload.upToDate).toBe(true)
+    expect(payload.registryPath).toBe("registry/button.tsx")
+    expect(payload.localPath).toBe("src/components/ui/button.tsx")
+    expect(payload.stats).toEqual({ added: 0, removed: 0 })
+    expect(payload.hunks).toEqual([])
+  })
 })

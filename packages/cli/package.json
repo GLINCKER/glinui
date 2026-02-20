@@ -46,6 +46,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest run",
+    "test:e2e": "vitest run --config vitest.e2e.config.ts",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",

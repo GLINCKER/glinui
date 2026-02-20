@@ -6,14 +6,16 @@ import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
 import { Zap, Palette, Sparkles, Globe, Moon, Star, Rocket, Flame, GitBranch, Database, Cloud, Lock, Shield, Cpu, Layers, Code2, Box } from "lucide-react"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("orbiting-circles")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Orbiting Circles - Glin UI",
-  description: item?.description ?? "CSS double-rotate orbit animation for icon constellations."
-}
+export const metadata = createDocsMetadata({
+  title: "Orbiting Circles",
+  description: item?.description ?? "CSS double-rotate orbit animation for icon constellations.",
+  path: "/docs/components/orbiting-circles"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

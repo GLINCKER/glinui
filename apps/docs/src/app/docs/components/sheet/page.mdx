@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("sheet")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Sheet - Glin UI",
-  description: item?.description ?? "Sliding panel for side, top, or bottom contextual workflows."
-}
+export const metadata = createDocsMetadata({
+  title: "Sheet",
+  description: item?.description ?? "Sliding panel for side, top, or bottom contextual workflows.",
+  path: "/docs/components/sheet"
+})
 
 <ComponentDocLayout badgeLabel="Primitive / Molecule" componentId="sheet" implementation="radix" title="Sheet" description={item?.description ?? "Sliding panel for side, top, or bottom contextual workflows."}>
   ## Installation

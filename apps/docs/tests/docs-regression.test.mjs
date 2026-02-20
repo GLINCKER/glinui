@@ -171,9 +171,9 @@ test("global layout keeps enriched SEO metadata", () => {
   assert.match(layout, /applicationName/)
   assert.match(layout, /openGraph/)
   assert.match(layout, /twitter/)
-  assert.match(layout, /alternates/)
+  assert.match(layout, /manifest/)
   assert.match(layout, /robots:/)
-  assert.match(layout, /SoftwareApplication/)
+  assert.match(layout, /getGlobalStructuredData|SoftwareApplication/)
 })
 
 test("signature routes link directly and have docs pages", () => {
@@ -331,4 +331,43 @@ test("sitemap is generated from registry metadata", () => {
   assert.match(sitemap, /priority/)
   assert.match(robots, /sitemap:/)
   assert.match(robots, /host:/)
+})
+
+test("seo comparison and intent routes are wired into docs navigation and sitemap", () => {
+  const sidebar = read("src/components/layout/docs-sidebar.tsx")
+  const topbar = read("src/components/layout/docs-topbar.tsx")
+  const palette = read("src/components/layout/command-palette.tsx")
+  const shell = read("src/components/layout/docs-shell.tsx")
+  const sitemap = read("src/app/sitemap.ts")
+  const shadcn = read("src/app/docs/shadcn-alternative/page.tsx")
+  const magic = read("src/app/docs/magicui-alternative/page.tsx")
+  const radix = read("src/app/docs/radix-ui-components/page.tsx")
+  const glassmorphism = read("src/app/docs/glassmorphism-react-components/page.tsx")
+
+  const seoRoutes = [
+    "/docs/shadcn-alternative",
+    "/docs/magicui-alternative",
+    "/docs/radix-ui-components",
+    "/docs/glassmorphism-react-components"
+  ]
+
+  for (const route of seoRoutes) {
+    assert.match(sidebar, new RegExp(route.replace(/\//g, "\\/")))
+    assert.match(palette, new RegExp(route.replace(/\//g, "\\/")))
+    assert.match(shell, new RegExp(route.replace(/\//g, "\\/")))
+    assert.match(sitemap, new RegExp(route.replace(/\//g, "\\/")))
+  }
+
+  assert.match(topbar, /Glin UI vs shadcn\/ui/)
+  assert.match(topbar, /Glin UI vs Magic UI/)
+  assert.match(topbar, /Radix UI Components/)
+  assert.match(topbar, /Glassmorphism React/)
+  assert.match(shadcn, /FAQPage/)
+  assert.match(shadcn, /BreadcrumbList/)
+  assert.match(magic, /FAQPage/)
+  assert.match(magic, /BreadcrumbList/)
+  assert.match(radix, /FAQPage/)
+  assert.match(radix, /BreadcrumbList/)
+  assert.match(glassmorphism, /FAQPage/)
+  assert.match(glassmorphism, /BreadcrumbList/)
 })

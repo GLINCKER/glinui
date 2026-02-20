@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("radio-group")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Radio Group - Glin UI",
-  description: item?.description ?? "Mutually exclusive selection control with variant-capable radio items."
-}
+export const metadata = createDocsMetadata({
+  title: "Radio Group",
+  description: item?.description ?? "Mutually exclusive selection control with variant-capable radio items.",
+  path: "/docs/components/radio-group"
+})
 
 <ComponentDocLayout
   badgeLabel="Primitive / Atom"

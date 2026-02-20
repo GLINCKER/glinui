@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   output: "export",
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
+  trailingSlash: false,
   transpilePackages: ["@glinui/ui", "@glinui/registry", "@glinui/tokens", "@glinui/motion"]
 }
 

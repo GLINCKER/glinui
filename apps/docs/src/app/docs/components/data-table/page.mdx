@@ -5,16 +5,17 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("data-table")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Data Table - Glin UI",
-  description:
-    item?.description ??
-    "Feature-rich table wrapper with search, sorting, pagination, selection, and column controls."
-}
+export const metadata = createDocsMetadata({
+  title: "Data Table",
+  description: item?.description ??
+    "Feature-rich table wrapper with search, sorting, pagination, selection, and column controls.",
+  path: "/docs/components/data-table"
+})
 
 export const pipelineColumns = [
   { id: "account", header: "Account", accessor: "account", sortable: true },

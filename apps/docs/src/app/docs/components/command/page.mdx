@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("command")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Command - Glin UI",
-  description: item?.description ?? "Command palette for keyboard-driven actions and search."
-}
+export const metadata = createDocsMetadata({
+  title: "Command",
+  description: item?.description ?? "Command palette for keyboard-driven actions and search.",
+  path: "/docs/components/command"
+})
 
 <ComponentDocLayout
   badgeLabel="Primitive / Molecule"

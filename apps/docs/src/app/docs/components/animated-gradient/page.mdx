@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { PropsTable } from "@/components/docs/props-table"
 import { getComponentSources } from "@/lib/get-component-source"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("animated-gradient")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Animated Gradient - Glin UI",
-  description: item?.description ?? "Animated color-shifting gradient background."
-}
+export const metadata = createDocsMetadata({
+  title: "Animated Gradient",
+  description: item?.description ?? "Animated color-shifting gradient background.",
+  path: "/docs/components/animated-gradient"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

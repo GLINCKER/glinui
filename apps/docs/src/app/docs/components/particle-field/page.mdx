@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("particle-field")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Particle Field - Glin UI",
-  description: item?.description ?? "Ambient floating particle system with CSS-only staggered animations."
-}
+export const metadata = createDocsMetadata({
+  title: "Particle Field",
+  description: item?.description ?? "Ambient floating particle system with CSS-only staggered animations.",
+  path: "/docs/components/particle-field"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

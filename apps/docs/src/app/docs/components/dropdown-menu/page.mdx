@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("dropdown-menu")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Dropdown Menu - Glin UI",
-  description: item?.description ?? "Action menu anchored to a trigger with keyboard navigation."
-}
+export const metadata = createDocsMetadata({
+  title: "Dropdown Menu",
+  description: item?.description ?? "Action menu anchored to a trigger with keyboard navigation.",
+  path: "/docs/components/dropdown-menu"
+})
 
 <ComponentDocLayout badgeLabel="Primitive / Molecule" componentId="dropdown-menu" implementation="radix" title="Dropdown Menu" description={item?.description ?? "Action menu anchored to a trigger with keyboard navigation."}>
   ## Installation

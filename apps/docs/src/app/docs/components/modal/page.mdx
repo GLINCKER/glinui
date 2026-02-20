@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("modal")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Modal - Glin UI",
-  description: item?.description ?? "Layered dialog for focused tasks or confirmations."
-}
+export const metadata = createDocsMetadata({
+  title: "Modal",
+  description: item?.description ?? "Layered dialog for focused tasks or confirmations.",
+  path: "/docs/components/modal"
+})
 
 <ComponentDocLayout
   badgeLabel="Primitive / Molecule"

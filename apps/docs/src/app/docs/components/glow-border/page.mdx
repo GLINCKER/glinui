@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("glow-border")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Glow Border - Glin UI",
-  description: item?.description ?? "Rotating conic-gradient glow effect around a container border."
-}
+export const metadata = createDocsMetadata({
+  title: "Glow Border",
+  description: item?.description ?? "Rotating conic-gradient glow effect around a container border.",
+  path: "/docs/components/glow-border"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

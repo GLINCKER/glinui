@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("label")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Label - Glin UI",
-  description: item?.description ?? "Form label primitive with shared glass-aware variants."
-}
+export const metadata = createDocsMetadata({
+  title: "Label",
+  description: item?.description ?? "Form label primitive with shared glass-aware variants.",
+  path: "/docs/components/label"
+})
 
 <ComponentDocLayout
   badgeLabel="Primitive / Atom"

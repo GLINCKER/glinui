@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("blur-fade")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Blur Fade - Glin UI",
-  description: item?.description ?? "Scroll-triggered blur and fade entrance animation via IntersectionObserver."
-}
+export const metadata = createDocsMetadata({
+  title: "Blur Fade",
+  description: item?.description ?? "Scroll-triggered blur and fade entrance animation via IntersectionObserver.",
+  path: "/docs/components/blur-fade"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

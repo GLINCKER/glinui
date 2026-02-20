@@ -32,13 +32,21 @@ export async function generateMetadata({
   if (registryItem.type === "primitive") {
     const resolvedImplementation = resolveImplementation(implementation)
     const canonicalPath = `/docs/components/${DEFAULT_DOCS_IMPLEMENTATION}/${component}`
+    const componentKeywords = [
+      `${registryItem.title} component`,
+      `${registryItem.title} react component`,
+      `${registryItem.title} radix ui`,
+      "React component docs",
+      "UI component API",
+      "Glin UI component"
+    ]
 
     return {
       ...createDocsMetadata({
         title: registryItem.title,
         description: registryItem.description,
         path: canonicalPath,
-        keywords: ["React component docs", "UI component API", "Glin UI component"]
+        keywords: componentKeywords
       }),
       robots:
         resolvedImplementation === DEFAULT_DOCS_IMPLEMENTATION
@@ -53,11 +61,19 @@ export async function generateMetadata({
     }
   }
 
+  const signatureKeywords = [
+    `${registryItem.title} component`,
+    `${registryItem.title} glass ui`,
+    "signature component docs",
+    "glass UI component",
+    "Glin UI component"
+  ]
+
   return createDocsMetadata({
     title: registryItem.title,
     description: registryItem.description,
     path: registryItem.docsPath,
-    keywords: ["signature component docs", "glass UI component", "Glin UI component"]
+    keywords: signatureKeywords
   })
 }
 

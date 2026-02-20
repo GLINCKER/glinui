@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("pulsating-button")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Pulsating Button - Glin UI",
-  description: item?.description ?? "Button with pulsing glow ring."
-}
+export const metadata = createDocsMetadata({
+  title: "Pulsating Button",
+  description: item?.description ?? "Button with pulsing glow ring.",
+  path: "/docs/components/pulsating-button"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

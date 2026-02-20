@@ -11,6 +11,7 @@ const commands = [
   "pnpm --filter @glinui/docs preregistry",
   "pnpm --filter glinui build",
   "pnpm --filter glinui test",
+  "pnpm --filter glinui test:e2e",
   "node tooling/scripts/validate-publish.mjs"
 ]
 

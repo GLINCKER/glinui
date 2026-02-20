@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("avatar")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Avatar - Glin UI",
-  description: "Profile image with glassmorphic variants, status indicators, grouped stacking, and copy-ready Tailwind recipes."
-}
+export const metadata = createDocsMetadata({
+  title: "Avatar",
+  description: "Profile image with glassmorphic variants, status indicators, grouped stacking, and copy-ready Tailwind recipes.",
+  path: "/docs/components/avatar"
+})
 
 export const adventurerUrl = "https://api.dicebear.com/9.x/adventurer/svg?seed=Nova"
 export const loreleiUrl = "https://api.dicebear.com/9.x/lorelei/svg?seed=Kai"

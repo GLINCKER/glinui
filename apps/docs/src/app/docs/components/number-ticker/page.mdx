@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("number-ticker")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Number Ticker - Glin UI",
-  description: item?.description ?? "Animated number counter triggered by scroll."
-}
+export const metadata = createDocsMetadata({
+  title: "Number Ticker",
+  description: item?.description ?? "Animated number counter triggered by scroll.",
+  path: "/docs/components/number-ticker"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

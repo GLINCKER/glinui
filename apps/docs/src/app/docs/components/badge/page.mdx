@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("badge")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Badge - Glin UI",
-  description: item?.description ?? "Compact status indicator for labels, states, and counts."
-}
+export const metadata = createDocsMetadata({
+  title: "Badge",
+  description: item?.description ?? "Compact status indicator for labels, states, and counts.",
+  path: "/docs/components/badge"
+})
 
 <ComponentDocLayout badgeLabel="Primitive / Atom" componentId="badge" implementation="radix" title="Badge" description={item?.description ?? "Compact status indicator for labels, states, and counts."}>
   ## Installation

@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("ripple-button")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Ripple Button - Glin UI",
-  description: item?.description ?? "Button with liquid ripple effect on press."
-}
+export const metadata = createDocsMetadata({
+  title: "Ripple Button",
+  description: item?.description ?? "Button with liquid ripple effect on press.",
+  path: "/docs/components/ripple-button"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

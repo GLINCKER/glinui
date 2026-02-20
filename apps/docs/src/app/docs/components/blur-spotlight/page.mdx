@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("blur-spotlight")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Blur Spotlight - Glin UI",
-  description: item?.description ?? "Cursor-following ambient glow effect for background layers."
-}
+export const metadata = createDocsMetadata({
+  title: "Blur Spotlight",
+  description: item?.description ?? "Cursor-following ambient glow effect for background layers.",
+  path: "/docs/components/blur-spotlight"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

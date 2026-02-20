@@ -11,14 +11,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("tooltip")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Tooltip - Glin UI",
-  description: item?.description ?? "Context hint on hover/focus using Radix tooltip primitive."
-}
+export const metadata = createDocsMetadata({
+  title: "Tooltip",
+  description: item?.description ?? "Context hint on hover/focus using Radix tooltip primitive.",
+  path: "/docs/components/tooltip"
+})
 
 <ComponentDocLayout
   badgeLabel="Primitive / Atom"

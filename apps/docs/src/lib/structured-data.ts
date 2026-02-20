@@ -1,17 +1,19 @@
 import { generatedRegistryByName } from "@/lib/generated-registry-metadata"
 import { DEFAULT_DOCS_IMPLEMENTATION } from "@/lib/docs-config"
 import { buildComponentHref } from "@/lib/docs-route"
-import { SITE_URL, SITE_NAME } from "@/lib/seo"
+import {
+  ORGANIZATION_GITHUB_URL,
+  ORGANIZATION_NAME,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  createAbsoluteUrl
+} from "@/lib/seo"
 import type { ComponentId } from "@/lib/primitives"
 
 type StructuredDataInput = {
   componentId: ComponentId
   title: string
   description: string
-}
-
-function absoluteUrl(path: string) {
-  return `${SITE_URL}${path}`
 }
 
 export function getComponentStructuredData({
@@ -21,7 +23,7 @@ export function getComponentStructuredData({
 }: StructuredDataInput) {
   const registryItem = generatedRegistryByName[componentId as keyof typeof generatedRegistryByName]
   const canonicalPath = buildComponentHref(componentId, DEFAULT_DOCS_IMPLEMENTATION)
-  const canonicalUrl = absoluteUrl(canonicalPath)
+  const canonicalUrl = createAbsoluteUrl(canonicalPath)
   const componentKind = registryItem?.type === "signature" ? "Signature" : "Primitive"
 
   return {
@@ -35,11 +37,11 @@ export function getComponentStructuredData({
         mainEntityOfPage: canonicalUrl,
         author: {
           "@type": "Organization",
-          name: "GLINR Studios"
+          name: ORGANIZATION_NAME
         },
         publisher: {
           "@type": "Organization",
-          name: "GLINR Studios"
+          name: ORGANIZATION_NAME
         },
         about: [
           `${SITE_NAME} ${componentKind} Component`,
@@ -64,13 +66,13 @@ export function getComponentStructuredData({
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: absoluteUrl("/")
+            item: createAbsoluteUrl("/")
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Components",
-            item: absoluteUrl("/docs/components")
+            item: createAbsoluteUrl("/docs/components")
           },
           {
             "@type": "ListItem",
@@ -79,6 +81,53 @@ export function getComponentStructuredData({
             item: canonicalUrl
           }
         ]
+      }
+    ]
+  }
+}
+
+export function getGlobalStructuredData() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": createAbsoluteUrl("/#organization"),
+        name: ORGANIZATION_NAME,
+        url: createAbsoluteUrl("/"),
+        sameAs: [ORGANIZATION_GITHUB_URL]
+      },
+      {
+        "@type": "WebSite",
+        "@id": createAbsoluteUrl("/#website"),
+        name: SITE_NAME,
+        url: createAbsoluteUrl("/"),
+        description: SITE_DESCRIPTION,
+        publisher: {
+          "@id": createAbsoluteUrl("/#organization")
+        },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${createAbsoluteUrl("/docs/components")}?q={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": createAbsoluteUrl("/#application"),
+        name: SITE_NAME,
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: "Web",
+        description: SITE_DESCRIPTION,
+        url: createAbsoluteUrl("/"),
+        creator: {
+          "@id": createAbsoluteUrl("/#organization")
+        },
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD"
+        }
       }
     ]
   }

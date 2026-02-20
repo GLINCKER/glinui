@@ -69,6 +69,18 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
                 <Link href="/docs/components" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
                   Components
                 </Link>
+                <Link href="/docs/shadcn-alternative" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
+                  vs shadcn/ui
+                </Link>
+                <Link href="/docs/magicui-alternative" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
+                  vs Magic UI
+                </Link>
+                <Link href="/docs/radix-ui-components" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
+                  Radix UI
+                </Link>
+                <Link href="/docs/glassmorphism-react-components" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
+                  Glassmorphism
+                </Link>
                 <Link href="/docs/forms-accessibility" className="rounded-lg px-2.5 py-1.5 text-sm text-neutral-600 transition-colors hover:bg-white/10 hover:text-foreground dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white">
                   Forms A11y
                 </Link>
@@ -190,6 +202,10 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-400 dark:text-neutral-500">Product</p>
                 <Link href="/docs/getting-started" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Getting Started</Link>
                 <Link href="/docs/components" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Components</Link>
+                <Link href="/docs/shadcn-alternative" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">vs shadcn/ui</Link>
+                <Link href="/docs/magicui-alternative" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">vs Magic UI</Link>
+                <Link href="/docs/radix-ui-components" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Radix UI Components</Link>
+                <Link href="/docs/glassmorphism-react-components" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Glassmorphism React</Link>
                 <Link href="/docs/tokens" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Design Tokens</Link>
                 <Link href="/docs/motion" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Motion</Link>
                 <Link href="/docs/glass-physics" className="block text-[13px] text-neutral-600 transition-colors hover:text-foreground dark:text-neutral-300">Glass Physics</Link>

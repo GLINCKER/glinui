@@ -36,6 +36,10 @@ const gettingStartedItems: NavItem[] = [
   { href: "/docs", label: "Docs Overview" },
   { href: "/docs/getting-started", label: "Introduction" },
   { href: "/docs/directory", label: "Directory" },
+  { href: "/docs/shadcn-alternative", label: "Glin UI vs shadcn/ui" },
+  { href: "/docs/magicui-alternative", label: "Glin UI vs Magic UI" },
+  { href: "/docs/radix-ui-components", label: "Radix UI Components" },
+  { href: "/docs/glassmorphism-react-components", label: "Glassmorphism React" },
   { href: "/docs/forms-recipes", label: "Form Recipes" }
 ]
 

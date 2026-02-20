@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("spotlight-card")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Spotlight Card - Glin UI",
-  description: item?.description ?? "Card with cursor-tracked radial spotlight effect on hover."
-}
+export const metadata = createDocsMetadata({
+  title: "Spotlight Card",
+  description: item?.description ?? "Card with cursor-tracked radial spotlight effect on hover.",
+  path: "/docs/components/spotlight-card"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

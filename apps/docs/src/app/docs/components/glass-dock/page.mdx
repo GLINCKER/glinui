@@ -6,14 +6,16 @@ import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
 import { Home, Search, Settings, User, Mail, FolderOpen, Camera, Music, Film, Globe, MessageCircle, Bell } from "lucide-react"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("glass-dock")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Glass Dock - Glin UI",
-  description: item?.description ?? "macOS-style dock with proximity magnification and frosted glass surface."
-}
+export const metadata = createDocsMetadata({
+  title: "Glass Dock",
+  description: item?.description ?? "macOS-style dock with proximity magnification and frosted glass surface.",
+  path: "/docs/components/glass-dock"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

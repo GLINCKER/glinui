@@ -5,14 +5,16 @@ import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
 import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("glass-card")
 export const sources = getComponentSources(item?.files)
-export const metadata = {
-  title: "Glass Card - Glin UI",
-  description: item?.description ?? "Frosted card with depth-aware blur and elevation transitions."
-}
+export const metadata = createDocsMetadata({
+  title: "Glass Card",
+  description: item?.description ?? "Frosted card with depth-aware blur and elevation transitions.",
+  path: "/docs/components/glass-card"
+})
 
 <ComponentDocLayout
   badgeLabel="Signature / Molecule"

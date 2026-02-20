@@ -177,6 +177,22 @@ function getPageTitle(pathname: string) {
     return "Components"
   }
 
+  if (pathname === "/docs/shadcn-alternative") {
+    return "Glin UI vs shadcn/ui"
+  }
+
+  if (pathname === "/docs/magicui-alternative") {
+    return "Glin UI vs Magic UI"
+  }
+
+  if (pathname === "/docs/radix-ui-components") {
+    return "Radix UI Components"
+  }
+
+  if (pathname === "/docs/glassmorphism-react-components") {
+    return "Glassmorphism React"
+  }
+
   if (pathname.startsWith("/docs/components/")) {
     const segments = pathname.split("/").filter(Boolean)
     const maybeId = segments[3] ?? segments[2]

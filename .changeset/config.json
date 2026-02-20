@@ -5,5 +5,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["glinui-monorepo", "@glinui/docs", "@glinui/tsconfig"]
+  "ignore": ["@glinui/docs", "@glinui/tsconfig"]
 }

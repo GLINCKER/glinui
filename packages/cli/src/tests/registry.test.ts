@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest"
-import { fetchRegistryIndex, fetchRegistryItem } from "../registry/api.js"
+import { fetchRegistryIndex, fetchRegistryItem, getLastRegistryErrorMessage } from "../registry/api.js"
 
 const mockedFetch = vi.fn<typeof fetch>()
 
@@ -45,6 +45,7 @@ describe("registry api", () => {
     const result = await fetchRegistryIndex()
 
     expect(result).toBeNull()
+    expect(getLastRegistryErrorMessage()).toContain("invalid registry index payload")
   })
 
   it("fetchRegistryItem returns parsed item when response is valid", async () => {
@@ -78,5 +79,32 @@ describe("registry api", () => {
     const result = await fetchRegistryItem("missing")
 
     expect(result).toBeNull()
+    expect(getLastRegistryErrorMessage()).toContain("404")
+  })
+
+  it("clears stale registry errors on successful requests", async () => {
+    mockedFetch.mockResolvedValueOnce(new Response(null, { status: 404 }))
+    await fetchRegistryItem("missing")
+    expect(getLastRegistryErrorMessage()).toContain("404")
+
+    mockedFetch.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify([
+          {
+            name: "button",
+            type: "primitive",
+            description: "Button",
+            dependencies: ["@glinui/ui"],
+            registryDependencies: []
+          }
+        ]),
+        { status: 200 }
+      )
+    )
+
+    const result = await fetchRegistryIndex()
+
+    expect(result).toHaveLength(1)
+    expect(getLastRegistryErrorMessage()).toBeNull()
   })
 })

@@ -1,6 +1,6 @@
 {
   "name": "@glinui/ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,9 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -19,7 +21,15 @@
   },
   "homepage": "https://glinui.com",
   "bugs": "https://github.com/GLINCKER/glinui/issues",
-  "keywords": ["glinui", "glassmorphism", "liquid-glass", "react", "tailwindcss", "ui", "design-system"],
+  "keywords": [
+    "glinui",
+    "glassmorphism",
+    "liquid-glass",
+    "react",
+    "tailwindcss",
+    "ui",
+    "design-system"
+  ],
   "publishConfig": {
     "access": "public"
   },

@@ -1,6 +1,6 @@
 {
   "name": "glinui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for adding Glin UI liquid glass components to your project.",
   "type": "module",
   "license": "MIT",
@@ -11,7 +11,16 @@
   },
   "homepage": "https://glinui.com",
   "bugs": "https://github.com/GLINCKER/glinui/issues",
-  "keywords": ["glinui", "glassmorphism", "liquid-glass", "react", "tailwindcss", "radix-ui", "cli", "ui"],
+  "keywords": [
+    "glinui",
+    "glassmorphism",
+    "liquid-glass",
+    "react",
+    "tailwindcss",
+    "radix-ui",
+    "cli",
+    "ui"
+  ],
   "bin": {
     "glinui": "./dist/index.js"
   },
@@ -27,7 +36,9 @@
       "default": "./dist/registry/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },

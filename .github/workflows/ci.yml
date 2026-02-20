@@ -40,5 +40,8 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Publish Readiness
+        run: node tooling/scripts/ci-publish-readiness.mjs
+
       - name: A11y (axe)
         run: pnpm --filter @glinui/ui exec vitest run src/tests/a11y.test.tsx

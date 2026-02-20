@@ -54,4 +54,3 @@ jobs:
           pnpm --filter glinui publish --no-git-checks --access public --tag beta
         env:
           NPM_CONFIG_PROVENANCE: "true"
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,103 @@
+import { getRegistryItem } from "@glinui/registry"
+import { GradientMesh } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("gradient-mesh")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Gradient Mesh - Glin UI",
+  description: item?.description ?? "Generative mesh gradient background using overlapping radial gradients."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="gradient-mesh"
+  implementation="css"
+  title="Gradient Mesh"
+  description={item?.description ?? "Generative mesh gradient background using overlapping radial gradients."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add gradient-mesh"} />
+
+  ## Usage
+
+  Place `GradientMesh` inside a relative container. It renders overlapping blurred radial gradients that shift position via CSS animations.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { GradientMesh } from "@glinui/ui"
+
+export function GradientMeshDemo() {
+  return (
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl bg-neutral-950">
+      <GradientMesh />
+      <span className="relative z-10 text-3xl font-bold text-white">Mesh</span>
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl bg-neutral-950">
+      <GradientMesh />
+      <span className="relative z-10 text-3xl font-bold text-white">Mesh</span>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Custom Colors
+
+  <ExampleBlock
+    code={`import { GradientMesh } from "@glinui/ui"
+
+export function GradientMeshColorsDemo() {
+  return (
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl bg-neutral-950">
+      <GradientMesh colors={["#f43f5e", "#f97316", "#eab308"]} intensity={0.5} />
+      <span className="relative z-10 text-2xl font-bold text-white">Warm</span>
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl bg-neutral-950">
+      <GradientMesh colors={["#f43f5e", "#f97316", "#eab308"]} intensity={0.5} />
+      <span className="relative z-10 text-2xl font-bold text-white">Warm</span>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Renders with `aria-hidden` — invisible to assistive technologies.
+  - Purely decorative; carries no semantic meaning.
+
+  ## Reduced Motion
+
+  Mesh animations are paused via `motion-reduce:[animation:none]`. Static gradients remain visible.
+
+  ## API Reference
+
+  <PropsTable componentId="gradient-mesh" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { GradientMesh } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

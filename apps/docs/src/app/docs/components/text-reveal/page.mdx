@@ -1,0 +1,91 @@
+import { getRegistryItem } from "@glinui/registry"
+import { TextReveal } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("text-reveal")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Text Reveal - Glin UI",
+  description: item?.description ?? "Word-by-word opacity reveal on scroll."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="text-reveal"
+  implementation="css"
+  title="Text Reveal"
+  description={item?.description ?? "Word-by-word opacity reveal on scroll."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add text-reveal"} />
+
+  ## Usage
+
+  Pass a `text` string. As the user scrolls, each word fades from dim to full opacity, creating a reading-pace reveal effect.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { TextReveal } from "@glinui/ui"
+
+export function TextRevealDemo() {
+  return (
+    <TextReveal text="Glin UI brings liquid glass aesthetics to every component in your React application." />
+  )
+}`}
+  >
+    <TextReveal text="Glin UI brings liquid glass aesthetics to every component in your React application." />
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Long Paragraph
+
+  <ExampleBlock
+    code={`import { TextReveal } from "@glinui/ui"
+
+export function TextRevealLongDemo() {
+  return (
+    <TextReveal text="Design systems should feel alive. Every surface, every transition, every interaction should respond with purpose. Glin UI makes this effortless with composable glass primitives built for modern React." />
+  )
+}`}
+  >
+    <TextReveal text="Design systems should feel alive. Every surface, every transition, every interaction should respond with purpose. Glin UI makes this effortless with composable glass primitives built for modern React." />
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - All text is in the DOM and readable by screen readers at all times.
+  - Opacity is visual only — content is never hidden from assistive technologies.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion` is active, all words are immediately shown at full opacity.
+
+  ## API Reference
+
+  <PropsTable componentId="text-reveal" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { TextReveal } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

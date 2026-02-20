@@ -1,0 +1,117 @@
+import { getRegistryItem } from "@glinui/registry"
+import { BorderBeam } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("border-beam")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Border Beam - Glin UI",
+  description: item?.description ?? "Light beam traveling along container border."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="border-beam"
+  implementation="css"
+  title="Border Beam"
+  description={item?.description ?? "Light beam traveling along container border."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add border-beam"} />
+
+  ## Usage
+
+  Wrap any container with `position: relative` and place `BorderBeam` inside. The beam travels along the border using CSS `offset-path`.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { BorderBeam } from "@glinui/ui"
+
+export function BorderBeamDemo() {
+  return (
+    <div className="relative h-40 w-full max-w-md rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <BorderBeam />
+    </div>
+  )
+}`}
+  >
+    <div className="relative h-40 w-full max-w-md rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <BorderBeam />
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Custom Colors
+
+  <ExampleBlock
+    code={`import { BorderBeam } from "@glinui/ui"
+
+export function BorderBeamColorDemo() {
+  return (
+    <div className="relative h-40 w-full max-w-md rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <BorderBeam colorFrom="#6366f1" colorTo="#a855f7" />
+    </div>
+  )
+}`}
+  >
+    <div className="relative h-40 w-full max-w-md rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <BorderBeam colorFrom="#6366f1" colorTo="#a855f7" />
+    </div>
+  </ExampleBlock>
+
+  ### Slow Duration
+
+  <ExampleBlock
+    code={`import { BorderBeam } from "@glinui/ui"
+
+export function BorderBeamSlowDemo() {
+  return (
+    <div className="relative h-40 w-full max-w-md rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <BorderBeam duration={12} size={150} />
+    </div>
+  )
+}`}
+  >
+    <div className="relative h-40 w-full max-w-md rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <BorderBeam duration={12} size={150} />
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - `BorderBeam` is purely decorative and does not receive focus.
+  - No interactive elements — safe for screen readers.
+
+  ## Reduced Motion
+
+  The beam animation uses `motion-reduce:hidden`. Under `prefers-reduced-motion`, the beam is hidden entirely.
+
+  ## API Reference
+
+  <PropsTable componentId="border-beam" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { BorderBeam } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

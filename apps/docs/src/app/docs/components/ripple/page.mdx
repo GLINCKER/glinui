@@ -1,0 +1,123 @@
+import { getRegistryItem } from "@glinui/registry"
+import { Ripple } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("ripple")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Ripple - Glin UI",
+  description: item?.description ?? "Concentric expanding rings."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="ripple"
+  implementation="css"
+  title="Ripple"
+  description={item?.description ?? "Concentric expanding rings."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add ripple"} />
+
+  ## Usage
+
+  Place `Ripple` inside a relative container. The rings expand outward from the center.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { Ripple } from "@glinui/ui"
+
+export function RippleDemo() {
+  return (
+    <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <span className="z-10 text-sm font-medium">Ripple</span>
+      <Ripple />
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <span className="z-10 text-sm font-medium">Ripple</span>
+      <Ripple />
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Glass Variant
+
+  <ExampleBlock
+    code={`import { Ripple } from "@glinui/ui"
+
+export function RippleGlassDemo() {
+  return (
+    <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/30 backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
+      <span className="z-10 text-sm font-medium">Glass Ripple</span>
+      <Ripple variant="glass" count={4} />
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/30 backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
+      <span className="z-10 text-sm font-medium">Glass Ripple</span>
+      <Ripple variant="glass" count={4} />
+    </div>
+  </ExampleBlock>
+
+  ### Accent Variant
+
+  <ExampleBlock
+    code={`import { Ripple } from "@glinui/ui"
+
+export function RippleAccentDemo() {
+  return (
+    <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <span className="z-10 text-sm font-medium">Accent</span>
+      <Ripple variant="accent" count={5} duration={3} />
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <span className="z-10 text-sm font-medium">Accent</span>
+      <Ripple variant="accent" count={5} duration={3} />
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Ripple is purely decorative with `pointer-events-none`.
+  - No interactive or focusable elements.
+
+  ## Reduced Motion
+
+  Ring animations use `motion-safe:animate-[...]` / `motion-reduce:hidden`. Under `prefers-reduced-motion`, rings are hidden entirely.
+
+  ## API Reference
+
+  <PropsTable componentId="ripple" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { Ripple } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

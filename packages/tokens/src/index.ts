@@ -6,16 +6,16 @@ export const colorTokens = {
     foreground: "oklch(0.23 0.01 248)",
     surface: "oklch(0.997 0.002 245)",
     border: "oklch(0.89 0.01 246)",
-    accent: "oklch(0.63 0.19 254)",
-    accentForeground: "oklch(0.99 0.003 240)"
+    accent: "oklch(0.20 0.005 250)",
+    accentForeground: "oklch(0.98 0.003 250)"
   },
   dark: {
     background: "oklch(0.18 0.01 250)",
     foreground: "oklch(0.95 0.01 247)",
     surface: "oklch(0.23 0.01 250)",
     border: "oklch(0.34 0.01 250)",
-    accent: "oklch(0.74 0.19 252)",
-    accentForeground: "oklch(0.15 0.01 252)"
+    accent: "oklch(0.92 0.005 250)",
+    accentForeground: "oklch(0.15 0.005 250)"
   }
 } as const
 
@@ -118,6 +118,68 @@ export const glassLevelTokens = {
   }
 } as const
 
+export const glassOpacityScaleTokens = {
+  light: {
+    1: "0.06",
+    2: "0.08",
+    3: "0.10",
+    4: "0.12",
+    5: "0.16",
+    6: "0.18",
+    7: "0.22",
+    8: "0.25",
+    9: "0.30",
+    10: "0.35"
+  },
+  dark: {
+    1: "0.16",
+    2: "0.20",
+    3: "0.25",
+    4: "0.30",
+    5: "0.35",
+    6: "0.40",
+    7: "0.48",
+    8: "0.55",
+    9: "0.62",
+    10: "0.70"
+  }
+} as const
+
+export const glassPerformanceTokens = {
+  gpuHint: {
+    transform: "translateZ(0)",
+    backfaceVisibility: "hidden",
+    willChange: "transform, opacity"
+  },
+  heavySurface: {
+    transform: "translateZ(0)",
+    backfaceVisibility: "hidden",
+    willChange: "backdrop-filter, transform, opacity",
+    contain: "paint"
+  }
+} as const
+
+export const glassLuminanceTokens = {
+  neutral: {
+    surfaceMultiplier: 1,
+    borderMultiplier: 1,
+    refractionMultiplier: 1,
+    saturateMultiplier: 1
+  },
+  bright: {
+    surfaceMultiplier: 1.16,
+    borderMultiplier: 1.08,
+    refractionMultiplier: 1.14,
+    saturateMultiplier: 1.04
+  },
+  dim: {
+    surfaceMultiplier: 0.9,
+    borderMultiplier: 1.15,
+    refractionMultiplier: 1.22,
+    saturateMultiplier: 0.96
+  }
+} as const
+
 export const motionTokens = {
   duration: {
     fast: "150ms",
@@ -136,6 +198,9 @@ export const tokenContract = {
   colorTokens,
   glassTokens,
   glassLevelTokens,
+  glassOpacityScaleTokens,
+  glassPerformanceTokens,
+  glassLuminanceTokens,
   radiusTokens,
   spacingTokens,
   shadowTokens,

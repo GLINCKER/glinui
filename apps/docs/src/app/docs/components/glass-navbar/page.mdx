@@ -1,0 +1,167 @@
+import { getRegistryItem } from "@glinui/registry"
+import { GlassNavbar } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("glass-navbar")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Glass Navbar - Glin UI",
+  description: item?.description ?? "Translucent navigation bar that responds to scroll with blur intensity."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Organism"
+  componentId="glass-navbar"
+  implementation="css"
+  title="Glass Navbar"
+  description={item?.description ?? "Translucent navigation bar that responds to scroll with blur intensity."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add glass-navbar"} />
+
+  ## Usage
+
+  Place `GlassNavbar` at the top of your layout. By default it tracks page scroll and automatically transitions to the `scrolled` elevation state after the scroll threshold is crossed. Add `aria-label` to give screen readers context.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { GlassNavbar } from "@glinui/ui"
+
+export function GlassNavbarDemo() {
+  return (
+    <GlassNavbar aria-label="Main navigation" className="rounded-xl px-6">
+      <div className="flex h-14 items-center justify-between">
+        <span className="font-semibold">Glin UI</span>
+        <nav className="flex items-center gap-6 text-sm">
+          <a href="#" className="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">Docs</a>
+          <a href="#" className="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">Components</a>
+          <a href="#" className="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">Changelog</a>
+        </nav>
+      </div>
+    </GlassNavbar>
+  )
+}`}
+  >
+    <GlassNavbar aria-label="Main navigation" className="rounded-xl px-6">
+      <div className="flex h-14 items-center justify-between">
+        <span className="font-semibold">Glin UI</span>
+        <nav className="flex items-center gap-6 text-sm">
+          <a href="#" className="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">Docs</a>
+          <a href="#" className="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">Components</a>
+          <a href="#" className="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">Changelog</a>
+        </nav>
+      </div>
+    </GlassNavbar>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Size Variants
+
+  <ExampleBlock
+    code={`import { GlassNavbar } from "@glinui/ui"
+
+export function GlassNavbarSizesDemo() {
+  return (
+    <div className="flex flex-col gap-4">
+      <GlassNavbar size="sm" disableScrollTracking className="rounded-xl px-4">
+        <div className="flex items-center justify-between">
+          <span className="font-semibold text-sm">Small</span>
+        </div>
+      </GlassNavbar>
+      <GlassNavbar size="md" disableScrollTracking className="rounded-xl px-4">
+        <div className="flex items-center justify-between">
+          <span className="font-semibold text-sm">Medium (default)</span>
+        </div>
+      </GlassNavbar>
+      <GlassNavbar size="lg" disableScrollTracking className="rounded-xl px-4">
+        <div className="flex items-center justify-between">
+          <span className="font-semibold text-sm">Large</span>
+        </div>
+      </GlassNavbar>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-col gap-4">
+      <GlassNavbar size="sm" disableScrollTracking className="rounded-xl px-4">
+        <div className="flex items-center justify-between">
+          <span className="font-semibold text-sm">Small</span>
+        </div>
+      </GlassNavbar>
+      <GlassNavbar size="md" disableScrollTracking className="rounded-xl px-4">
+        <div className="flex items-center justify-between">
+          <span className="font-semibold text-sm">Medium (default)</span>
+        </div>
+      </GlassNavbar>
+      <GlassNavbar size="lg" disableScrollTracking className="rounded-xl px-4">
+        <div className="flex items-center justify-between">
+          <span className="font-semibold text-sm">Large</span>
+        </div>
+      </GlassNavbar>
+    </div>
+  </ExampleBlock>
+
+  ### Forced Scrolled Elevation
+
+  Pin the navbar to the `scrolled` elevation state without relying on scroll position — useful for previews or layouts where the navbar is not at the top of the page.
+
+  <ExampleBlock
+    code={`import { GlassNavbar } from "@glinui/ui"
+
+export function GlassNavbarScrolledDemo() {
+  return (
+    <GlassNavbar elevation="scrolled" disableScrollTracking aria-label="Main navigation" className="rounded-xl px-6">
+      <div className="flex h-14 items-center justify-between">
+        <span className="font-semibold">Glin UI</span>
+        <span className="text-sm text-neutral-600 dark:text-neutral-300">Scrolled elevation (forced)</span>
+      </div>
+    </GlassNavbar>
+  )
+}`}
+  >
+    <GlassNavbar elevation="scrolled" disableScrollTracking aria-label="Main navigation" className="rounded-xl px-6">
+      <div className="flex h-14 items-center justify-between">
+        <span className="font-semibold">Glin UI</span>
+        <span className="text-sm text-neutral-600 dark:text-neutral-300">Scrolled elevation (forced)</span>
+      </div>
+    </GlassNavbar>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Renders as a semantic `<nav>` element — add `aria-label` (e.g. `"Main navigation"`) to distinguish multiple navbars on the page.
+  - Child links and buttons retain native keyboard navigation with no custom focus management applied.
+
+  ## Reduced Motion
+
+  The blur and opacity transition between `base` and `scrolled` elevation states is disabled when `prefers-reduced-motion` is active.
+
+  ## API Reference
+
+  <PropsTable componentId="glass-navbar" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { GlassNavbar } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

@@ -8,6 +8,10 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Avatar,
   Badge,
   Button,
   Card,
@@ -17,6 +21,10 @@ import {
   CardHeader,
   CardTitle,
   Checkbox,
+  Command,
+  CommandInput,
+  CommandItem,
+  CommandList,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -32,16 +40,27 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Progress,
+  ProgressCircle,
   RadioGroup,
   RadioGroupItem,
   Select,
+  Separator,
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  Skeleton,
+  Slider,
   Switch,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
   Tabs,
   TabsContent,
   TabsList,
@@ -57,7 +76,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
-} from "@glinr/ui"
+} from "@glinui/ui"
 import { ExampleBlock } from "@/components/docs/example-block"
 import { type DocsImplementation, buildComponentHref } from "@/lib/docs-route"
 
@@ -68,8 +87,8 @@ import {
   type PrimitiveComponentId
 } from "@/lib/primitives"
 
-const EXAMPLE_CODE: Record<PrimitiveComponentId, string> = {
-  button: `import { Button } from "@glinr/ui"
+const EXAMPLE_CODE: Partial<Record<PrimitiveComponentId, string>> = {
+  button: `import { Button } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -80,12 +99,17 @@ export function Demo() {
     </div>
   )
 }`,
-  input: `import { Input } from "@glinr/ui"
+  input: `import { Input } from "@glinui/ui"
 
 export function Demo() {
-  return <Input aria-label="Email" placeholder="name@example.com" />
+  return (
+    <div className="space-y-3">
+      <Input aria-label="Email" variant="glass" placeholder="name@example.com" />
+      <Input aria-label="Search" variant="liquid" placeholder="Search components..." />
+    </div>
+  )
 }`,
-  tabs: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@glinr/ui"
+  tabs: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -99,19 +123,29 @@ export function Demo() {
     </Tabs>
   )
 }`,
-  accordion: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@glinr/ui"
+  accordion: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@glinui/ui"
 
 export function Demo() {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1" variant="glass">
-        <AccordionTrigger variant="glass">What is Glinr UI?</AccordionTrigger>
-        <AccordionContent variant="glass">Glinr UI is a liquid-glass focused component library for React.</AccordionContent>
+        <AccordionTrigger variant="glass">What is Glin UI?</AccordionTrigger>
+        <AccordionContent variant="glass">Glin UI is a liquid-glass focused component library for React.</AccordionContent>
       </AccordionItem>
     </Accordion>
   )
 }`,
-  "dropdown-menu": `import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@glinr/ui"
+  alert: `import { Alert, AlertTitle, AlertDescription } from "@glinui/ui"
+
+export function Demo() {
+  return (
+    <Alert variant="glass">
+      <AlertTitle>Deployment ready</AlertTitle>
+      <AlertDescription>Your latest build passed all checks.</AlertDescription>
+    </Alert>
+  )
+}`,
+  "dropdown-menu": `import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -124,7 +158,20 @@ export function Demo() {
     </DropdownMenu>
   )
 }`,
-  popover: `import { Popover, PopoverTrigger, PopoverContent } from "@glinr/ui"
+  command: `import { Command, CommandInput, CommandList, CommandItem } from "@glinui/ui"
+
+export function Demo() {
+  return (
+    <Command className="max-w-md">
+      <CommandInput placeholder="Type a command..." />
+      <CommandList>
+        <CommandItem>Open settings</CommandItem>
+        <CommandItem>Create project</CommandItem>
+      </CommandList>
+    </Command>
+  )
+}`,
+  popover: `import { Popover, PopoverTrigger, PopoverContent } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -134,7 +181,7 @@ export function Demo() {
     </Popover>
   )
 }`,
-  sheet: `import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@glinr/ui"
+  sheet: `import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -149,7 +196,7 @@ export function Demo() {
     </Sheet>
   )
 }`,
-  card: `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@glinr/ui"
+  card: `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -163,7 +210,7 @@ export function Demo() {
     </Card>
   )
 }`,
-  badge: `import { Badge } from "@glinr/ui"
+  badge: `import { Badge } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -175,17 +222,34 @@ export function Demo() {
     </div>
   )
 }`,
-  textarea: `import { Textarea } from "@glinr/ui"
+  avatar: `import { Avatar } from "@glinui/ui"
 
 export function Demo() {
-  return <Textarea aria-label="Feedback" placeholder="Share your feedback" rows={5} />
+  return (
+    <div className="flex items-center gap-3">
+      <Avatar alt="Glin User" fallback="GU" />
+      <Avatar variant="glass" alt="Glass User" fallback="GL" />
+      <Avatar size="lg" alt="Large User" fallback="LU" />
+    </div>
+  )
 }`,
-  select: `import { Select } from "@glinr/ui"
+  textarea: `import { Textarea } from "@glinui/ui"
+
+export function Demo() {
+  return (
+    <div className="space-y-3">
+      <Textarea aria-label="Feedback" variant="glass" placeholder="Share your feedback" rows={5} />
+      <Textarea aria-label="Roadmap notes" variant="liquid" placeholder="Roadmap notes..." rows={3} />
+    </div>
+  )
+}`,
+  select: `import { Select } from "@glinui/ui"
 
 export function Demo() {
   return (
     <Select
       aria-label="Team"
+      variant="glass"
       defaultValue="engineering"
       options={[
         { value: "engineering", label: "Engineering" },
@@ -195,31 +259,31 @@ export function Demo() {
     />
   )
 }`,
-  checkbox: `import { Checkbox } from "@glinr/ui"
+  checkbox: `import { Checkbox } from "@glinui/ui"
 
 export function Demo() {
   return (
-    <label className="flex items-center gap-2 text-sm">
-      <Checkbox aria-label="Enable" />
+    <div className="flex items-center gap-2 text-sm">
+      <Checkbox variant="glass" aria-label="Enable" />
       Enable experimental mode
-    </label>
+    </div>
   )
 }`,
-  "radio-group": `import { RadioGroup, RadioGroupItem } from "@glinr/ui"
+  "radio-group": `import { RadioGroup, RadioGroupItem } from "@glinui/ui"
 
 export function Demo() {
   return (
     <RadioGroup defaultValue="starter" aria-label="Plan" className="gap-3">
       <label className="flex items-center gap-2 text-sm">
-        <RadioGroupItem value="starter" aria-label="Starter" /> Starter
+        <RadioGroupItem value="starter" variant="glass" aria-label="Starter" /> Starter
       </label>
       <label className="flex items-center gap-2 text-sm">
-        <RadioGroupItem value="pro" aria-label="Pro" /> Pro
+        <RadioGroupItem value="pro" variant="glass" aria-label="Pro" /> Pro
       </label>
     </RadioGroup>
   )
 }`,
-  switch: `import { Switch } from "@glinr/ui"
+  switch: `import { Switch } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -229,7 +293,64 @@ export function Demo() {
     </label>
   )
 }`,
-  modal: `import { Modal, ModalTrigger, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalFooter, Button } from "@glinr/ui"
+  progress: `import { Progress, ProgressCircle } from "@glinui/ui"
+
+export function Demo() {
+  return (
+    <div className="space-y-4">
+      <Progress variant="glass" value={68} aria-label="Upload progress" />
+      <ProgressCircle variant="liquid" value={68} aria-label="Upload progress circle" />
+    </div>
+  )
+}`,
+  separator: `import { Separator } from "@glinui/ui"
+
+export function Demo() {
+  return (
+    <div className="space-y-4">
+      <p className="text-sm">Section A</p>
+      <Separator variant="glass" />
+      <p className="text-sm">Section B</p>
+    </div>
+  )
+}`,
+  skeleton: `import { Skeleton } from "@glinui/ui"
+
+export function Demo() {
+  return (
+    <div className="space-y-3">
+      <Skeleton variant="glass" className="h-6 w-40" />
+      <Skeleton variant="default" className="h-4 w-full max-w-sm" />
+      <Skeleton variant="ghost" className="h-4 w-3/4 max-w-xs" />
+    </div>
+  )
+}`,
+  slider: `import { Slider } from "@glinui/ui"
+
+export function Demo() {
+  return <Slider variant="glass" defaultValue={[35]} max={100} step={1} aria-label="Volume" />
+}`,
+  table: `import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@glinui/ui"
+
+export function Demo() {
+  return (
+    <Table variant="glass">
+      <TableHeader>
+        <TableRow>
+          <TableHead>Project</TableHead>
+          <TableHead>Status</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>Glin UI</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  )
+}`,
+  modal: `import { Modal, ModalTrigger, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalFooter, Button } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -250,7 +371,7 @@ export function Demo() {
     </Modal>
   )
 }`,
-  tooltip: `import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent, Button } from "@glinr/ui"
+  tooltip: `import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent, Button } from "@glinui/ui"
 
 export function Demo() {
   return (
@@ -264,7 +385,32 @@ export function Demo() {
     </TooltipProvider>
   )
 }`,
-  toast: `import { ToastProvider, Toast, ToastTitle, ToastDescription, ToastClose, ToastViewport, Button } from "@glinr/ui"
+  tree: `import { Tree } from "@glinui/ui"
+
+export function Demo() {
+  return (
+    <Tree
+      variant="outline"
+      nodes={[
+        {
+          label: "src",
+          children: [
+            {
+              label: "components",
+              children: [
+                { label: "button.tsx" },
+                { label: "input.tsx" }
+              ]
+            },
+            { label: "index.ts" }
+          ]
+        },
+        { label: "package.json" }
+      ]}
+    />
+  )
+}`,
+  toast: `import { ToastProvider, Toast, ToastTitle, ToastDescription, ToastClose, ToastViewport, Button } from "@glinui/ui"
 import { useState } from "react"
 
 export function Demo() {
@@ -321,7 +467,10 @@ export function PrimitiveDocsDemo({
         <p className="text-sm text-neutral-600">{primitiveDescriptions[component]}</p>
       </header>
 
-      <ExampleBlock code={EXAMPLE_CODE[component]} codeDefaultOpen={false}>
+      <ExampleBlock
+        code={EXAMPLE_CODE[component] ?? `import { ${primitiveTitles[component]} } from "@glinui/ui"`}
+        codeDefaultOpen={false}
+      >
         <div className="w-full">
         {component === "button" ? (
           <div className="flex flex-wrap gap-3">
@@ -331,7 +480,12 @@ export function PrimitiveDocsDemo({
           </div>
         ) : null}
 
-        {component === "input" ? <Input aria-label="Email" placeholder="name@example.com" /> : null}
+        {component === "input" ? (
+          <div className="space-y-3">
+            <Input aria-label="Email" variant="glass" placeholder="name@example.com" />
+            <Input aria-label="Search" variant="liquid" placeholder="Search components..." />
+          </div>
+        ) : null}
 
         {component === "tabs" ? (
           <Tabs defaultValue="first">
@@ -355,12 +509,19 @@ export function PrimitiveDocsDemo({
         {component === "accordion" ? (
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1" variant="glass">
-              <AccordionTrigger variant="glass">What is Glinr UI?</AccordionTrigger>
+              <AccordionTrigger variant="glass">What is Glin UI?</AccordionTrigger>
               <AccordionContent variant="glass">
-                Glinr UI is a liquid-glass focused component library for React.
+                Glin UI is a liquid-glass focused component library for React.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        ) : null}
+
+        {component === "alert" ? (
+          <Alert variant="glass">
+            <AlertTitle>Deployment ready</AlertTitle>
+            <AlertDescription>Your latest build passed all checks.</AlertDescription>
+          </Alert>
         ) : null}
 
         {component === "dropdown-menu" ? (
@@ -378,6 +539,16 @@ export function PrimitiveDocsDemo({
             <PopoverTrigger variant="glass">Open popover</PopoverTrigger>
             <PopoverContent variant="glass">Popover content</PopoverContent>
           </Popover>
+        ) : null}
+
+        {component === "command" ? (
+          <Command className="max-w-md">
+            <CommandInput placeholder="Type a command..." />
+            <CommandList>
+              <CommandItem>Open settings</CommandItem>
+              <CommandItem>Create project</CommandItem>
+            </CommandList>
+          </Command>
         ) : null}
 
         {component === "sheet" ? (
@@ -412,13 +583,25 @@ export function PrimitiveDocsDemo({
           </div>
         ) : null}
 
+        {component === "avatar" ? (
+          <div className="flex items-center gap-3">
+            <Avatar alt="Glin User" fallback="GU" />
+            <Avatar variant="glass" alt="Glass User" fallback="GL" />
+            <Avatar size="lg" alt="Large User" fallback="LU" />
+          </div>
+        ) : null}
+
         {component === "textarea" ? (
-          <Textarea aria-label="Feedback" placeholder="Share your feedback" rows={5} />
+          <div className="space-y-3">
+            <Textarea aria-label="Feedback" variant="glass" placeholder="Share your feedback" rows={5} />
+            <Textarea aria-label="Roadmap notes" variant="liquid" placeholder="Roadmap notes..." rows={3} />
+          </div>
         ) : null}
 
         {component === "select" ? (
           <Select
             aria-label="Team"
+            variant="glass"
             defaultValue="engineering"
             options={[
               { value: "engineering", label: "Engineering" },
@@ -429,19 +612,24 @@ export function PrimitiveDocsDemo({
         ) : null}
 
         {component === "checkbox" ? (
-          <label className="flex items-center gap-2 text-sm">
-            <Checkbox checked={checked} onCheckedChange={(value) => setChecked(Boolean(value))} aria-label="Enable" />
+          <div className="flex items-center gap-2 text-sm">
+            <Checkbox
+              variant="glass"
+              checked={checked}
+              onCheckedChange={(value) => setChecked(Boolean(value))}
+              aria-label="Enable"
+            />
             Enable experimental mode
-          </label>
+          </div>
         ) : null}
 
         {component === "radio-group" ? (
           <RadioGroup defaultValue="starter" aria-label="Plan" className="gap-3">
             <label className="flex items-center gap-2 text-sm">
-              <RadioGroupItem value="starter" aria-label="Starter" /> Starter
+              <RadioGroupItem value="starter" variant="glass" aria-label="Starter" /> Starter
             </label>
             <label className="flex items-center gap-2 text-sm">
-              <RadioGroupItem value="pro" aria-label="Pro" /> Pro
+              <RadioGroupItem value="pro" variant="glass" aria-label="Pro" /> Pro
             </label>
           </RadioGroup>
         ) : null}
@@ -451,6 +639,50 @@ export function PrimitiveDocsDemo({
             <Switch checked={switchChecked} onCheckedChange={setSwitchChecked} aria-label="Notifications" />
             Notifications
           </label>
+        ) : null}
+
+        {component === "progress" ? (
+          <div className="space-y-4">
+            <Progress variant="glass" value={68} aria-label="Upload progress" />
+            <ProgressCircle variant="liquid" value={68} aria-label="Upload progress circle" />
+          </div>
+        ) : null}
+
+        {component === "separator" ? (
+          <div className="space-y-4">
+            <p className="text-sm">Section A</p>
+            <Separator variant="glass" />
+            <p className="text-sm">Section B</p>
+          </div>
+        ) : null}
+
+        {component === "skeleton" ? (
+          <div className="space-y-3">
+            <Skeleton variant="glass" className="h-6 w-40" />
+            <Skeleton variant="default" className="h-4 w-full max-w-sm" />
+            <Skeleton variant="ghost" className="h-4 w-3/4 max-w-xs" />
+          </div>
+        ) : null}
+
+        {component === "slider" ? (
+          <Slider variant="glass" defaultValue={[35]} max={100} step={1} aria-label="Volume" />
+        ) : null}
+
+        {component === "table" ? (
+          <Table variant="glass">
+            <TableHeader>
+              <TableRow>
+                <TableHead>Project</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell>Glin UI</TableCell>
+                <TableCell>Active</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         ) : null}
 
         {component === "modal" ? (
@@ -497,7 +729,7 @@ export function PrimitiveDocsDemo({
       </ExampleBlock>
 
       <p className="text-xs text-neutral-500">
-        Implementation: <code>{implementation}</code>. Import path: <code>@glinr/ui</code>
+        Implementation: <code>{implementation}</code>. Import path: <code>@glinui/ui</code>
       </p>
     </section>
   )

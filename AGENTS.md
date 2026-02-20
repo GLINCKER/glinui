@@ -1,4 +1,4 @@
-# AGENTS.md — Glinr UI
+# AGENTS.md — Glin UI
 
 > Glassmorphic component library for React. Read `VISION.md` for full strategy.
 
@@ -6,7 +6,7 @@
 
 - **Goal**: First production-grade liquid glass UI library for web
 - **Stack**: React 19, Next.js 15, Radix UI, Tailwind CSS, pnpm + Turbo
-- **Packages**: `@glinr/ui`, `@glinr/tokens`, `@glinr/motion`, `@glinr/registry`
+- **Packages**: `@glinui/ui`, `@glinui/tokens`, `@glinui/motion`, `@glinui/registry`
 - **Docs**: `apps/docs/` (Next.js)
 - **Phases**: `docs-local/PHASES.md` (roadmap + task tracker)
 
@@ -27,8 +27,9 @@ pnpm lint         # Lint all packages
 - Every component needs: glass variant, a11y (Radix), reduced-motion fallback, tests, docs
 - Use `forwardRef`, `cva()` for variants, `cn()` for class merging
 - Animate only `transform`/`opacity`. Budget 60fps on mid-tier devices
-- Use CSS variables from `@glinr/tokens` — never hardcode colors
-- Run `pnpm typecheck && pnpm test` before commititng 
+- Use CSS variables from `@glinui/tokens` — never hardcode colors
+- Do not run full validation on every iteration
+- Run full validation (`pnpm typecheck && pnpm test`) only before committing or when a build/check fails
 - Be continous dont stop after small tasks see whats next in pipeline and keep going updating the status in docs-local and proceeding so we can ship this faster
 
 ## Component Pattern
@@ -52,7 +53,7 @@ pnpm lint         # Lint all packages
 
 ```
 <type>: <description>
-Co-Authored-By: Glinr <bot@glincker.com>
+Co-Authored-By: Glin UI <bot@glincker.com>
 ```
 
 Types: feat, fix, perf, refactor, docs, test, chore. One concern per PR.
@@ -63,7 +64,7 @@ Types: feat, fix, perf, refactor, docs, test, chore. One concern per PR.
 open-ui/
 ├── VISION.md          # Strategy, component catalog, business model
 ├── AGENTS.md          # This file
-├── apps/docs/         # Next.js docs (ui.glinr.com)
+├── apps/docs/         # Next.js docs (glinui.com)
 ├── packages/ui/       # Component library
 ├── packages/tokens/   # Design tokens (OKLCH, glass, motion)
 ├── packages/motion/   # Animation presets
@@ -78,4 +79,3 @@ open-ui/
 ## Clean Room
 
 Reference repos in `docs-local/git/` are for insight only. Rewrite from first principles. No code copying.
-

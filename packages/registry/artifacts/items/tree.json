@@ -1,0 +1,19 @@
+{
+  "name": "tree",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Tree",
+  "description": "Hierarchical tree view for file structures, navigation, and nested data.",
+  "docsPath": "/docs/components/tree",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/tree.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add tree"
+  }
+}

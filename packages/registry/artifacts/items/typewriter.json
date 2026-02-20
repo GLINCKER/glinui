@@ -1,0 +1,19 @@
+{
+  "name": "typewriter",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Typewriter",
+  "description": "Character-by-character typing animation with blinking cursor and loop support.",
+  "docsPath": "/docs/components/typewriter",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/typewriter.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add typewriter"
+  }
+}

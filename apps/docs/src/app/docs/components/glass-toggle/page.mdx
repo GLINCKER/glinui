@@ -1,0 +1,110 @@
+import { getRegistryItem } from "@glinui/registry"
+import { GlassToggle } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("glass-toggle")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Glass Toggle - Glin UI",
+  description: item?.description ?? "Toggle switch with liquid fill animation and frosted glass surface."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="glass-toggle"
+  implementation="css"
+  title="Glass Toggle"
+  description={item?.description ?? "Toggle switch with liquid fill animation and frosted glass surface."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add glass-toggle"} />
+
+  ## Usage
+
+  `GlassToggle` is a `"use client"` component. It works in both controlled (`checked`) and uncontrolled (`defaultChecked`) modes.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`"use client"
+import { GlassToggle } from "@glinui/ui"
+
+export function GlassToggleDemo() {
+  return (
+    <div className="flex items-center justify-center gap-6 p-8">
+      <GlassToggle size="sm" />
+      <GlassToggle />
+      <GlassToggle size="lg" />
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center gap-6 p-8">
+      <GlassToggle size="sm" />
+      <GlassToggle />
+      <GlassToggle size="lg" />
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Custom Color
+
+  <ExampleBlock
+    code={`"use client"
+import { GlassToggle } from "@glinui/ui"
+
+export function GlassToggleColorDemo() {
+  return (
+    <div className="flex items-center justify-center gap-6 p-8">
+      <GlassToggle defaultChecked activeColor="#22c55e" />
+      <GlassToggle defaultChecked activeColor="#6366f1" />
+      <GlassToggle defaultChecked activeColor="#f43f5e" />
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center gap-6 p-8">
+      <GlassToggle defaultChecked activeColor="#22c55e" />
+      <GlassToggle defaultChecked activeColor="#6366f1" />
+      <GlassToggle defaultChecked activeColor="#f43f5e" />
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Renders with `role="switch"` and `aria-checked`.
+  - Supports keyboard activation via default button behavior.
+  - Disabled state removes pointer events and reduces opacity.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion: reduce` is active, transition durations are removed for instant state changes.
+
+  ## API Reference
+
+  <PropsTable componentId="glass-toggle" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { GlassToggle } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

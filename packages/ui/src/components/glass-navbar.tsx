@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -5,13 +7,13 @@ import { cn } from "../lib/cn"
 import { usePrefersReducedMotion } from "../lib/use-prefers-reduced-motion"
 
 const glassNavbarVariants = cva(
-  "sticky top-0 z-50 w-full border [border-color:var(--glass-border)] [border-top-color:var(--glass-refraction-top)] transition-[backdrop-filter,background-color,box-shadow] duration-normal ease-standard motion-reduce:transition-none",
+  "sticky top-0 z-50 w-full border text-foreground [border-color:var(--glass-border-strong)] [border-top-color:var(--glass-refraction-top)] transition-[backdrop-filter,background-color,box-shadow] duration-normal ease-standard motion-reduce:transition-none",
   {
     variants: {
       elevation: {
-        base: "bg-[var(--glass-1-surface)] [backdrop-filter:saturate(var(--glass-saturate))_blur(var(--glass-1-blur))] [-webkit-backdrop-filter:saturate(var(--glass-saturate))_blur(var(--glass-1-blur))] shadow-[var(--glass-1-shadow)]",
+        base: "bg-[var(--glass-2-surface)] [backdrop-filter:saturate(var(--glass-saturate))_blur(var(--glass-2-blur))] [-webkit-backdrop-filter:saturate(var(--glass-saturate))_blur(var(--glass-2-blur))] shadow-[0_0_0_1px_var(--glass-border-strong),0_1px_0_var(--glass-refraction-top)_inset,var(--glass-2-shadow)]",
         scrolled:
-          "bg-[var(--glass-3-surface)] [backdrop-filter:saturate(var(--glass-saturate))_blur(var(--glass-3-blur))] [-webkit-backdrop-filter:saturate(var(--glass-saturate))_blur(var(--glass-3-blur))] shadow-[var(--glass-3-shadow)]"
+          "bg-[var(--glass-4-surface)] [backdrop-filter:saturate(var(--glass-saturate))_blur(var(--glass-4-blur))] [-webkit-backdrop-filter:saturate(var(--glass-saturate))_blur(var(--glass-4-blur))] shadow-[0_0_0_1px_var(--glass-border-strong),0_1px_0_var(--glass-refraction-top)_inset,var(--glass-4-shadow)]"
       },
       size: {
         sm: "min-h-12",

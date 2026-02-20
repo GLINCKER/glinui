@@ -1,0 +1,135 @@
+import { getRegistryItem } from "@glinui/registry"
+import { DepthCard } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("depth-card")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Depth Card - Glin UI",
+  description: item?.description ?? "Parallax tilt card with layered glass planes and glare effect on hover."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="depth-card"
+  implementation="css"
+  title="Depth Card"
+  description={item?.description ?? "Parallax tilt card with layered glass planes and glare effect on hover."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add depth-card"} />
+
+  ## Usage
+
+  `DepthCard` is a `"use client"` component. It tilts based on cursor position with an optional glare effect. Works great for product showcases and interactive cards.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`"use client"
+import { DepthCard } from "@glinui/ui"
+
+export function DepthCardDemo() {
+  return (
+    <DepthCard className="max-w-sm bg-neutral-900/50 p-8">
+      <h3 className="text-lg font-semibold text-white">Glass Surface</h3>
+      <p className="mt-2 text-sm text-neutral-300">
+        Hover to see the parallax tilt and glare effect in action.
+      </p>
+    </DepthCard>
+  )
+}`}
+  >
+    <DepthCard className="max-w-sm bg-neutral-900/50 p-8">
+      <h3 className="text-lg font-semibold text-white">Glass Surface</h3>
+      <p className="mt-2 text-sm text-neutral-300">
+        Hover to see the parallax tilt and glare effect in action.
+      </p>
+    </DepthCard>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Strong Tilt
+
+  Increase `maxTilt` for a more dramatic parallax effect.
+
+  <ExampleBlock
+    code={`"use client"
+import { DepthCard } from "@glinui/ui"
+
+export function DepthCardStrongDemo() {
+  return (
+    <DepthCard maxTilt={25} hoverScale={1.05} className="max-w-sm bg-neutral-900/50 p-8">
+      <h3 className="text-lg font-semibold text-white">Strong Tilt</h3>
+      <p className="mt-2 text-sm text-neutral-300">25° max tilt with 1.05x hover scale.</p>
+    </DepthCard>
+  )
+}`}
+  >
+    <DepthCard maxTilt={25} hoverScale={1.05} className="max-w-sm bg-neutral-900/50 p-8">
+      <h3 className="text-lg font-semibold text-white">Strong Tilt</h3>
+      <p className="mt-2 text-sm text-neutral-300">25° max tilt with 1.05x hover scale.</p>
+    </DepthCard>
+  </ExampleBlock>
+
+  ### No Glare
+
+  Set `glare={false}` to disable the glare overlay.
+
+  <ExampleBlock
+    code={`"use client"
+import { DepthCard } from "@glinui/ui"
+
+export function DepthCardNoGlareDemo() {
+  return (
+    <DepthCard glare={false} className="max-w-sm bg-neutral-900/50 p-8">
+      <h3 className="text-lg font-semibold text-white">No Glare</h3>
+      <p className="mt-2 text-sm text-neutral-300">Parallax tilt without the glare effect.</p>
+    </DepthCard>
+  )
+}`}
+  >
+    <DepthCard glare={false} className="max-w-sm bg-neutral-900/50 p-8">
+      <h3 className="text-lg font-semibold text-white">No Glare</h3>
+      <p className="mt-2 text-sm text-neutral-300">Parallax tilt without the glare effect.</p>
+    </DepthCard>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - The glare overlay is `aria-hidden="true"` — invisible to assistive technologies.
+  - The card itself is a standard `div` with no implicit role; add `role` and keyboard handlers as needed.
+  - Content inside the card remains fully accessible.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion: reduce` is active, the tilt transform is disabled via `motion-reduce:transform-none` and the glare layer is hidden via `motion-reduce:hidden`.
+
+  ## API Reference
+
+  <PropsTable componentId="depth-card" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { DepthCard } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

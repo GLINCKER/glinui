@@ -1,5 +1,5 @@
 {
-  "name": "@glinr/tokens",
+  "name": "@glinui/tokens",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "echo 'lint: @glinr/tokens (todo)'",
-    "test": "echo 'test: @glinr/tokens (todo)'"
+    "lint": "echo 'lint: @glinui/tokens (todo)'",
+    "test": "echo 'test: @glinui/tokens (todo)'"
   }
 }

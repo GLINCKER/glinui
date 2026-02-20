@@ -43,10 +43,10 @@ describe("primitive components", () => {
       </div>
     )
 
-    await user.type(screen.getByLabelText("Name"), "Glinr")
+    await user.type(screen.getByLabelText("Name"), "Glin UI")
     await user.type(screen.getByLabelText("Bio"), "UI library")
 
-    expect(screen.getByLabelText("Name")).toHaveValue("Glinr")
+    expect(screen.getByLabelText("Name")).toHaveValue("Glin UI")
     expect(screen.getByLabelText("Bio")).toHaveValue("UI library")
   })
 

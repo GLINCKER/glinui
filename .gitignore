@@ -2,6 +2,7 @@ node_modules
 .pnpm-store
 .next
 dist
+out
 coverage
 .turbo
 .DS_Store
@@ -11,3 +12,8 @@ coverage
 
 # Local planning/research workspace (never commit)
 docs-local/
+
+# Agent/tool configs (local only)
+.codex/
+.agents/
+CLAUDE.md

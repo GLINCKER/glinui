@@ -1,0 +1,20 @@
+{
+  "name": "popover",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Popover",
+  "description": "Floating content panel anchored to a trigger element.",
+  "docsPath": "/docs/components/popover",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/popover.tsx",
+    "packages/ui/src/tests/popover.test.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add popover"
+  }
+}

@@ -7,9 +7,9 @@ import {
   radiusTokens,
   shadowTokens,
   spacingTokens
-} from "@glinr/tokens"
+} from "@glinui/tokens"
 
-import { resolveMotionPreset } from "@glinr/motion"
+import { resolveMotionPreset } from "@glinui/motion"
 
 type ColorKey = keyof typeof colorTokens.light
 

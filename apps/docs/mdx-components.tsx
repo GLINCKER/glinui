@@ -1,7 +1,7 @@
 import type { MDXComponents } from "mdx/types"
 import * as React from "react"
 
-import { cn } from "@glinr/ui"
+import { cn } from "@glinui/ui"
 import { CodeBlock } from "@/components/docs/code-block"
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {

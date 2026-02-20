@@ -11,7 +11,8 @@ const sheetTriggerVariants = cva(
     variants: {
       variant: {
         default: "bg-[var(--color-surface)] text-[var(--color-foreground)] border border-[var(--color-border)]",
-        glass: "backdrop-blur-md bg-surface/80 border border-white/10 text-[var(--color-foreground)]",
+        glass: "backdrop-blur-xl backdrop-saturate-[180%] bg-[var(--glass-3-surface)] border border-white/20 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-sm)] dark:border-white/[0.1] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.05)_inset,0_8px_24px_rgb(0_0_0_/_0.35)] text-[var(--color-foreground)]",
+        frosted: "backdrop-blur-[40px] backdrop-saturate-[200%] bg-[var(--glass-4-surface)] border border-white/30 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.15)_inset,0_0_16px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-md)] dark:border-white/[0.14] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.07)_inset,0_0_16px_rgb(255_255_255_/_0.03)_inset,0_8px_24px_rgb(0_0_0_/_0.4)] text-[var(--color-foreground)]",
         outline: "bg-transparent border border-[var(--color-border)] text-[var(--color-foreground)]",
         ghost: "bg-transparent border border-transparent text-[var(--color-foreground)]"
       },
@@ -34,7 +35,8 @@ const sheetContentVariants = cva(
     variants: {
       variant: {
         default: "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-foreground)]",
-        glass: "backdrop-blur-md bg-surface/80 border border-white/10 text-[var(--color-foreground)]",
+        glass: "backdrop-blur-xl backdrop-saturate-[180%] bg-[var(--glass-3-surface)] border border-white/20 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-sm)] dark:border-white/[0.1] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.05)_inset,0_8px_24px_rgb(0_0_0_/_0.35)] text-[var(--color-foreground)]",
+        frosted: "backdrop-blur-[40px] backdrop-saturate-[200%] bg-[var(--glass-4-surface)] border border-white/30 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.15)_inset,0_0_20px_rgb(255_255_255_/_0.12)_inset,var(--shadow-glass-md)] dark:border-white/[0.14] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.07)_inset,0_0_20px_rgb(255_255_255_/_0.04)_inset,0_8px_24px_rgb(0_0_0_/_0.4)] text-[var(--color-foreground)]",
         outline: "bg-transparent border-[var(--color-border)] text-[var(--color-foreground)]",
         ghost: "bg-transparent border-transparent text-[var(--color-foreground)]"
       },
@@ -74,12 +76,18 @@ const sheetContentVariants = cva(
   }
 )
 
+export type SheetProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Root>
+
 export const Sheet = DialogPrimitive.Root
 export const Drawer = Sheet
 
+export type SheetTriggerProps =
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger> &
+  VariantProps<typeof sheetTriggerVariants>
+
 export const SheetTrigger = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger> & VariantProps<typeof sheetTriggerVariants>
+  SheetTriggerProps
 >(({ className, variant, size, ...props }, ref) => (
   <DialogPrimitive.Trigger
     ref={ref}
@@ -92,11 +100,15 @@ SheetTrigger.displayName = DialogPrimitive.Trigger.displayName
 
 export const SheetClose = DialogPrimitive.Close
 
-export const SheetPortal = (props: DialogPrimitive.DialogPortalProps) => <DialogPrimitive.Portal {...props} />
+export type SheetPortalProps = DialogPrimitive.DialogPortalProps
+
+export const SheetPortal = (props: SheetPortalProps) => <DialogPrimitive.Portal {...props} />
+
+export type SheetOverlayProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
 
 export const SheetOverlay = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
+  SheetOverlayProps
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Overlay
     ref={ref}
@@ -110,9 +122,13 @@ export const SheetOverlay = React.forwardRef<
 
 SheetOverlay.displayName = DialogPrimitive.Overlay.displayName
 
+export type SheetContentProps =
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> &
+  VariantProps<typeof sheetContentVariants>
+
 export const SheetContent = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & VariantProps<typeof sheetContentVariants>
+  SheetContentProps
 >(({ className, children, variant, size, side, ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
@@ -132,13 +148,17 @@ export const SheetContent = React.forwardRef<
 
 SheetContent.displayName = DialogPrimitive.Content.displayName
 
-export const SheetHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+export type SheetHeaderProps = React.HTMLAttributes<HTMLDivElement>
+
+export const SheetHeader = React.forwardRef<HTMLDivElement, SheetHeaderProps>(
   ({ className, ...props }, ref) => <div ref={ref} className={cn("flex flex-col space-y-1.5 text-left", className)} {...props} />
 )
 
 SheetHeader.displayName = "SheetHeader"
 
-export const SheetFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+export type SheetFooterProps = React.HTMLAttributes<HTMLDivElement>
+
+export const SheetFooter = React.forwardRef<HTMLDivElement, SheetFooterProps>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn("mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)} {...props} />
   )
@@ -146,18 +166,22 @@ export const SheetFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes
 
 SheetFooter.displayName = "SheetFooter"
 
+export type SheetTitleProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+
 export const SheetTitle = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+  SheetTitleProps
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title ref={ref} className={cn("text-lg font-semibold", className)} {...props} />
 ))
 
 SheetTitle.displayName = DialogPrimitive.Title.displayName
 
+export type SheetDescriptionProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+
 export const SheetDescription = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+  SheetDescriptionProps
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description ref={ref} className={cn("text-sm text-neutral-600", className)} {...props} />
 ))

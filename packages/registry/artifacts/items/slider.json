@@ -1,0 +1,20 @@
+{
+  "name": "slider",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Slider",
+  "description": "Range input control built on Radix slider primitive with glass thumb/track styling.",
+  "docsPath": "/docs/components/slider",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/slider.tsx",
+    "packages/ui/src/tests/slider.test.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add slider"
+  }
+}

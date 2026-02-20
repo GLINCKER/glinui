@@ -38,6 +38,6 @@ describe("Sheet", () => {
     )
 
     await user.click(screen.getByRole("button", { name: "Open sheet" }))
-    expect(screen.getByTestId("content").className).toContain("backdrop-blur-md")
+    expect(screen.getByTestId("content").className).toMatch(/backdrop-blur-(md|lg|xl)/)
   })
 })

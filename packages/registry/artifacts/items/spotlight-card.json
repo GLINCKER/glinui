@@ -1,0 +1,19 @@
+{
+  "name": "spotlight-card",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Spotlight Card",
+  "description": "Card with cursor-tracked radial spotlight effect on hover.",
+  "docsPath": "/docs/components/spotlight-card",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/spotlight-card.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add spotlight-card"
+  }
+}

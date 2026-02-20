@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 type Mode = "light" | "dark"
 
-const STORAGE_KEY = "glinr-docs-theme"
+const STORAGE_KEY = "glinui-docs-theme"
 
 export function ThemeToggle() {
   const [mode, setMode] = useState<Mode>("light")

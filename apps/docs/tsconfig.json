@@ -5,8 +5,11 @@
     "paths": {
       "@/*": ["./src/*"],
       "next-themes": ["./src/lib/next-themes"],
-      "@glinr/ui": ["../../packages/ui/src/index.ts"],
-      "@glinr/ui/*": ["../../packages/ui/src/*"]
+      "@glinui/ui": ["../../packages/ui/src/index.ts"],
+      "@glinui/ui/*": ["../../packages/ui/src/*"],
+      "@glinui/registry": ["../../packages/registry/src/index.ts"],
+      "@glinui/tokens": ["../../packages/tokens/src/index.ts"],
+      "@glinui/motion": ["../../packages/motion/src/index.ts"]
     }
   },
   "include": [

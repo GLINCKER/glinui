@@ -28,6 +28,6 @@ describe("Card", () => {
       </Card>
     )
 
-    expect(screen.getByTestId("card").className).toContain("backdrop-blur-md")
+    expect(screen.getByTestId("card").className).toContain("backdrop-blur-xl")
   })
 })

@@ -16,7 +16,7 @@ describe("GlassNavbar", () => {
     )
 
     const navbar = screen.getByTestId("navbar")
-    expect(navbar.className).toContain("var(--glass-1-surface)")
+    expect(navbar.className).toContain("var(--glass-2-surface)")
 
     Object.defineProperty(window, "scrollY", {
       value: 64,
@@ -29,7 +29,7 @@ describe("GlassNavbar", () => {
     })
 
     await waitFor(() => {
-      expect(navbar.className).toContain("var(--glass-3-surface)")
+      expect(navbar.className).toContain("var(--glass-4-surface)")
     })
   })
 })

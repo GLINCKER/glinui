@@ -1,0 +1,120 @@
+import { getRegistryItem } from "@glinui/registry"
+import { ShimmerButton } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("shimmer-button")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Shimmer Button - Glin UI",
+  description: item?.description ?? "Button with animated shimmer sweep overlay."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="shimmer-button"
+  implementation="css"
+  title="Shimmer Button"
+  description={item?.description ?? "Button with animated shimmer sweep overlay."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add shimmer-button"} />
+
+  ## Usage
+
+  Drop-in button replacement with a sweeping shimmer animation overlay.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { ShimmerButton } from "@glinui/ui"
+
+export function ShimmerButtonDemo() {
+  return <ShimmerButton>Get Started</ShimmerButton>
+}`}
+  >
+    <ShimmerButton>Get Started</ShimmerButton>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Variants
+
+  <ExampleBlock
+    code={`import { ShimmerButton } from "@glinui/ui"
+
+export function ShimmerButtonVariantsDemo() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <ShimmerButton variant="default">Default</ShimmerButton>
+      <ShimmerButton variant="glass">Glass</ShimmerButton>
+      <ShimmerButton variant="accent">Accent</ShimmerButton>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-wrap gap-3">
+      <ShimmerButton variant="default">Default</ShimmerButton>
+      <ShimmerButton variant="glass">Glass</ShimmerButton>
+      <ShimmerButton variant="accent">Accent</ShimmerButton>
+    </div>
+  </ExampleBlock>
+
+  ### Sizes
+
+  <ExampleBlock
+    code={`import { ShimmerButton } from "@glinui/ui"
+
+export function ShimmerButtonSizesDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <ShimmerButton size="sm">Small</ShimmerButton>
+      <ShimmerButton size="md">Medium</ShimmerButton>
+      <ShimmerButton size="lg">Large</ShimmerButton>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-wrap items-center gap-3">
+      <ShimmerButton size="sm">Small</ShimmerButton>
+      <ShimmerButton size="md">Medium</ShimmerButton>
+      <ShimmerButton size="lg">Large</ShimmerButton>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Renders a native `<button>` element with full keyboard support.
+  - Focus ring via `focus-visible` for keyboard navigation.
+  - Shimmer overlay is decorative (`pointer-events-none`).
+
+  ## Reduced Motion
+
+  Shimmer uses `motion-safe:animate-[...]` / `motion-reduce:hidden`. Under `prefers-reduced-motion`, the shimmer is hidden and the button renders as a standard styled button.
+
+  ## API Reference
+
+  <PropsTable componentId="shimmer-button" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { ShimmerButton } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

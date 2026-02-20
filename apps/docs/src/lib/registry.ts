@@ -1,4 +1,4 @@
-import { baseRegistry, getRegistryItem } from "@glinr/registry"
+import { baseRegistry, getRegistryItem } from "@glinui/registry"
 
 export { baseRegistry, getRegistryItem }
 

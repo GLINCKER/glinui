@@ -1,4 +1,5 @@
-import type { PrimitiveComponentId } from "@/lib/primitives"
+import { generatedRegistryByName } from "@/lib/generated-registry-metadata"
+import type { ComponentId } from "@/lib/primitives"
 import { DEFAULT_DOCS_IMPLEMENTATION, type DocsImplementation } from "@/lib/docs-config"
 export type { DocsImplementation } from "@/lib/docs-config"
 
@@ -14,6 +15,11 @@ export function getImplementationFromPath(pathname: string): DocsImplementation 
   return resolveImplementation(match?.[1])
 }
 
-export function buildComponentHref(component: PrimitiveComponentId, implementation: DocsImplementation): string {
+export function buildComponentHref(component: ComponentId, implementation: DocsImplementation): string {
+  const registryItem = generatedRegistryByName[component as keyof typeof generatedRegistryByName]
+  if (registryItem?.type === "signature") {
+    return registryItem.docsPath
+  }
+
   return `/docs/components/${implementation}/${component}`
 }

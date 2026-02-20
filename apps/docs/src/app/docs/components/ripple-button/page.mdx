@@ -1,0 +1,112 @@
+import { getRegistryItem } from "@glinui/registry"
+import { RippleButton } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("ripple-button")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Ripple Button - Glin UI",
+  description: item?.description ?? "Button with liquid ripple effect on press."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="ripple-button"
+  implementation="css"
+  title="Ripple Button"
+  description={item?.description ?? "Button with liquid ripple effect on press."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add ripple-button"} />
+
+  ## Usage
+
+  `RippleButton` is a `"use client"` component. Click it to see a liquid ripple expanding from the click point.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`"use client"
+import { RippleButton } from "@glinui/ui"
+
+export function RippleButtonDemo() {
+  return (
+    <div className="flex items-center justify-center gap-4 p-8">
+      <RippleButton>Click Me</RippleButton>
+      <RippleButton variant="glass">Glass</RippleButton>
+      <RippleButton variant="frosted">Frosted</RippleButton>
+      <RippleButton variant="outline">Outline</RippleButton>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center gap-4 p-8">
+      <RippleButton>Click Me</RippleButton>
+      <RippleButton variant="glass">Glass</RippleButton>
+      <RippleButton variant="frosted">Frosted</RippleButton>
+      <RippleButton variant="outline">Outline</RippleButton>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Sizes
+
+  <ExampleBlock
+    code={`"use client"
+import { RippleButton } from "@glinui/ui"
+
+export function RippleButtonSizesDemo() {
+  return (
+    <div className="flex items-center justify-center gap-4 p-8">
+      <RippleButton size="sm">Small</RippleButton>
+      <RippleButton size="md">Medium</RippleButton>
+      <RippleButton size="lg">Large</RippleButton>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center gap-4 p-8">
+      <RippleButton size="sm">Small</RippleButton>
+      <RippleButton size="md">Medium</RippleButton>
+      <RippleButton size="lg">Large</RippleButton>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Renders as a `<button>` with `type="button"`.
+  - Ripple spans are `aria-hidden="true"`.
+  - Supports all standard button attributes.
+
+  ## Reduced Motion
+
+  Ripple animations are hidden via `motion-reduce:hidden`.
+
+  ## API Reference
+
+  <PropsTable componentId="ripple-button" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { RippleButton } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

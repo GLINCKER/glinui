@@ -1,6 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 
 import { TokenPreview } from "@/components/token-preview"
+import { createDocsMetadata } from "@/lib/docs-metadata"
+
+export const metadata: Metadata = createDocsMetadata({
+  title: "Design Tokens and Theme Contract",
+  description:
+    "Reference Glin UI color, spacing, motion, shadow, and glass tokens shared across components and docs.",
+  path: "/docs/tokens",
+  keywords: ["design tokens", "theme contract", "OKLCH tokens", "glass UI tokens"]
+})
 
 export default function TokensPage() {
   return (

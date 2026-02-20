@@ -1,0 +1,121 @@
+import { getRegistryItem } from "@glinui/registry"
+import { Spotlight } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("spotlight")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Spotlight - Glin UI",
+  description: item?.description ?? "Full-page spotlight overlay for onboarding and feature highlighting."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="spotlight"
+  implementation="css"
+  title="Spotlight"
+  description={item?.description ?? "Full-page spotlight overlay for onboarding and feature highlighting."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add spotlight"} />
+
+  ## Usage
+
+  `Spotlight` is a `"use client"` component. It renders a full-viewport overlay with a transparent circular cutout at the specified position — great for onboarding tours and feature highlighting.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`"use client"
+import { Spotlight } from "@glinui/ui"
+import { useState } from "react"
+
+export function SpotlightDemo() {
+  const [active, setActive] = useState(false)
+  return (
+    <div className="flex items-center justify-center p-8">
+      <button
+        className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-foreground"
+        onClick={() => setActive(true)}
+      >
+        Show Spotlight
+      </button>
+      <Spotlight
+        active={active}
+        x="50%"
+        y="50%"
+        size={120}
+        onDismiss={() => setActive(false)}
+      />
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <p className="text-sm text-neutral-400">Click the button in the code example to see the spotlight overlay.</p>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### With Pulse
+
+  <ExampleBlock
+    code={`"use client"
+import { Spotlight } from "@glinui/ui"
+
+export function SpotlightPulseDemo() {
+  return (
+    <Spotlight
+      active
+      x="50%"
+      y="50%"
+      size={100}
+      pulse
+      onDismiss={() => {}}
+    />
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <p className="text-sm text-neutral-400">The pulse variant adds a pulsing ring around the spotlight cutout.</p>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - When `onDismiss` is provided, the overlay becomes a focusable button with `aria-label="Dismiss spotlight"`.
+  - Supports keyboard dismissal via Enter and Space keys.
+  - Without `onDismiss`, the overlay is a passive visual element.
+
+  ## Reduced Motion
+
+  The pulse ring animation is paused via `motion-reduce:[animation:none]`.
+
+  ## API Reference
+
+  <PropsTable componentId="spotlight" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { Spotlight } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

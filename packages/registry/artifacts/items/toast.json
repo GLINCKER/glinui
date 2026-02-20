@@ -1,0 +1,21 @@
+{
+  "name": "toast",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Toast",
+  "description": "Glassmorphic toast notifications powered by Sonner with success, error, warning, info, loading, promise, and action support.",
+  "docsPath": "/docs/components/toast",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui",
+    "sonner"
+  ],
+  "files": [
+    "packages/ui/src/components/sonner.tsx",
+    "packages/ui/src/components/toast.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add toast"
+  }
+}

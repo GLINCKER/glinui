@@ -1,0 +1,118 @@
+import { getRegistryItem } from "@glinui/registry"
+import { FloatingPanel } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("floating-panel")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Floating Panel - Glin UI",
+  description: item?.description ?? "Draggable glass panel with depth shadows and optional close button."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="floating-panel"
+  implementation="css"
+  title="Floating Panel"
+  description={item?.description ?? "Draggable glass panel with depth shadows and optional close button."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add floating-panel"} />
+
+  ## Usage
+
+  `FloatingPanel` is a `"use client"` component. Place it inside a relative container. Drag to reposition.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`"use client"
+import { FloatingPanel } from "@glinui/ui"
+
+export function FloatingPanelDemo() {
+  return (
+    <div className="relative h-64 w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      <FloatingPanel defaultX={40} defaultY={30}>
+        <h3 className="text-sm font-semibold text-white">Drag Me</h3>
+        <p className="mt-1 text-xs text-neutral-400">This panel is draggable.</p>
+      </FloatingPanel>
+    </div>
+  )
+}`}
+  >
+    <div className="relative h-64 w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      <FloatingPanel defaultX={40} defaultY={30}>
+        <h3 className="text-sm font-semibold text-white">Drag Me</h3>
+        <p className="mt-1 text-xs text-neutral-400">This panel is draggable.</p>
+      </FloatingPanel>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### With Close Button
+
+  <ExampleBlock
+    code={`"use client"
+import { FloatingPanel } from "@glinui/ui"
+import { useState } from "react"
+
+export function FloatingPanelCloseDemo() {
+  const [open, setOpen] = useState(true)
+  return (
+    <div className="relative h-64 w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      {open && (
+        <FloatingPanel closable onClose={() => setOpen(false)} defaultX={60} defaultY={20}>
+          <h3 className="text-sm font-semibold text-white">Closable</h3>
+          <p className="mt-1 text-xs text-neutral-400">Click X to dismiss.</p>
+        </FloatingPanel>
+      )}
+    </div>
+  )
+}`}
+  >
+    <div className="relative h-64 w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      <FloatingPanel closable defaultX={60} defaultY={20}>
+        <h3 className="text-sm font-semibold text-white">Closable</h3>
+        <p className="mt-1 text-xs text-neutral-400">Click X to dismiss.</p>
+      </FloatingPanel>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Close button has `aria-label="Close panel"`.
+  - Drag interaction uses Pointer Events API for broad device support.
+  - Interactive elements inside the panel (buttons, links) are not affected by drag.
+
+  ## Reduced Motion
+
+  No animation is used — drag is position-based, not animated.
+
+  ## API Reference
+
+  <PropsTable componentId="floating-panel" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { FloatingPanel } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

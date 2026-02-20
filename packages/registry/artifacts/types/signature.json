@@ -1,0 +1,705 @@
+[
+  {
+    "name": "animated-gradient",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Animated Gradient",
+    "description": "Animated color-shifting gradient background with warm, cool, aurora, and glass presets.",
+    "docsPath": "/docs/components/animated-gradient",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/animated-gradient.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add animated-gradient"
+    }
+  },
+  {
+    "name": "aurora-background",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Aurora Background",
+    "description": "Animated gradient mesh backdrop with floating blurred blobs.",
+    "docsPath": "/docs/components/aurora-background",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/aurora-background.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add aurora-background"
+    }
+  },
+  {
+    "name": "blur-fade",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Blur Fade",
+    "description": "Scroll-triggered entrance animation with blur, fade, and slide transitions.",
+    "docsPath": "/docs/components/blur-fade",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/blur-fade.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add blur-fade"
+    }
+  },
+  {
+    "name": "blur-spotlight",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Blur Spotlight",
+    "description": "Cursor-following ambient glow effect for background layers.",
+    "docsPath": "/docs/components/blur-spotlight",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/blur-spotlight.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add blur-spotlight"
+    }
+  },
+  {
+    "name": "border-beam",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Border Beam",
+    "description": "Light beam that travels along the border of its container via CSS offset-path.",
+    "docsPath": "/docs/components/border-beam",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/border-beam.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add border-beam"
+    }
+  },
+  {
+    "name": "chromatic-text",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Chromatic Text",
+    "description": "Text with chromatic aberration effect — RGB channel splitting.",
+    "docsPath": "/docs/components/chromatic-text",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/chromatic-text.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add chromatic-text"
+    }
+  },
+  {
+    "name": "depth-card",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Depth Card",
+    "description": "Parallax tilt card with layered glass planes and glare effect on hover.",
+    "docsPath": "/docs/components/depth-card",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/depth-card.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add depth-card"
+    }
+  },
+  {
+    "name": "dot-pattern",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Dot Pattern",
+    "description": "Static SVG dot grid background with configurable size, gap, and theme colors.",
+    "docsPath": "/docs/components/dot-pattern",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/dot-pattern.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add dot-pattern"
+    }
+  },
+  {
+    "name": "floating-panel",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Floating Panel",
+    "description": "Draggable glass panel with depth shadows and optional close button.",
+    "docsPath": "/docs/components/floating-panel",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/floating-panel.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add floating-panel"
+    }
+  },
+  {
+    "name": "glass-breadcrumb",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Glass Breadcrumb",
+    "description": "Pill-style breadcrumb with glass indicators and collapsible items.",
+    "docsPath": "/docs/components/glass-breadcrumb",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/glass-breadcrumb.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add glass-breadcrumb"
+    }
+  },
+  {
+    "name": "glass-card",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Glass Card",
+    "description": "Frosted card with depth-aware blur, refraction edge highlights, and elevation transitions.",
+    "docsPath": "/docs/components/glass-card",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/glass-card.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add glass-card"
+    }
+  },
+  {
+    "name": "glass-dock",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Glass Dock",
+    "description": "macOS-style dock with proximity magnification and frosted glass surface.",
+    "docsPath": "/docs/components/glass-dock",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/glass-dock.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add glass-dock"
+    }
+  },
+  {
+    "name": "glass-navbar",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Glass Navbar",
+    "description": "Translucent navigation bar that responds to scroll with blur intensity.",
+    "docsPath": "/docs/components/glass-navbar",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/glass-navbar.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add glass-navbar"
+    }
+  },
+  {
+    "name": "glass-toggle",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Glass Toggle",
+    "description": "Toggle switch with liquid fill animation and frosted glass surface.",
+    "docsPath": "/docs/components/glass-toggle",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/glass-toggle.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add glass-toggle"
+    }
+  },
+  {
+    "name": "glow-border",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Glow Border",
+    "description": "Rotating conic-gradient glow effect around container border.",
+    "docsPath": "/docs/components/glow-border",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/glow-border.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add glow-border"
+    }
+  },
+  {
+    "name": "gradient-mesh",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Gradient Mesh",
+    "description": "Generative mesh gradient background using overlapping radial gradients.",
+    "docsPath": "/docs/components/gradient-mesh",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/gradient-mesh.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add gradient-mesh"
+    }
+  },
+  {
+    "name": "light-leak",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Light Leak",
+    "description": "Simulated lens flare and light leak overlay with drifting animation.",
+    "docsPath": "/docs/components/light-leak",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/light-leak.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add light-leak"
+    }
+  },
+  {
+    "name": "liquid-button",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Liquid Button",
+    "description": "Button with fluid hover lift, press squish, and radial shine effect.",
+    "docsPath": "/docs/components/liquid-button",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/liquid-button.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add liquid-button"
+    }
+  },
+  {
+    "name": "magnetic-cta",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Magnetic CTA",
+    "description": "Call-to-action button with subtle cursor-attraction on hover.",
+    "docsPath": "/docs/components/magnetic-cta",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/magnetic-cta.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add magnetic-cta"
+    }
+  },
+  {
+    "name": "marquee",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Marquee",
+    "description": "Infinite horizontal or vertical scrolling content with pause-on-hover support.",
+    "docsPath": "/docs/components/marquee",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/marquee.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add marquee"
+    }
+  },
+  {
+    "name": "meteor-shower",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Meteor Shower",
+    "description": "Falling diagonal streaks with staggered delays for hero backgrounds.",
+    "docsPath": "/docs/components/meteor-shower",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/meteor-shower.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add meteor-shower"
+    }
+  },
+  {
+    "name": "morphing-tabs",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Morphing Tabs",
+    "description": "Tab component with a smoothly sliding indicator that morphs between items.",
+    "docsPath": "/docs/components/morphing-tabs",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/morphing-tabs.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add morphing-tabs"
+    }
+  },
+  {
+    "name": "number-ticker",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Number Ticker",
+    "description": "Animated number counter triggered by scroll visibility via IntersectionObserver.",
+    "docsPath": "/docs/components/number-ticker",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/number-ticker.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add number-ticker"
+    }
+  },
+  {
+    "name": "orbiting-circles",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Orbiting Circles",
+    "description": "CSS-driven orbital animation that keeps children upright via double-rotate.",
+    "docsPath": "/docs/components/orbiting-circles",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/orbiting-circles.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add orbiting-circles"
+    }
+  },
+  {
+    "name": "particle-field",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Particle Field",
+    "description": "Ambient floating particle system with CSS-only staggered animations.",
+    "docsPath": "/docs/components/particle-field",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/particle-field.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add particle-field"
+    }
+  },
+  {
+    "name": "prism-border",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Prism Border",
+    "description": "Animated rainbow refraction border using a shifting linear gradient.",
+    "docsPath": "/docs/components/prism-border",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/prism-border.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add prism-border"
+    }
+  },
+  {
+    "name": "pulsating-button",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Pulsating Button",
+    "description": "Button with a pulsing glow ring animation for attention-grabbing CTAs.",
+    "docsPath": "/docs/components/pulsating-button",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/pulsating-button.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add pulsating-button"
+    }
+  },
+  {
+    "name": "retro-grid",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Retro Grid",
+    "description": "CSS perspective grid with scrolling lines for retro-futuristic backgrounds.",
+    "docsPath": "/docs/components/retro-grid",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/retro-grid.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add retro-grid"
+    }
+  },
+  {
+    "name": "reveal-text",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Reveal Text",
+    "description": "Text that reveals through a clip-path wipe animation triggered on view.",
+    "docsPath": "/docs/components/reveal-text",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/reveal-text.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add reveal-text"
+    }
+  },
+  {
+    "name": "ripple",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Ripple",
+    "description": "Concentric expanding rings radiating from center for decorative backgrounds.",
+    "docsPath": "/docs/components/ripple",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/ripple.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add ripple"
+    }
+  },
+  {
+    "name": "ripple-button",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Ripple Button",
+    "description": "Button with liquid ripple effect on press.",
+    "docsPath": "/docs/components/ripple-button",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/ripple-button.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add ripple-button"
+    }
+  },
+  {
+    "name": "shimmer-button",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Shimmer Button",
+    "description": "Button with animated shimmer sweep overlay and glass-aware variants.",
+    "docsPath": "/docs/components/shimmer-button",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/shimmer-button.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add shimmer-button"
+    }
+  },
+  {
+    "name": "spotlight",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Spotlight",
+    "description": "Full-page spotlight overlay for onboarding and feature highlighting.",
+    "docsPath": "/docs/components/spotlight",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/spotlight.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add spotlight"
+    }
+  },
+  {
+    "name": "spotlight-card",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Spotlight Card",
+    "description": "Card with cursor-tracked radial spotlight effect on hover.",
+    "docsPath": "/docs/components/spotlight-card",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/spotlight-card.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add spotlight-card"
+    }
+  },
+  {
+    "name": "text-reveal",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Text Reveal",
+    "description": "Word-by-word opacity reveal driven by scroll position.",
+    "docsPath": "/docs/components/text-reveal",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/text-reveal.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add text-reveal"
+    }
+  },
+  {
+    "name": "typewriter",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Typewriter",
+    "description": "Character-by-character typing animation with blinking cursor and loop support.",
+    "docsPath": "/docs/components/typewriter",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/typewriter.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add typewriter"
+    }
+  },
+  {
+    "name": "word-rotate",
+    "namespace": "@glinui",
+    "type": "signature",
+    "title": "Word Rotate",
+    "description": "Cycling text animation that rotates through an array of words.",
+    "docsPath": "/docs/components/word-rotate",
+    "importPath": "@glinui/ui",
+    "dependencies": [
+      "@glinui/ui"
+    ],
+    "files": [
+      "packages/ui/src/components/word-rotate.tsx"
+    ],
+    "install": {
+      "package": "npm install @glinui/ui @glinui/tokens",
+      "registry": "pnpm dlx @glinui/cli@latest add word-rotate"
+    }
+  }
+]

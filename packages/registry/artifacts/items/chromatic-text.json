@@ -1,0 +1,19 @@
+{
+  "name": "chromatic-text",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Chromatic Text",
+  "description": "Text with chromatic aberration effect — RGB channel splitting.",
+  "docsPath": "/docs/components/chromatic-text",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/chromatic-text.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add chromatic-text"
+  }
+}

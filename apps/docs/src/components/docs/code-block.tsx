@@ -5,7 +5,7 @@ import { Braces, FileCode2, FileText, Terminal } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { Highlight, type Language, type PrismTheme } from "prism-react-renderer"
 
-import { cn } from "@glinr/ui"
+import { cn } from "@glinui/ui"
 import { CodeSurfaceFrame } from "@/components/docs/code-surface-frame"
 import { useTheme } from "next-themes"
 import { buildCommandTabs, PACKAGE_MANAGERS, type PackageManager } from "@/lib/npm-commands"

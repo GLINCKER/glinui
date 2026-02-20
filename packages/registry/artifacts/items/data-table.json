@@ -1,0 +1,21 @@
+{
+  "name": "data-table",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Data Table",
+  "description": "Feature-rich table wrapper with search, sorting, pagination, selection, and column controls.",
+  "docsPath": "/docs/components/data-table",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/data-table.tsx",
+    "packages/ui/src/components/table.tsx",
+    "packages/ui/src/tests/data-table.test.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add data-table"
+  }
+}

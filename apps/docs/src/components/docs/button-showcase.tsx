@@ -1,6 +1,6 @@
 import { ArrowRight, Loader2, Sparkles } from "lucide-react"
 
-import { Button } from "@glinr/ui"
+import { Button } from "@glinui/ui"
 
 /**
  * Gradient mesh backgrounds give glass/liquid buttons something to

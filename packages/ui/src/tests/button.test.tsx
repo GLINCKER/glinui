@@ -39,8 +39,8 @@ describe("Button", () => {
     )
 
     const button = screen.getByTestId("button")
-    expect(button.className).toContain("backdrop-blur-md")
-    expect(button.className).toContain("border-white/20")
+    expect(button.className).toContain("backdrop-blur-xl")
+    expect(button.className).toContain("border-neutral-300/60")
   })
 
   it("applies liquid, matte, and glow variant classes", () => {

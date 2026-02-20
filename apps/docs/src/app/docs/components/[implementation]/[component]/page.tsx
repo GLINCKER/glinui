@@ -1,16 +1,13 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 
-import ButtonDocsPage from "@/app/docs/components/button/page.mdx"
-import { ComponentPager } from "@/components/docs/component-pager"
-import { ImplementationToggle } from "@/components/docs/implementation-toggle"
-import { PrimitiveDocsDemo } from "@/components/primitives-demo"
+import { ComponentDocPage } from "@/components/docs/component-doc-page"
+import { generatedRegistryByName } from "@/lib/generated-registry-metadata"
+import { DEFAULT_DOCS_IMPLEMENTATION } from "@/lib/docs-config"
+import { createDocsMetadata } from "@/lib/docs-metadata"
 import { resolveImplementation, type DocsImplementation } from "@/lib/docs-route"
 import {
   primitiveComponentIds,
-  primitiveDescriptions,
-  primitiveTitles,
   type PrimitiveComponentId
 } from "@/lib/primitives"
 
@@ -26,16 +23,42 @@ export async function generateMetadata({
 }: {
   params: Promise<{ implementation: string; component: string }>
 }): Promise<Metadata> {
-  const { component } = await params
-  if (!primitiveComponentIds.includes(component as PrimitiveComponentId)) {
+  const { component, implementation } = await params
+  const registryItem = generatedRegistryByName[component as keyof typeof generatedRegistryByName]
+  if (!registryItem) {
     return {}
   }
 
-  const id = component as PrimitiveComponentId
-  return {
-    title: `${primitiveTitles[id]} - Glinr UI`,
-    description: primitiveDescriptions[id]
+  if (registryItem.type === "primitive") {
+    const resolvedImplementation = resolveImplementation(implementation)
+    const canonicalPath = `/docs/components/${DEFAULT_DOCS_IMPLEMENTATION}/${component}`
+
+    return {
+      ...createDocsMetadata({
+        title: registryItem.title,
+        description: registryItem.description,
+        path: canonicalPath,
+        keywords: ["React component docs", "UI component API", "Glin UI component"]
+      }),
+      robots:
+        resolvedImplementation === DEFAULT_DOCS_IMPLEMENTATION
+          ? {
+              index: true,
+              follow: true
+            }
+          : {
+              index: false,
+              follow: true
+            }
+    }
   }
+
+  return createDocsMetadata({
+    title: registryItem.title,
+    description: registryItem.description,
+    path: registryItem.docsPath,
+    keywords: ["signature component docs", "glass UI component", "Glin UI component"]
+  })
 }
 
 export default async function ImplementationComponentPage({
@@ -45,41 +68,22 @@ export default async function ImplementationComponentPage({
 }) {
   const resolvedParams = await params
   const implementation = resolveImplementation(resolvedParams.implementation)
+  const registryItem = generatedRegistryByName[
+    resolvedParams.component as keyof typeof generatedRegistryByName
+  ]
 
-  if (!primitiveComponentIds.includes(resolvedParams.component as PrimitiveComponentId)) {
+  if (registryItem?.type === "signature") {
+    redirect(registryItem.docsPath)
+  }
+
+  if (!registryItem || registryItem.type !== "primitive") {
     notFound()
   }
 
-  const component = resolvedParams.component as PrimitiveComponentId
-
-  if (component === "button") {
-    return <ButtonDocsPage />
-  }
-
   return (
-    <main className="space-y-6">
-      <nav aria-label="Breadcrumb" className="text-sm text-neutral-500">
-        <ol className="flex items-center gap-2">
-          <li>
-            <Link href="/" className="transition-colors hover:text-foreground">
-              Home
-            </Link>
-          </li>
-          <li>/</li>
-          <li>
-            <Link href="/docs/components" className="transition-colors hover:text-foreground">
-              Components
-            </Link>
-          </li>
-          <li>/</li>
-          <li className="text-foreground">{primitiveTitles[component]}</li>
-        </ol>
-      </nav>
-
-      <ImplementationToggle componentId={component} implementation={implementation} />
-
-      <PrimitiveDocsDemo component={component} implementation={implementation} />
-      <ComponentPager component={component} implementation={implementation} />
-    </main>
+    <ComponentDocPage
+      componentId={resolvedParams.component as PrimitiveComponentId}
+      implementation={implementation}
+    />
   )
 }

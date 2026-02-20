@@ -1,0 +1,19 @@
+{
+  "name": "light-leak",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Light Leak",
+  "description": "Simulated lens flare and light leak overlay with drifting animation.",
+  "docsPath": "/docs/components/light-leak",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/light-leak.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add light-leak"
+  }
+}

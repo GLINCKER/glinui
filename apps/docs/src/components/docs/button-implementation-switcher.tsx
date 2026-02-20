@@ -2,7 +2,7 @@
 
 import { Info } from "lucide-react"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@glinr/ui"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@glinui/ui"
 
 export function ButtonImplementationSwitcher() {
   return (
@@ -23,7 +23,7 @@ export function ButtonImplementationSwitcher() {
 
         <TabsContent value="radix" variant="ghost" size="sm" className="m-0 border-0 p-0">
           <p className="text-sm text-neutral-600 dark:text-neutral-300">
-            Current implementation track. Built on Radix primitives under `@glinr/ui`.
+            Current implementation track. Built on Radix primitives under `@glinui/ui`.
           </p>
         </TabsContent>
 

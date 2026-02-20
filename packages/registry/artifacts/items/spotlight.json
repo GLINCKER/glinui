@@ -1,0 +1,19 @@
+{
+  "name": "spotlight",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Spotlight",
+  "description": "Full-page spotlight overlay for onboarding and feature highlighting.",
+  "docsPath": "/docs/components/spotlight",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/spotlight.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add spotlight"
+  }
+}

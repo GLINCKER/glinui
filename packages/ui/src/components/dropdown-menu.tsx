@@ -11,7 +11,8 @@ const dropdownMenuTriggerVariants = cva(
     variants: {
       variant: {
         default: "bg-[var(--color-surface)] text-[var(--color-foreground)] border border-[var(--color-border)]",
-        glass: "backdrop-blur-md bg-surface/80 border border-white/10 text-[var(--color-foreground)]",
+        glass: "backdrop-blur-xl backdrop-saturate-[180%] bg-[var(--glass-3-surface)] border border-white/20 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-sm)] dark:border-white/[0.1] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.05)_inset,0_8px_24px_rgb(0_0_0_/_0.35)] text-[var(--color-foreground)]",
+        frosted: "backdrop-blur-[40px] backdrop-saturate-[200%] bg-[var(--glass-4-surface)] border border-white/30 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.15)_inset,0_0_16px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-md)] dark:border-white/[0.14] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.07)_inset,0_0_16px_rgb(255_255_255_/_0.03)_inset,0_8px_24px_rgb(0_0_0_/_0.4)] text-[var(--color-foreground)]",
         outline: "bg-transparent border border-[var(--color-border)] text-[var(--color-foreground)]",
         ghost: "bg-transparent border border-transparent text-[var(--color-foreground)]"
       },
@@ -34,7 +35,8 @@ const dropdownMenuContentVariants = cva(
     variants: {
       variant: {
         default: "bg-[var(--color-surface)] border-[var(--color-border)]",
-        glass: "backdrop-blur-md bg-surface/80 border border-white/10",
+        glass: "backdrop-blur-xl backdrop-saturate-[180%] bg-[var(--glass-3-surface)] border border-white/20 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-sm)] dark:border-white/[0.1] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.05)_inset,0_8px_24px_rgb(0_0_0_/_0.35)]",
+        frosted: "backdrop-blur-[40px] backdrop-saturate-[200%] bg-[var(--glass-4-surface)] border border-white/30 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.15)_inset,0_0_16px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-md)] dark:border-white/[0.14] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.07)_inset,0_0_16px_rgb(255_255_255_/_0.03)_inset,0_8px_24px_rgb(0_0_0_/_0.4)]",
         outline: "bg-transparent border-[var(--color-border)]",
         ghost: "bg-transparent border-transparent"
       },
@@ -52,12 +54,13 @@ const dropdownMenuContentVariants = cva(
 )
 
 const dropdownMenuItemVariants = cva(
-  "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 outline-none transition-colors focus:bg-[var(--color-accent)] focus:text-[var(--color-accent-foreground)]",
+  "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 outline-none transition-colors focus:bg-black/5 focus:text-[var(--color-foreground)] dark:focus:bg-black/50 data-[highlighted]:bg-black/5 data-[highlighted]:text-[var(--color-foreground)] dark:data-[highlighted]:bg-black/50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
   {
     variants: {
       variant: {
         default: "",
         glass: "",
+        frosted: "",
         outline: "",
         ghost: ""
       },
@@ -74,11 +77,17 @@ const dropdownMenuItemVariants = cva(
   }
 )
 
+export type DropdownMenuProps = React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Root>
+
 export const DropdownMenu = DropdownMenuPrimitive.Root
+
+export type DropdownMenuTriggerProps =
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Trigger> &
+  VariantProps<typeof dropdownMenuTriggerVariants>
+
 export const DropdownMenuTrigger = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Trigger> &
-    VariantProps<typeof dropdownMenuTriggerVariants>
+  DropdownMenuTriggerProps
 >(({ className, variant, size, ...props }, ref) => (
   <DropdownMenuPrimitive.Trigger
     ref={ref}
@@ -89,10 +98,13 @@ export const DropdownMenuTrigger = React.forwardRef<
 
 DropdownMenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName
 
+export type DropdownMenuContentProps =
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> &
+  VariantProps<typeof dropdownMenuContentVariants>
+
 export const DropdownMenuContent = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> &
-    VariantProps<typeof dropdownMenuContentVariants>
+  DropdownMenuContentProps
 >(({ className, sideOffset = 6, variant, size, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
@@ -106,10 +118,13 @@ export const DropdownMenuContent = React.forwardRef<
 
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
 
+export type DropdownMenuItemProps =
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> &
+  VariantProps<typeof dropdownMenuItemVariants> & { inset?: boolean }
+
 export const DropdownMenuItem = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> &
-    VariantProps<typeof dropdownMenuItemVariants> & { inset?: boolean }
+  DropdownMenuItemProps
 >(({ className, inset, variant, size, ...props }, ref) => (
   <DropdownMenuPrimitive.Item
     ref={ref}
@@ -120,10 +135,13 @@ export const DropdownMenuItem = React.forwardRef<
 
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
 
+export type DropdownMenuCheckboxItemProps =
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem> &
+  VariantProps<typeof dropdownMenuItemVariants>
+
 export const DropdownMenuCheckboxItem = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.CheckboxItem>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem> &
-    VariantProps<typeof dropdownMenuItemVariants>
+  DropdownMenuCheckboxItemProps
 >(({ className, children, checked, variant, size, ...props }, ref) => (
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
@@ -144,10 +162,13 @@ DropdownMenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displa
 
 export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
 
+export type DropdownMenuRadioItemProps =
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem> &
+  VariantProps<typeof dropdownMenuItemVariants>
+
 export const DropdownMenuRadioItem = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.RadioItem>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem> &
-    VariantProps<typeof dropdownMenuItemVariants>
+  DropdownMenuRadioItemProps
 >(({ className, children, variant, size, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
@@ -165,9 +186,13 @@ export const DropdownMenuRadioItem = React.forwardRef<
 
 DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName
 
+export type DropdownMenuLabelProps =
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> &
+  { inset?: boolean }
+
 export const DropdownMenuLabel = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & { inset?: boolean }
+  DropdownMenuLabelProps
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Label
     ref={ref}
@@ -178,24 +203,34 @@ export const DropdownMenuLabel = React.forwardRef<
 
 DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
 
+export type DropdownMenuSeparatorProps = React.ComponentPropsWithoutRef<
+  typeof DropdownMenuPrimitive.Separator
+>
+
 export const DropdownMenuSeparator = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
+  DropdownMenuSeparatorProps
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator ref={ref} className={cn("my-1 h-px bg-[var(--color-border)]", className)} {...props} />
 ))
 
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
 
-export const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
+export type DropdownMenuShortcutProps = React.HTMLAttributes<HTMLSpanElement>
+
+export const DropdownMenuShortcut = ({ className, ...props }: DropdownMenuShortcutProps) => {
   return <span className={cn("ml-auto text-xs tracking-widest opacity-60", className)} {...props} />
 }
 
 export const DropdownMenuSub = DropdownMenuPrimitive.Sub
+
+export type DropdownMenuSubTriggerProps =
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> &
+  VariantProps<typeof dropdownMenuItemVariants> & { inset?: boolean }
+
 export const DropdownMenuSubTrigger = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.SubTrigger>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> &
-    VariantProps<typeof dropdownMenuItemVariants> & { inset?: boolean }
+  DropdownMenuSubTriggerProps
 >(({ className, inset, children, variant, size, ...props }, ref) => (
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
@@ -209,10 +244,13 @@ export const DropdownMenuSubTrigger = React.forwardRef<
 
 DropdownMenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName
 
+export type DropdownMenuSubContentProps =
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent> &
+  VariantProps<typeof dropdownMenuContentVariants>
+
 export const DropdownMenuSubContent = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.SubContent>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent> &
-    VariantProps<typeof dropdownMenuContentVariants>
+  DropdownMenuSubContentProps
 >(({ className, variant, size, ...props }, ref) => (
   <DropdownMenuPrimitive.SubContent
     ref={ref}

@@ -1,0 +1,19 @@
+{
+  "name": "ripple-button",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Ripple Button",
+  "description": "Button with liquid ripple effect on press.",
+  "docsPath": "/docs/components/ripple-button",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/ripple-button.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add ripple-button"
+  }
+}

@@ -1,0 +1,109 @@
+import { getRegistryItem } from "@glinui/registry"
+import { PulsatingButton } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("pulsating-button")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Pulsating Button - Glin UI",
+  description: item?.description ?? "Button with pulsing glow ring."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="pulsating-button"
+  implementation="css"
+  title="Pulsating Button"
+  description={item?.description ?? "Button with pulsing glow ring."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add pulsating-button"} />
+
+  ## Usage
+
+  Drop-in button with a continuously pulsing ring that draws attention to primary actions.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { PulsatingButton } from "@glinui/ui"
+
+export function PulsatingButtonDemo() {
+  return <PulsatingButton>Subscribe</PulsatingButton>
+}`}
+  >
+    <PulsatingButton>Subscribe</PulsatingButton>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Variants
+
+  <ExampleBlock
+    code={`import { PulsatingButton } from "@glinui/ui"
+
+export function PulsatingButtonVariantsDemo() {
+  return (
+    <div className="flex flex-wrap gap-6">
+      <PulsatingButton variant="default">Default</PulsatingButton>
+      <PulsatingButton variant="accent">Accent</PulsatingButton>
+      <PulsatingButton variant="glass">Glass</PulsatingButton>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-wrap gap-6">
+      <PulsatingButton variant="default">Default</PulsatingButton>
+      <PulsatingButton variant="accent">Accent</PulsatingButton>
+      <PulsatingButton variant="glass">Glass</PulsatingButton>
+    </div>
+  </ExampleBlock>
+
+  ### Custom Pulse Color
+
+  <ExampleBlock
+    code={`import { PulsatingButton } from "@glinui/ui"
+
+export function PulsatingButtonColorDemo() {
+  return <PulsatingButton pulseColor="#6366f1" pulseDuration={1.5}>Custom Pulse</PulsatingButton>
+}`}
+  >
+    <PulsatingButton pulseColor="#6366f1" pulseDuration={1.5}>Custom Pulse</PulsatingButton>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Native `<button>` with full keyboard support and focus ring.
+  - Pulse ring is decorative (`pointer-events-none`).
+
+  ## Reduced Motion
+
+  Pulse animation uses `motion-safe:animate-[...]` / `motion-reduce:hidden`. Under `prefers-reduced-motion`, the pulse ring is hidden.
+
+  ## API Reference
+
+  <PropsTable componentId="pulsating-button" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { PulsatingButton } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

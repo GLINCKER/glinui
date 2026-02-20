@@ -1,0 +1,19 @@
+{
+  "name": "switch",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Switch",
+  "description": "On/off control built on Radix switch primitive.",
+  "docsPath": "/docs/components/switch",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/switch.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add switch"
+  }
+}

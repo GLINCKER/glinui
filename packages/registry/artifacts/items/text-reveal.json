@@ -1,0 +1,19 @@
+{
+  "name": "text-reveal",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Text Reveal",
+  "description": "Word-by-word opacity reveal driven by scroll position.",
+  "docsPath": "/docs/components/text-reveal",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/text-reveal.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add text-reveal"
+  }
+}

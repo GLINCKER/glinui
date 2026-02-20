@@ -1,0 +1,135 @@
+import { getRegistryItem } from "@glinui/registry"
+import { NumberTicker } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("number-ticker")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Number Ticker - Glin UI",
+  description: item?.description ?? "Animated number counter triggered by scroll."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="number-ticker"
+  implementation="css"
+  title="Number Ticker"
+  description={item?.description ?? "Animated number counter triggered by scroll."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add number-ticker"} />
+
+  ## Usage
+
+  Renders a number that counts up from `from` to `value` when scrolled into view. Uses `requestAnimationFrame` for smooth 60fps animation.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { NumberTicker } from "@glinui/ui"
+
+export function NumberTickerDemo() {
+  return (
+    <span className="text-4xl font-bold">
+      <NumberTicker value={1234} />
+    </span>
+  )
+}`}
+  >
+    <span className="text-4xl font-bold">
+      <NumberTicker value={1234} />
+    </span>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### With Decimals
+
+  <ExampleBlock
+    code={`import { NumberTicker } from "@glinui/ui"
+
+export function NumberTickerDecimalDemo() {
+  return (
+    <span className="text-4xl font-bold">
+      <NumberTicker value={99.99} decimals={2} />
+    </span>
+  )
+}`}
+  >
+    <span className="text-4xl font-bold">
+      <NumberTicker value={99.99} decimals={2} />
+    </span>
+  </ExampleBlock>
+
+  ### Currency Format
+
+  <ExampleBlock
+    code={`import { NumberTicker } from "@glinui/ui"
+
+export function NumberTickerCurrencyDemo() {
+  return (
+    <span className="text-4xl font-bold">
+      <NumberTicker value={49999} formatOptions={{ style: "currency", currency: "USD", maximumFractionDigits: 0 }} />
+    </span>
+  )
+}`}
+  >
+    <span className="text-4xl font-bold">
+      <NumberTicker value={49999} formatOptions={{ style: "currency", currency: "USD", maximumFractionDigits: 0 }} />
+    </span>
+  </ExampleBlock>
+
+  ### Slow Duration
+
+  <ExampleBlock
+    code={`import { NumberTicker } from "@glinui/ui"
+
+export function NumberTickerSlowDemo() {
+  return (
+    <span className="text-4xl font-bold">
+      <NumberTicker value={500} duration={3} />
+    </span>
+  )
+}`}
+  >
+    <span className="text-4xl font-bold">
+      <NumberTicker value={500} duration={3} />
+    </span>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Renders as a `<span>` with `tabular-nums` for stable width during counting.
+  - Add `aria-label` to the parent if the number has semantic meaning beyond decoration.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion` is active, the final value is displayed immediately without animation.
+
+  ## API Reference
+
+  <PropsTable componentId="number-ticker" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { NumberTicker } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

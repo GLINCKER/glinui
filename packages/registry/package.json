@@ -1,14 +1,15 @@
 {
-  "name": "@glinr/registry",
+  "name": "@glinui/registry",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "pnpm registry:generate && tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "echo 'lint: @glinr/registry (todo)'",
-    "test": "echo 'test: @glinr/registry (todo)'"
+    "lint": "echo 'lint: @glinui/registry (todo)'",
+    "test": "node scripts/validate-artifacts.mjs",
+    "registry:generate": "node scripts/generate-artifacts.mjs"
   }
 }

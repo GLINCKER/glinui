@@ -1,0 +1,19 @@
+{
+  "name": "glass-breadcrumb",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Glass Breadcrumb",
+  "description": "Pill-style breadcrumb with glass indicators and collapsible items.",
+  "docsPath": "/docs/components/glass-breadcrumb",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/glass-breadcrumb.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add glass-breadcrumb"
+  }
+}

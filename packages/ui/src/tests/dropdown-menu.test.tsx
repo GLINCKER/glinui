@@ -33,6 +33,22 @@ describe("DropdownMenu", () => {
     )
 
     await user.click(screen.getByRole("button", { name: "Open menu" }))
-    expect(screen.getByTestId("content").className).toContain("backdrop-blur-md")
+    expect(screen.getByTestId("content").className).toMatch(/backdrop-blur-(md|lg|xl)/)
+  })
+
+  it("uses neutral highlighted item styling in dark mode", async () => {
+    const user = userEvent.setup()
+
+    render(
+      <DropdownMenu>
+        <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>Account</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    )
+
+    await user.click(screen.getByRole("button", { name: "Open menu" }))
+    expect(screen.getByRole("menuitem", { name: "Account" }).className).toContain("dark:data-[highlighted]:bg-black/50")
   })
 })

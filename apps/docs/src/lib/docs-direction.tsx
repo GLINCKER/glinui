@@ -10,7 +10,7 @@ type DocsDirectionContextValue = {
 }
 
 const DocsDirectionContext = React.createContext<DocsDirectionContextValue | null>(null)
-const STORAGE_KEY = "glinr:docs-direction"
+const STORAGE_KEY = "glinui:docs-direction"
 
 export function DocsDirectionProvider({ children }: { children: React.ReactNode }) {
   const [direction, setDirection] = React.useState<DocsDirection>("ltr")

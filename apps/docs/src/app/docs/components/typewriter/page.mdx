@@ -1,0 +1,221 @@
+import { getRegistryItem } from "@glinui/registry"
+import { Typewriter } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("typewriter")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Typewriter - Glin UI",
+  description: item?.description ?? "Character-by-character typing animation with blinking cursor."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="typewriter"
+  implementation="css"
+  title="Typewriter"
+  description={item?.description ?? "Character-by-character typing animation with blinking cursor."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add typewriter"} />
+
+  ## Usage
+
+  `Typewriter` is a `"use client"` component. Place it inline to type out text character by character with an optional blinking cursor. The `text` prop controls what gets typed.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`"use client"
+import { Typewriter } from "@glinui/ui"
+
+export function TypewriterDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-3xl font-bold">
+        <Typewriter text="Welcome to Glin UI" />
+      </h2>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-3xl font-bold">
+        <Typewriter text="Welcome to Glin UI" />
+      </h2>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Word Rotation
+
+  Pass a `words` array to cycle through multiple phrases. Each word is typed, deleted, then the next one types out.
+
+  <ExampleBlock
+    code={`"use client"
+import { Typewriter } from "@glinui/ui"
+
+export function TypewriterWordsDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-3xl font-bold">
+        Build{" "}
+        <Typewriter
+          words={["interfaces", "experiences", "products", "the future"]}
+          speed={60}
+          deleteSpeed={40}
+          pauseDuration={2000}
+          className="text-accent"
+        />
+      </h2>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-3xl font-bold">
+        Build{" "}
+        <Typewriter
+          words={["interfaces", "experiences", "products", "the future"]}
+          speed={60}
+          deleteSpeed={40}
+          pauseDuration={2000}
+          className="text-accent"
+        />
+      </h2>
+    </div>
+  </ExampleBlock>
+
+  ### Loop
+
+  Enable `loop` to continuously retype a single text after a pause.
+
+  <ExampleBlock
+    code={`"use client"
+import { Typewriter } from "@glinui/ui"
+
+export function TypewriterLoopDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <p className="text-xl font-medium text-neutral-600 dark:text-neutral-300">
+        <Typewriter
+          text="Building the future of UI..."
+          loop
+          speed={60}
+          pauseDuration={2000}
+        />
+      </p>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <p className="text-xl font-medium text-neutral-600 dark:text-neutral-300">
+        <Typewriter
+          text="Building the future of UI..."
+          loop
+          speed={60}
+          pauseDuration={2000}
+        />
+      </p>
+    </div>
+  </ExampleBlock>
+
+  ### Custom Cursor and Speed
+
+  Use `cursorChar` to change the cursor character and `speed` to control typing pace.
+
+  <ExampleBlock
+    code={`"use client"
+import { Typewriter } from "@glinui/ui"
+
+export function TypewriterCustomDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <code className="text-lg font-mono text-accent">
+        <Typewriter
+          text="npm install @glinui/ui"
+          speed={30}
+          cursorChar="_"
+          delay={500}
+        />
+      </code>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <code className="text-lg font-mono text-accent">
+        <Typewriter
+          text="npm install @glinui/ui"
+          speed={30}
+          cursorChar="_"
+          delay={500}
+        />
+      </code>
+    </div>
+  </ExampleBlock>
+
+  ### No Cursor
+
+  Set `cursor={false}` to hide the cursor entirely.
+
+  <ExampleBlock
+    code={`"use client"
+import { Typewriter } from "@glinui/ui"
+
+export function TypewriterNoCursorDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <p className="text-2xl font-semibold">
+        <Typewriter text="Clean, no cursor." cursor={false} speed={40} />
+      </p>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <p className="text-2xl font-semibold">
+        <Typewriter text="Clean, no cursor." cursor={false} speed={40} />
+      </p>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - The component renders with `aria-label` set to the full `text` value so screen readers announce the complete text immediately.
+  - The typed characters and cursor are both `aria-hidden="true"` to prevent partial reading.
+  - No interactive elements are created by the typewriter itself.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion: reduce` is active, the full text is displayed immediately with no animation. The cursor remains visible but does not blink.
+
+  ## API Reference
+
+  <PropsTable componentId="typewriter" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { Typewriter } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

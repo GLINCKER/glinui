@@ -1,0 +1,249 @@
+import { getRegistryItem } from "@glinui/registry"
+import { OrbitingCircles } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+import { Zap, Palette, Sparkles, Globe, Moon, Star, Rocket, Flame, GitBranch, Database, Cloud, Lock, Shield, Cpu, Layers, Code2, Box } from "lucide-react"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("orbiting-circles")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Orbiting Circles - Glin UI",
+  description: item?.description ?? "CSS double-rotate orbit animation for icon constellations."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="orbiting-circles"
+  implementation="css"
+  title="Orbiting Circles"
+  description={item?.description ?? "CSS double-rotate orbit animation for icon constellations."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add orbiting-circles"} />
+
+  ## Usage
+
+  Place inside a relative container with a centered anchor element. Each `OrbitingCircles` instance wraps one child and orbits it around the center using the CSS double-rotate trick.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { OrbitingCircles } from "@glinui/ui"
+import { Zap, Palette, Sparkles, Globe } from "lucide-react"
+
+export function OrbitingCirclesDemo() {
+  return (
+    <div className="relative flex h-80 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <Globe className="size-8 text-neutral-400" />
+      <OrbitingCircles radius={80} duration={16} delay={0} path>
+        <Zap className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles radius={80} duration={16} delay={5}>
+        <Palette className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles radius={80} duration={16} delay={10}>
+        <Sparkles className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-80 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <Globe className="size-8 text-neutral-400" />
+      <OrbitingCircles radius={80} duration={16} delay={0} path>
+        <Zap className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles radius={80} duration={16} delay={5}>
+        <Palette className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles radius={80} duration={16} delay={10}>
+        <Sparkles className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Glass Variant
+
+  Orbiting elements render on translucent glass surfaces.
+
+  <ExampleBlock
+    code={`import { OrbitingCircles } from "@glinui/ui"
+import { Zap, Palette, Sparkles, Globe } from "lucide-react"
+
+export function OrbitingCirclesGlassDemo() {
+  return (
+    <div className="relative flex h-80 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <Globe className="size-8 text-neutral-400" />
+      <OrbitingCircles variant="glass" iconSize={40} radius={90} duration={16} delay={0} path>
+        <Zap className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="glass" iconSize={40} radius={90} duration={16} delay={5}>
+        <Palette className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="glass" iconSize={40} radius={90} duration={16} delay={10}>
+        <Sparkles className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-80 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <Globe className="size-8 text-neutral-400" />
+      <OrbitingCircles variant="glass" iconSize={40} radius={90} duration={16} delay={0} path>
+        <Zap className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="glass" iconSize={40} radius={90} duration={16} delay={5}>
+        <Palette className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="glass" iconSize={40} radius={90} duration={16} delay={10}>
+        <Sparkles className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+    </div>
+  </ExampleBlock>
+
+  ### 3D Variant
+
+  Frosted glass orbs with deep shadows, inner glow, and elevated depth. Best against colored or gradient backgrounds.
+
+  <ExampleBlock
+    code={`import { OrbitingCircles } from "@glinui/ui"
+import { GitBranch, Database, Cloud, Lock, Shield, Cpu } from "lucide-react"
+
+export function OrbitingCircles3DDemo() {
+  return (
+    <div className="relative flex h-96 w-full items-center justify-center overflow-hidden rounded-xl bg-[linear-gradient(135deg,rgb(240_244_248),rgb(226_232_240))] dark:bg-[linear-gradient(135deg,rgb(15_23_42),rgb(30_41_59))]">
+      <div className="flex size-14 items-center justify-center rounded-2xl border border-white/30 [border-top-color:var(--glass-refraction-top)] bg-white/60 shadow-[0_0_0_1px_rgb(255_255_255_/_0.4)_inset,0_12px_32px_-8px_rgb(15_23_42_/_0.2)] backdrop-blur-xl dark:border-white/[0.14] dark:bg-white/[0.1] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.08)_inset,0_12px_32px_-8px_rgb(0_0_0_/_0.5)]">
+        <Cpu className="size-6 text-neutral-700 dark:text-neutral-200" />
+      </div>
+      {/* Inner ring */}
+      <OrbitingCircles variant="3d" iconSize={44} radius={80} duration={18} delay={0} path>
+        <GitBranch className="size-5 text-neutral-700 dark:text-neutral-200" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="3d" iconSize={44} radius={80} duration={18} delay={6}>
+        <Database className="size-5 text-neutral-700 dark:text-neutral-200" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="3d" iconSize={44} radius={80} duration={18} delay={12}>
+        <Cloud className="size-5 text-neutral-700 dark:text-neutral-200" />
+      </OrbitingCircles>
+      {/* Outer ring — reverse */}
+      <OrbitingCircles variant="3d" iconSize={40} radius={140} duration={26} delay={0} reverse path>
+        <Lock className="size-4 text-neutral-600 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="3d" iconSize={40} radius={140} duration={26} delay={8.5} reverse>
+        <Shield className="size-4 text-neutral-600 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="3d" iconSize={40} radius={140} duration={26} delay={17} reverse>
+        <Layers className="size-4 text-neutral-600 dark:text-neutral-300" />
+      </OrbitingCircles>
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-96 w-full items-center justify-center overflow-hidden rounded-xl bg-[linear-gradient(135deg,rgb(240_244_248),rgb(226_232_240))] dark:bg-[linear-gradient(135deg,rgb(15_23_42),rgb(30_41_59))]">
+      <div className="flex size-14 items-center justify-center rounded-2xl border border-white/30 [border-top-color:var(--glass-refraction-top)] bg-white/60 shadow-[0_0_0_1px_rgb(255_255_255_/_0.4)_inset,0_12px_32px_-8px_rgb(15_23_42_/_0.2)] backdrop-blur-xl dark:border-white/[0.14] dark:bg-white/[0.1] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.08)_inset,0_12px_32px_-8px_rgb(0_0_0_/_0.5)]">
+        <Cpu className="size-6 text-neutral-700 dark:text-neutral-200" />
+      </div>
+      <OrbitingCircles variant="3d" iconSize={44} radius={80} duration={18} delay={0} path>
+        <GitBranch className="size-5 text-neutral-700 dark:text-neutral-200" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="3d" iconSize={44} radius={80} duration={18} delay={6}>
+        <Database className="size-5 text-neutral-700 dark:text-neutral-200" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="3d" iconSize={44} radius={80} duration={18} delay={12}>
+        <Cloud className="size-5 text-neutral-700 dark:text-neutral-200" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="3d" iconSize={40} radius={140} duration={26} delay={0} reverse path>
+        <Lock className="size-4 text-neutral-600 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="3d" iconSize={40} radius={140} duration={26} delay={8.5} reverse>
+        <Shield className="size-4 text-neutral-600 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="3d" iconSize={40} radius={140} duration={26} delay={17} reverse>
+        <Layers className="size-4 text-neutral-600 dark:text-neutral-300" />
+      </OrbitingCircles>
+    </div>
+  </ExampleBlock>
+
+  ### Reverse Direction with Dual Rings
+
+  <ExampleBlock
+    code={`import { OrbitingCircles } from "@glinui/ui"
+import { Moon, Star, Rocket, Flame, Box } from "lucide-react"
+
+export function OrbitingCirclesReverseDemo() {
+  return (
+    <div className="relative flex h-80 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <Box className="size-7 text-neutral-400" />
+      {/* Inner ring — forward */}
+      <OrbitingCircles variant="glass" iconSize={36} radius={70} duration={14} delay={0} path>
+        <Moon className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="glass" iconSize={36} radius={70} duration={14} delay={7}>
+        <Star className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      {/* Outer ring — reverse */}
+      <OrbitingCircles variant="glass" iconSize={36} radius={130} duration={22} delay={0} reverse path>
+        <Rocket className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="glass" iconSize={36} radius={130} duration={22} delay={11} reverse>
+        <Flame className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-80 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <Box className="size-7 text-neutral-400" />
+      <OrbitingCircles variant="glass" iconSize={36} radius={70} duration={14} delay={0} path>
+        <Moon className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="glass" iconSize={36} radius={70} duration={14} delay={7}>
+        <Star className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="glass" iconSize={36} radius={130} duration={22} delay={0} reverse path>
+        <Rocket className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+      <OrbitingCircles variant="glass" iconSize={36} radius={130} duration={22} delay={11} reverse>
+        <Flame className="size-4 text-neutral-700 dark:text-neutral-300" />
+      </OrbitingCircles>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Each `OrbitingCircles` wrapper is decorative and does not receive keyboard focus.
+  - Icon children should include `aria-hidden="true"` if they convey no unique information.
+  - If orbiting elements are meaningful, provide a visible label or `aria-label` on the container.
+
+  ## Reduced Motion
+
+  The orbit animation is paused via `motion-reduce:[animation:none]`. All children remain visible at their `startAngle` position so the layout stays intact.
+
+  ## API Reference
+
+  <PropsTable componentId="orbiting-circles" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { OrbitingCircles } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

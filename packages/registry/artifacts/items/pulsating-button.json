@@ -1,0 +1,19 @@
+{
+  "name": "pulsating-button",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Pulsating Button",
+  "description": "Button with a pulsing glow ring animation for attention-grabbing CTAs.",
+  "docsPath": "/docs/components/pulsating-button",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/pulsating-button.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add pulsating-button"
+  }
+}

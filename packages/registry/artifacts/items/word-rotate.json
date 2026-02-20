@@ -1,0 +1,19 @@
+{
+  "name": "word-rotate",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Word Rotate",
+  "description": "Cycling text animation that rotates through an array of words.",
+  "docsPath": "/docs/components/word-rotate",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/word-rotate.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add word-rotate"
+  }
+}

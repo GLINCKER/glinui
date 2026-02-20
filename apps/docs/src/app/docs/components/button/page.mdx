@@ -1,15 +1,17 @@
 import { ArrowRight } from "lucide-react"
-import { getRegistryItem } from "@glinr/registry"
-import { Button } from "@glinr/ui"
+import { getRegistryItem } from "@glinui/registry"
+import { Button } from "@glinui/ui"
 import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
 import { ExampleBlock } from "@/components/docs/example-block"
 import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
 import { PropsTable } from "@/components/docs/props-table"
 
 export const dynamic = "force-static"
 export const item = getRegistryItem("button")
+export const sources = getComponentSources(item?.files)
 export const metadata = {
-  title: "Button - Glinr UI",
+  title: "Button - Glin UI",
   description: item?.description ?? "Action control with glass and matte-forward styling for light and dark modes."
 }
 
@@ -26,11 +28,11 @@ export const metadata = {
 
   ### Package Manager
 
-  <InstallTabs command={item?.install.package ?? "npm install @glinr/ui @glinr/tokens"} />
+  <InstallTabs sources={sources} command={item?.install.package ?? "npm install @glinui/ui @glinui/tokens"} />
 
   ### Registry
 
-  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinr/cli@latest add button"} />
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add button"} />
 
   ## Usage
 
@@ -40,7 +42,7 @@ export const metadata = {
 
   <ExampleBlock
     codeDefaultOpen
-    code={`import { Button } from "@glinr/ui"
+    code={`import { Button } from "@glinui/ui"
 
 export function ButtonBasicDemo() {
   return <Button>Button</Button>
@@ -49,7 +51,7 @@ export function ButtonBasicDemo() {
       {
         label: "TSX",
         language: "tsx",
-        code: `import { Button } from "@glinr/ui"
+        code: `import { Button } from "@glinui/ui"
 
 export function ButtonBasicDemo() {
   return <Button>Button</Button>
@@ -58,7 +60,7 @@ export function ButtonBasicDemo() {
       {
         label: "JSX",
         language: "jsx",
-        code: `import { Button } from "@glinr/ui"
+        code: `import { Button } from "@glinui/ui"
 
 export function ButtonBasicDemo() {
   return <Button>Button</Button>
@@ -73,7 +75,7 @@ export function ButtonBasicDemo() {
 
   <ExampleBlock
     code={`import { ArrowRight } from "lucide-react"
-import { Button } from "@glinr/ui"
+import { Button } from "@glinui/ui"
 
 export function ButtonCursorDemo() {
   return (
@@ -99,7 +101,7 @@ export function ButtonCursorDemo() {
   ### Size
 
   <ExampleBlock
-    code={`import { Button } from "@glinr/ui"
+    code={`import { Button } from "@glinui/ui"
 
 export function ButtonSizeDemo() {
   return (
@@ -114,7 +116,7 @@ export function ButtonSizeDemo() {
       {
         label: "TSX RTL",
         language: "tsx",
-        code: `import { Button } from "@glinr/ui"
+        code: `import { Button } from "@glinui/ui"
 
 export function ButtonRtlDemo() {
   return (
@@ -130,7 +132,7 @@ export function ButtonRtlDemo() {
       {
         label: "JSX RTL",
         language: "jsx",
-        code: `import { Button } from "@glinr/ui"
+        code: `import { Button } from "@glinui/ui"
 
 export function ButtonRtlDemo() {
   return (
@@ -154,14 +156,17 @@ export function ButtonRtlDemo() {
 
   ### Variants
 
+  Toggle backgrounds (top-right) to see how each variant adapts to different surfaces.
+
   <ExampleBlock
-    code={`import { Button } from "@glinr/ui"
+    code={`import { Button } from "@glinui/ui"
 
 export function ButtonVariantDemo() {
   return (
     <div className="flex flex-wrap items-center gap-2">
       <Button>Default</Button>
       <Button variant="glass">Glass</Button>
+      <Button variant="frosted">Frosted</Button>
       <Button variant="liquid">Liquid</Button>
       <Button variant="matte">Matte</Button>
       <Button variant="glow">Glow</Button>
@@ -174,6 +179,7 @@ export function ButtonVariantDemo() {
     <div className="flex flex-wrap items-center gap-2">
       <Button>Default</Button>
       <Button variant="glass">Glass</Button>
+      <Button variant="frosted">Frosted</Button>
       <Button variant="liquid">Liquid</Button>
       <Button variant="matte">Matte</Button>
       <Button variant="glow">Glow</Button>
@@ -186,7 +192,7 @@ export function ButtonVariantDemo() {
 
   <ExampleBlock
     code={`import { ArrowRight } from "lucide-react"
-import { Button } from "@glinr/ui"
+import { Button } from "@glinui/ui"
 
 export function ButtonWithIconDemo() {
   return (
@@ -206,7 +212,7 @@ export function ButtonWithIconDemo() {
   ### Button Group
 
   <ExampleBlock
-    code={`import { Button } from "@glinr/ui"
+    code={`import { Button } from "@glinui/ui"
 
 export function ButtonGroupDemo() {
   return (
@@ -230,7 +236,7 @@ export function ButtonGroupDemo() {
   Use `dir="rtl"` on a layout wrapper to mirror button flow for right-to-left locales.
 
   <ExampleBlock
-    code={`import { Button } from "@glinr/ui"
+    code={`import { Button } from "@glinui/ui"
 
 export function ButtonRtlDemo() {
   return (
@@ -256,7 +262,7 @@ export function ButtonRtlDemo() {
   Keep labels outside the component and inject locale strings. Code blocks in docs stay `ltr` for readability.
 
   ```tsx
-  import { Button } from "@glinr/ui"
+  import { Button } from "@glinui/ui"
 
   const copy = {
     en: { save: "Save", cancel: "Cancel" },
@@ -292,35 +298,14 @@ export function ButtonRtlDemo() {
   The `Button` component is a wrapper around the native button element that adds variant styling,
   size control, and optional slot composition.
 
-  <PropsTable
-    rows={[
-      {
-        prop: "variant",
-        type: `"default" | "glass" | "liquid" | "matte" | "glow" | "outline" | "ghost"`,
-        defaultValue: "default",
-        description: "Visual treatment."
-      },
-      {
-        prop: "size",
-        type: `"sm" | "md" | "lg"`,
-        defaultValue: "md",
-        description: "Height and horizontal padding scale."
-      },
-      {
-        prop: "asChild",
-        type: "boolean",
-        defaultValue: "false",
-        description: "Renders child element with button styles."
-      }
-    ]}
-  />
+  <PropsTable componentId="button" autoAppendGenerated />
 
   ### Source
 
-  Import from `@glinr/ui`.
+  Import from `@glinui/ui`.
 
   ```tsx
-  import { Button } from "@glinr/ui"
+  import { Button } from "@glinui/ui"
   ```
 
   Source files:

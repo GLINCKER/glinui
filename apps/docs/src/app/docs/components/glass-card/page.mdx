@@ -1,0 +1,131 @@
+import { getRegistryItem } from "@glinui/registry"
+import { GlassCard, GlassCardHeader, GlassCardContent, GlassCardFooter } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("glass-card")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Glass Card - Glin UI",
+  description: item?.description ?? "Frosted card with depth-aware blur and elevation transitions."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="glass-card"
+  implementation="css"
+  title="Glass Card"
+  description={item?.description ?? "Frosted card with depth-aware blur and elevation transitions."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add glass-card"} />
+
+  ## Usage
+
+  GlassCard is a compound component with `GlassCardHeader`, `GlassCardContent`, and `GlassCardFooter` subcomponents. Place it over a colorful background to see the glass effect.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { GlassCard, GlassCardHeader, GlassCardContent, GlassCardFooter } from "@glinui/ui"
+
+export function GlassCardDemo() {
+  return (
+    <div className="rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-8">
+      <GlassCard>
+        <GlassCardHeader>
+          <h3 className="text-lg font-semibold">Glass Card</h3>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">Frosted glass surface</p>
+        </GlassCardHeader>
+        <GlassCardContent>
+          <p className="text-sm">Content with depth-aware blur and refraction edge highlights.</p>
+        </GlassCardContent>
+        <GlassCardFooter>
+          <p className="text-xs text-neutral-500">Footer area</p>
+        </GlassCardFooter>
+      </GlassCard>
+    </div>
+  )
+}`}
+  >
+    <div className="rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-8">
+      <GlassCard>
+        <GlassCardHeader>
+          <h3 className="text-lg font-semibold">Glass Card</h3>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">Frosted glass surface</p>
+        </GlassCardHeader>
+        <GlassCardContent>
+          <p className="text-sm">Content with depth-aware blur and refraction edge highlights.</p>
+        </GlassCardContent>
+        <GlassCardFooter>
+          <p className="text-xs text-neutral-500">Footer area</p>
+        </GlassCardFooter>
+      </GlassCard>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Size Variants
+
+  <ExampleBlock
+    code={`import { GlassCard, GlassCardContent } from "@glinui/ui"
+
+export function GlassCardSizesDemo() {
+  return (
+    <div className="flex flex-col gap-4 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 p-8">
+      <GlassCard size="sm"><GlassCardContent size="sm"><p className="text-sm">Small</p></GlassCardContent></GlassCard>
+      <GlassCard size="md"><GlassCardContent size="md"><p className="text-sm">Medium (default)</p></GlassCardContent></GlassCard>
+      <GlassCard size="lg"><GlassCardContent size="lg"><p className="text-sm">Large</p></GlassCardContent></GlassCard>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-col gap-4 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 p-8">
+      <GlassCard size="sm"><GlassCardContent size="sm"><p className="text-sm">Small</p></GlassCardContent></GlassCard>
+      <GlassCard size="md"><GlassCardContent size="md"><p className="text-sm">Medium (default)</p></GlassCardContent></GlassCard>
+      <GlassCard size="lg"><GlassCardContent size="lg"><p className="text-sm">Large</p></GlassCardContent></GlassCard>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - GlassCard renders a `<div>` — add semantic structure inside (headings, paragraphs).
+  - Ensure text contrast meets WCAG AA 4.5:1 on glass surfaces.
+
+  ## Reduced Motion
+
+  Hover elevation transitions respect `prefers-reduced-motion` and disable `transform` changes.
+
+  ## API Reference
+
+  ### GlassCard
+
+  <PropsTable componentId="glass-card" autoAppendGenerated />
+
+  ### GlassCardHeader / GlassCardContent / GlassCardFooter
+
+  <PropsTable componentId="glass-card" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { GlassCard, GlassCardHeader, GlassCardContent, GlassCardFooter } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

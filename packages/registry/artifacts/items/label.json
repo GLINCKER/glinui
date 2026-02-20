@@ -1,0 +1,19 @@
+{
+  "name": "label",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Label",
+  "description": "Form label primitive with shared glass-aware variants.",
+  "docsPath": "/docs/components/label",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/label.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add label"
+  }
+}

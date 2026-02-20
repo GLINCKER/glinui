@@ -1,0 +1,19 @@
+{
+  "name": "marquee",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Marquee",
+  "description": "Infinite horizontal or vertical scrolling content with pause-on-hover support.",
+  "docsPath": "/docs/components/marquee",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/marquee.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add marquee"
+  }
+}

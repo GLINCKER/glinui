@@ -1,0 +1,140 @@
+import { getRegistryItem } from "@glinui/registry"
+import { BlurFade } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("blur-fade")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Blur Fade - Glin UI",
+  description: item?.description ?? "Scroll-triggered blur and fade entrance animation via IntersectionObserver."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="blur-fade"
+  implementation="css"
+  title="Blur Fade"
+  description={item?.description ?? "Scroll-triggered blur and fade entrance animation via IntersectionObserver."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add blur-fade"} />
+
+  ## Usage
+
+  Wrap any element in `BlurFade`. It observes the element's intersection with the viewport and plays a blur + fade + translate entrance animation once it enters. Use `delay` to stagger multiple items on the same page.
+
+  `BlurFade` is a `"use client"` component — it runs in the browser only.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { BlurFade } from "@glinui/ui"
+
+export function BlurFadeDemo() {
+  return (
+    <div className="flex flex-col gap-4 p-8">
+      <BlurFade delay={0}>
+        <div className="rounded-lg border p-4 dark:border-neutral-800">First item fades in</div>
+      </BlurFade>
+      <BlurFade delay={200}>
+        <div className="rounded-lg border p-4 dark:border-neutral-800">Second item with delay</div>
+      </BlurFade>
+      <BlurFade delay={400}>
+        <div className="rounded-lg border p-4 dark:border-neutral-800">Third item with more delay</div>
+      </BlurFade>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-col gap-4 p-8">
+      <BlurFade delay={0}>
+        <div className="rounded-lg border p-4 dark:border-neutral-800">First item fades in</div>
+      </BlurFade>
+      <BlurFade delay={200}>
+        <div className="rounded-lg border p-4 dark:border-neutral-800">Second item with delay</div>
+      </BlurFade>
+      <BlurFade delay={400}>
+        <div className="rounded-lg border p-4 dark:border-neutral-800">Third item with more delay</div>
+      </BlurFade>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Custom Blur and Offset
+
+  <ExampleBlock
+    code={`import { BlurFade } from "@glinui/ui"
+
+export function BlurFadeCustomDemo() {
+  return (
+    <div className="flex flex-col gap-4 p-8">
+      <BlurFade blur={20} yOffset={24} duration={700} delay={0}>
+        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900">
+          <p className="font-semibold">Heavy blur entrance</p>
+          <p className="text-sm text-neutral-500">blur={20}, yOffset={24}, duration={700}</p>
+        </div>
+      </BlurFade>
+      <BlurFade blur={20} yOffset={24} duration={700} delay={150}>
+        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900">
+          <p className="font-semibold">Staggered card</p>
+          <p className="text-sm text-neutral-500">delay={150}</p>
+        </div>
+      </BlurFade>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-col gap-4 p-8">
+      <BlurFade blur={20} yOffset={24} duration={700} delay={0}>
+        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900">
+          <p className="font-semibold">Heavy blur entrance</p>
+          <p className="text-sm text-neutral-500">blur=20, yOffset=24, duration=700</p>
+        </div>
+      </BlurFade>
+      <BlurFade blur={20} yOffset={24} duration={700} delay={150}>
+        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900">
+          <p className="font-semibold">Staggered card</p>
+          <p className="text-sm text-neutral-500">delay=150</p>
+        </div>
+      </BlurFade>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Content wrapped by `BlurFade` is fully accessible at all times — only the visual presentation is animated.
+  - The animation is a progressive enhancement: if JavaScript is unavailable or the `IntersectionObserver` API is not supported, content is shown immediately in its final state.
+  - Focus and keyboard navigation work normally regardless of animation state.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion: reduce` is active, `BlurFade` skips the animation entirely and renders content immediately in its final visible state. No blur, no translate, no opacity transition is applied.
+
+  ## API Reference
+
+  <PropsTable componentId="blur-fade" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { BlurFade } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

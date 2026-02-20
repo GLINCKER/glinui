@@ -4,13 +4,32 @@ import * as React from "react"
 import { ChevronDown, Code2 } from "lucide-react"
 import type { ReactNode } from "react"
 
-import { cn } from "@glinr/ui"
+import { cn } from "@glinui/ui"
 import { CodeBlock } from "@/components/docs/code-block"
 
 type ExampleSnippet = {
   label: string
   code: string
   language?: string
+}
+
+type PreviewBg = "mesh" | "light" | "dark" | "vivid"
+
+const previewBgClasses: Record<PreviewBg, string> = {
+  mesh: [
+    "bg-[radial-gradient(circle_at_20%_30%,rgb(196_181_253_/_0.12),transparent_50%),radial-gradient(circle_at_80%_70%,rgb(125_211_252_/_0.12),transparent_50%),linear-gradient(180deg,rgb(240_240_244_/_0.7),rgb(228_228_232_/_0.5))]",
+    "dark:bg-[radial-gradient(circle_at_20%_30%,rgb(196_181_253_/_0.06),transparent_50%),radial-gradient(circle_at_80%_70%,rgb(125_211_252_/_0.06),transparent_50%),linear-gradient(180deg,rgb(255_255_255_/_0.04),rgb(255_255_255_/_0.015))]"
+  ].join(" "),
+  light: "bg-white dark:bg-white",
+  dark: "bg-neutral-900 dark:bg-neutral-900",
+  vivid: "bg-[linear-gradient(135deg,rgb(99_102_241),rgb(168_85_247),rgb(236_72_153))] dark:bg-[linear-gradient(135deg,rgb(79_70_229),rgb(147_51_234),rgb(219_39_119))]"
+}
+
+const previewSwatchClasses: Record<PreviewBg, string> = {
+  mesh: "bg-[linear-gradient(135deg,rgb(196_181_253_/_0.3),rgb(125_211_252_/_0.3))]",
+  light: "bg-white",
+  dark: "bg-neutral-900",
+  vivid: "bg-[linear-gradient(135deg,rgb(99_102_241),rgb(236_72_153))]"
 }
 
 type ExampleBlockProps = {
@@ -42,6 +61,7 @@ export function ExampleBlock({
 
   const [activeSnippetLabel, setActiveSnippetLabel] = React.useState<string>(resolvedSnippets[0]?.label ?? "TSX")
   const [codeOpen, setCodeOpen] = React.useState(codeDefaultOpen)
+  const [previewBg, setPreviewBg] = React.useState<PreviewBg>("mesh")
 
   React.useEffect(() => {
     setActiveSnippetLabel(resolvedSnippets[0]?.label ?? "TSX")
@@ -59,17 +79,38 @@ export function ExampleBlock({
   return (
     <section
       className={cn(
-        "overflow-hidden rounded-2xl border border-black/[0.06] [border-top-color:rgb(255_255_255_/_0.45)] bg-[var(--glass-3-surface)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.2)_inset,var(--shadow-soft)] dark:border-white/[0.1] dark:[border-top-color:rgb(255_255_255_/_0.12)] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.06)_inset,var(--shadow-soft)]",
+        "overflow-hidden rounded-2xl border border-black/[0.06] [border-top-color:var(--glass-refraction-top)] bg-[var(--glass-3-surface)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.2)_inset,var(--shadow-soft)] dark:border-white/[0.1] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.06)_inset,var(--shadow-soft)]",
         className
       )}
     >
-      <div
-        className={cn(
-          "flex min-h-[160px] items-center justify-center bg-[linear-gradient(180deg,rgb(255_255_255_/_0.24),rgb(255_255_255_/_0.08))] px-6 py-8 dark:bg-[linear-gradient(180deg,rgb(255_255_255_/_0.04),rgb(255_255_255_/_0.015))]",
-          previewClassName
-        )}
-      >
-        {children}
+      <div className="relative">
+        <div
+          className={cn(
+            "flex min-h-[160px] items-center justify-center px-6 py-8 transition-colors duration-300 [&>div]:w-full",
+            previewBgClasses[previewBg],
+            previewClassName
+          )}
+        >
+          {children}
+        </div>
+
+        <div className="absolute right-2.5 top-2.5 flex items-center gap-1 rounded-lg border border-black/[0.06] bg-white/70 px-1.5 py-1 backdrop-blur-md dark:border-white/[0.1] dark:bg-neutral-900/70">
+          {(Object.keys(previewBgClasses) as PreviewBg[]).map((bg) => (
+            <button
+              key={bg}
+              type="button"
+              onClick={() => setPreviewBg(bg)}
+              aria-label={`${bg} background`}
+              className={cn(
+                "size-4 rounded-full border transition-[box-shadow,border-color] duration-150",
+                previewSwatchClasses[bg],
+                previewBg === bg
+                  ? "border-neutral-400 shadow-[0_0_0_2px_rgb(255_255_255),0_0_0_3.5px_rgb(99_102_241)] dark:border-neutral-500 dark:shadow-[0_0_0_2px_rgb(23_23_23),0_0_0_3.5px_rgb(129_140_248)]"
+                  : "border-black/10 hover:border-black/25 dark:border-white/15 dark:hover:border-white/30"
+              )}
+            />
+          ))}
+        </div>
       </div>
 
       <button

@@ -1,0 +1,147 @@
+import { getRegistryItem } from "@glinui/registry"
+import { PrismBorder } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("prism-border")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Prism Border - Glin UI",
+  description: item?.description ?? "Animated rainbow refraction border using a shifting linear gradient."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="prism-border"
+  implementation="css"
+  title="Prism Border"
+  description={item?.description ?? "Animated rainbow refraction border using a shifting linear gradient."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add prism-border"} />
+
+  ## Usage
+
+  Wrap any content with `PrismBorder` to add an animated rainbow refraction border. Uses CSS mask compositing for the hollow border effect.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { PrismBorder } from "@glinui/ui"
+
+export function PrismBorderDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <PrismBorder className="w-64">
+        <div className="rounded-xl bg-neutral-900 p-6 text-center">
+          <h3 className="text-lg font-semibold text-white">Prism Card</h3>
+          <p className="mt-2 text-sm text-neutral-400">Rainbow border effect.</p>
+        </div>
+      </PrismBorder>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <PrismBorder className="w-64">
+        <div className="rounded-xl bg-neutral-900 p-6 text-center">
+          <h3 className="text-lg font-semibold text-white">Prism Card</h3>
+          <p className="mt-2 text-sm text-neutral-400">Rainbow border effect.</p>
+        </div>
+      </PrismBorder>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Thicker Border
+
+  <ExampleBlock
+    code={`import { PrismBorder } from "@glinui/ui"
+
+export function PrismBorderThickDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <PrismBorder borderWidth={4} duration={2}>
+        <div className="rounded-xl bg-neutral-900 p-6 text-center">
+          <h3 className="text-lg font-semibold text-white">Thick Border</h3>
+          <p className="mt-2 text-sm text-neutral-400">4px border, 2s animation.</p>
+        </div>
+      </PrismBorder>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <PrismBorder borderWidth={4} duration={2}>
+        <div className="rounded-xl bg-neutral-900 p-6 text-center">
+          <h3 className="text-lg font-semibold text-white">Thick Border</h3>
+          <p className="mt-2 text-sm text-neutral-400">4px border, 2s animation.</p>
+        </div>
+      </PrismBorder>
+    </div>
+  </ExampleBlock>
+
+  ### Custom Colors
+
+  <ExampleBlock
+    code={`import { PrismBorder } from "@glinui/ui"
+
+export function PrismBorderCustomDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <PrismBorder colors={["#06b6d4", "#3b82f6", "#8b5cf6", "#06b6d4"]}>
+        <div className="rounded-xl bg-neutral-900 p-6 text-center">
+          <h3 className="text-lg font-semibold text-white">Cool Tones</h3>
+          <p className="mt-2 text-sm text-neutral-400">Custom gradient colors.</p>
+        </div>
+      </PrismBorder>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <PrismBorder colors={["#06b6d4", "#3b82f6", "#8b5cf6", "#06b6d4"]}>
+        <div className="rounded-xl bg-neutral-900 p-6 text-center">
+          <h3 className="text-lg font-semibold text-white">Cool Tones</h3>
+          <p className="mt-2 text-sm text-neutral-400">Custom gradient colors.</p>
+        </div>
+      </PrismBorder>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - The animated border element is `aria-hidden="true"` — invisible to assistive technologies.
+  - Content inside the border wrapper remains fully accessible.
+
+  ## Reduced Motion
+
+  The gradient animation is paused via `motion-reduce:[animation:none]`. A static gradient border remains visible.
+
+  ## API Reference
+
+  <PropsTable componentId="prism-border" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { PrismBorder } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

@@ -4,8 +4,13 @@ import * as React from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { ArrowDown, ArrowUp, Boxes, Command, CornerDownLeft, Search, Sparkles } from "lucide-react"
 
-import { cn, useLiquidGlass } from "@glinr/ui"
-import { primitiveComponentIds, primitiveTitles } from "@/lib/primitives"
+import { cn, useLiquidGlass } from "@glinui/ui"
+import {
+  primitiveComponentIds,
+  primitiveTitles,
+  signatureComponentIds,
+  signatureTitles
+} from "@/lib/primitives"
 import { buildComponentHref, getImplementationFromPath } from "@/lib/docs-route"
 
 type CommandPaletteProps = {
@@ -39,8 +44,17 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
 
   const commands = React.useMemo<PaletteCommand[]>(() => {
     const pageCommands: PaletteCommand[] = [
+      { id: "docs-home", label: "Documentation Overview", href: "/docs", keywords: ["docs", "home", "overview"], group: "pages" },
       { id: "getting-started", label: "Getting Started", href: "/docs/getting-started", keywords: ["start", "install", "setup"], group: "pages" },
+      { id: "accessibility", label: "Accessibility Hub", href: "/docs/accessibility", keywords: ["accessibility", "a11y", "wcag", "screen reader", "focus"], group: "pages" },
+      { id: "forms-accessibility", label: "Forms Accessibility", href: "/docs/forms-accessibility", keywords: ["forms", "accessibility", "a11y", "labels"], group: "pages" },
+      { id: "forms-recipes", label: "Form Recipes", href: "/docs/forms-recipes", keywords: ["forms", "recipes", "auth", "checkout", "settings"], group: "pages" },
+      { id: "screen-reader-testing", label: "Screen Reader Testing", href: "/docs/screen-reader-testing", keywords: ["screen", "reader", "voiceover", "nvda", "a11y", "testing"], group: "pages" },
+      { id: "focus-management", label: "Focus Management", href: "/docs/focus-management", keywords: ["focus", "keyboard", "dialog", "trap"], group: "pages" },
+      { id: "color-contrast", label: "Color Contrast", href: "/docs/color-contrast", keywords: ["contrast", "wcag", "colors", "readability"], group: "pages" },
       { id: "components", label: "Components", href: "/docs/components", keywords: ["components", "catalog"], group: "pages" },
+      { id: "directory", label: "Directory", href: "/docs/directory", keywords: ["directory", "browse", "install", "registry", "search"], group: "pages" },
+      { id: "api-metadata", label: "API Metadata", href: "/docs/api-metadata", keywords: ["api", "props", "metadata", "automation"], group: "pages" },
       { id: "tokens", label: "Design Tokens", href: "/docs/tokens", keywords: ["tokens", "theme", "colors"], group: "pages" },
       { id: "glass-physics", label: "Glass Physics", href: "/docs/glass-physics", keywords: ["glass", "physics", "elevation"], group: "pages" },
       { id: "motion", label: "Motion", href: "/docs/motion", keywords: ["motion", "animation"], group: "pages" }
@@ -54,7 +68,15 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
       group: "components"
     }))
 
-    return [...pageCommands, ...componentCommands]
+    const signatureCommands: PaletteCommand[] = signatureComponentIds.map((id) => ({
+      id: `signature-${id}`,
+      label: signatureTitles[id],
+      href: buildComponentHref(id, implementation),
+      keywords: [id, signatureTitles[id].toLowerCase(), "component", "signature", "glass"],
+      group: "components"
+    }))
+
+    return [...pageCommands, ...componentCommands, ...signatureCommands]
   }, [implementation])
 
   const filtered = React.useMemo(() => {

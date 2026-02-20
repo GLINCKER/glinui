@@ -1,10 +1,10 @@
-# Glinr UI — Product Vision
+# Glin UI — Product Vision
 
 ## The Bet
 
 Apple moved the entire industry toward liquid glass with visionOS, iOS 26, and macOS Tahoe. Every native app will look like this within 2 years. **There is no dominant glassmorphic component library for the web.** shadcn owns the "clean minimal" space. Magic UI owns "animated effects." Aceternity owns "dark mode showcase." Nobody owns **production-grade liquid glass for React.**
 
-Glinr UI fills that gap.
+Glin UI fills that gap.
 
 ## Market Position
 
@@ -17,7 +17,7 @@ Glinr UI fills that gap.
   Effect-heavy ──── │  Magic UI                    │ ─── Aceternity
                     │    (motion tricks)            │    (dark showcase)
                     │                              │
-  GLASS SYSTEM ──── │  ★ Glinr UI ★               │
+  GLASS SYSTEM ──── │  ★ Glin UI ★               │
                     │    (liquid glass + motion     │
                     │     + production quality)     │
                     │                              │
@@ -27,20 +27,20 @@ Glinr UI fills that gap.
 
 ## What We Are Building
 
-### Core Product: `@glinr/ui`
+### Core Product: `@glinui/ui`
 Open-source React component library. Glassmorphic-first. Accessible. Performant. Two install paths:
-1. **Copy-paste** (shadcn-compatible registry): `npx shadcn@latest add @glinr/glass-card`
-2. **Package install**: `pnpm add @glinr/ui`
+1. **Copy-paste** (shadcn-compatible registry): `npx shadcn@latest add @glinui/glass-card`
+2. **Package install**: `pnpm add @glinui/ui`
 
 ### Supporting Packages
 | Package | Purpose |
 |---------|---------|
-| `@glinr/tokens` | Design tokens — OKLCH colors, glass blur/opacity, shadows, spacing, motion |
-| `@glinr/motion` | Animation presets with perf budgets and reduced-motion fallbacks |
-| `@glinr/registry` | Component metadata for CLI/copy-paste distribution |
-| `@glinr/cli` | `npx glinr init` / `npx glinr add` — own CLI (future) |
+| `@glinui/tokens` | Design tokens — OKLCH colors, glass blur/opacity, shadows, spacing, motion |
+| `@glinui/motion` | Animation presets with perf budgets and reduced-motion fallbacks |
+| `@glinui/registry` | Component metadata for CLI/copy-paste distribution |
+| `@glinui/cli` | `npx glinui init` / `npx glinui add` — own CLI (future) |
 
-### Documentation: `ui.glinr.com`
+### Documentation: `glinui.com`
 Next.js docs site with live demos, copy/paste snippets, API tables, and "glass physics" design guides.
 
 ## Component Taxonomy
@@ -77,7 +77,7 @@ Standard UI controls with glass theming. These must be rock-solid, accessible, a
 | Table | TODO | Data table base |
 
 ### Tier 2 — Signature Glass Components
-These are the differentiators. The reason people choose Glinr over shadcn.
+These are the differentiators. The reason people choose Glin UI over shadcn.
 
 | Component | Description |
 |-----------|-------------|
@@ -161,13 +161,13 @@ The design system is built on real optical principles, not arbitrary blur values
 ## Distribution Strategy
 
 ### Phase A: shadcn Registry Compatibility
-Register as a shadcn namespace so users can immediately `npx shadcn@latest add @glinr/glass-card`. This bootstraps adoption through the existing shadcn ecosystem.
+Register as a shadcn namespace so users can immediately `npx shadcn@latest add @glinui/glass-card`. This bootstraps adoption through the existing shadcn ecosystem.
 
 ### Phase B: Own CLI
-`npx glinr init` / `npx glinr add` — full control over the install experience, theming presets, and pro component gating.
+`npx glinui init` / `npx glinui add` — full control over the install experience, theming presets, and pro component gating.
 
 ### Phase C: Package Install
-`pnpm add @glinr/ui` for teams who want a traditional dependency. Tree-shakeable, typed, versioned.
+`pnpm add @glinui/ui` for teams who want a traditional dependency. Tree-shakeable, typed, versioned.
 
 ## Business Model
 
@@ -204,7 +204,7 @@ Register as a shadcn namespace so users can immediately `npx shadcn@latest add @
 - 3+ paying agency customers
 
 ### Brand (Year 1)
-- "Glinr" recognized as the glassmorphic UI option for React
+- "Glin UI" recognized as the glassmorphic UI option for React
 - Conference talk or blog post feature
 - Contributor community forming
 

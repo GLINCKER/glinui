@@ -1,0 +1,20 @@
+{
+  "name": "dropdown-menu",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Dropdown Menu",
+  "description": "Action menu anchored to a trigger with keyboard navigation.",
+  "docsPath": "/docs/components/dropdown-menu",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/dropdown-menu.tsx",
+    "packages/ui/src/tests/dropdown-menu.test.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add dropdown-menu"
+  }
+}

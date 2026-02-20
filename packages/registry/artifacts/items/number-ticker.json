@@ -1,0 +1,19 @@
+{
+  "name": "number-ticker",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Number Ticker",
+  "description": "Animated number counter triggered by scroll visibility via IntersectionObserver.",
+  "docsPath": "/docs/components/number-ticker",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/number-ticker.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add number-ticker"
+  }
+}

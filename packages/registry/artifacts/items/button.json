@@ -1,0 +1,20 @@
+{
+  "name": "button",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Button",
+  "description": "Action control with default, glass, liquid, matte, glow, outline, and ghost variants.",
+  "docsPath": "/docs/components/button",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/button.tsx",
+    "packages/ui/src/tests/button.test.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add button"
+  }
+}

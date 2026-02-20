@@ -3,9 +3,9 @@
 import Link from "next/link"
 import * as React from "react"
 import { usePathname } from "next/navigation"
-import { ArrowLeft, ArrowRight, ArrowUp } from "lucide-react"
+import { ArrowLeft, ArrowRight, ArrowUp, List, X } from "lucide-react"
 
-import { cn } from "@glinr/ui"
+import { cn } from "@glinui/ui"
 import { primitiveComponentIds, primitiveTitles, type PrimitiveComponentId } from "@/lib/primitives"
 import { type DocsImplementation } from "@/lib/docs-route"
 
@@ -38,6 +38,7 @@ export function DocsToc({
   const [activeHref, setActiveHref] = React.useState<string>("")
   const [progressHeight, setProgressHeight] = React.useState(0)
   const [tocPath, setTocPath] = React.useState<TocPath | null>(null)
+  const [mobileOpen, setMobileOpen] = React.useState(false)
   const navRef = React.useRef<HTMLElement | null>(null)
   const listRef = React.useRef<HTMLUListElement | null>(null)
   const itemRefs = React.useRef<Record<string, HTMLAnchorElement | null>>({})
@@ -121,32 +122,46 @@ export function DocsToc({
       return itemRect.top - navRect.top + itemRect.height / 2
     }
 
+    const isAtBottom = () => {
+      const threshold = 40
+      if (scrollRoot) {
+        return scrollRoot.scrollTop + scrollRoot.clientHeight >= scrollRoot.scrollHeight - threshold
+      }
+      return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - threshold
+    }
+
     const computeActive = () => {
       let current = headingPositions[0]?.href ?? ""
 
       const currentPos = getCurrentPos()
+      const atBottom = isAtBottom()
 
-      let observedIndex = -1
-      let observedRatio = 0
-      for (let index = 0; index < headingPositions.length; index += 1) {
-        const ratio = intersectionRatios.get(headingPositions[index]?.href ?? "") ?? 0
-        if (ratio > observedRatio + 0.01) {
-          observedIndex = index
-          observedRatio = ratio
+      // When at the bottom of the page, force the last heading active
+      if (atBottom && headingPositions.length > 0) {
+        current = headingPositions[headingPositions.length - 1]?.href ?? current
+      } else {
+        let observedIndex = -1
+        let observedRatio = 0
+        for (let index = 0; index < headingPositions.length; index += 1) {
+          const ratio = intersectionRatios.get(headingPositions[index]?.href ?? "") ?? 0
+          if (ratio > observedRatio + 0.01) {
+            observedIndex = index
+            observedRatio = ratio
+          }
         }
-      }
 
-      for (let index = 0; index < headingPositions.length; index += 1) {
-        const heading = headingPositions[index]
-        if (currentPos >= heading.top) {
-          current = heading.href
-        } else {
-          break
+        for (let index = 0; index < headingPositions.length; index += 1) {
+          const heading = headingPositions[index]
+          if (currentPos >= heading.top) {
+            current = heading.href
+          } else {
+            break
+          }
         }
-      }
 
-      if (observedIndex >= 0) {
-        current = headingPositions[observedIndex]?.href ?? current
+        if (observedIndex >= 0) {
+          current = headingPositions[observedIndex]?.href ?? current
+        }
       }
 
       if (current !== activeHrefRef.current) {
@@ -158,6 +173,15 @@ export function DocsToc({
 
       if (headingPositions.length === 0) {
         setProgressHeight(0)
+        return
+      }
+
+      const nav = navRef.current
+      const maxHeight = tocPath?.height ?? (nav ? nav.getBoundingClientRect().height : 0)
+
+      // At bottom → full progress
+      if (atBottom) {
+        setProgressHeight(maxHeight)
         return
       }
 
@@ -189,8 +213,6 @@ export function DocsToc({
         }
       }
 
-      const nav = navRef.current
-      const maxHeight = tocPath?.height ?? (nav ? nav.getBoundingClientRect().height : target)
       setProgressHeight(Math.max(0, Math.min(maxHeight, target)))
     }
 
@@ -290,6 +312,22 @@ export function DocsToc({
     }
   }, [dynamicItems])
 
+  const scrollToTop = React.useCallback(() => {
+    const scrollRoot = document.querySelector<HTMLElement>("[data-docs-scroll-root]")
+
+    if (window.location.hash) {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`)
+    }
+
+    const doScroll = (behavior: ScrollBehavior) => {
+      if (scrollRoot) scrollRoot.scrollTo({ top: 0, behavior })
+      window.scrollTo({ top: 0, behavior })
+    }
+
+    doScroll("smooth")
+    window.setTimeout(() => doScroll("auto"), 360)
+  }, [])
+
   if (dynamicItems.length === 0) {
     return null
   }
@@ -299,117 +337,154 @@ export function DocsToc({
   const next =
     componentId && index >= 0 && index < primitiveComponentIds.length - 1 ? primitiveComponentIds[index + 1] : null
 
-  return (
-    <aside className="hidden xl:block">
-      <div className="sticky top-6">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 dark:text-neutral-500">
-          {title}
-        </p>
+  const tocNav = (
+    <nav ref={navRef} aria-label="Table of contents" className="relative">
+      {!tocPath ? (
+        <div className="pointer-events-none absolute bottom-0 left-0 top-0 w-px bg-neutral-300/45 dark:bg-white/14" />
+      ) : null}
+      {tocPath ? (
+        <div
+          className="pointer-events-none absolute left-0 top-0 rtl:-scale-x-100"
+          style={{
+            width: tocPath.width,
+            height: tocPath.height,
+            maskImage: `url("data:image/svg+xml,${encodeURIComponent(
+              `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${tocPath.width} ${tocPath.height}'><path d='${tocPath.path}' stroke='black' stroke-width='1' fill='none'/></svg>`
+            )}")`,
+            WebkitMaskImage: `url("data:image/svg+xml,${encodeURIComponent(
+              `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${tocPath.width} ${tocPath.height}'><path d='${tocPath.path}' stroke='black' stroke-width='1' fill='none'/></svg>`
+            )}")`
+          }}
+        >
+          <div className="absolute inset-0 bg-neutral-300/45 dark:bg-white/14" />
+          <div
+            className="absolute left-0 top-0 w-full bg-neutral-500 transition-[height] duration-200 ease-linear dark:bg-white/70"
+            style={{
+              height: `${progressHeight}px`,
+              maskImage: "linear-gradient(to bottom, black 0%, black calc(100% - 8px), transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, black 0%, black calc(100% - 8px), transparent 100%)"
+            }}
+          />
+        </div>
+      ) : null}
 
-        <nav ref={navRef} aria-label="Table of contents" className="relative">
-          {!tocPath ? (
-            <div className="pointer-events-none absolute bottom-0 left-0 top-0 w-px bg-neutral-300/45 dark:bg-white/14" />
-          ) : null}
-          {tocPath ? (
-            <div
-              className="pointer-events-none absolute left-0 top-0 rtl:-scale-x-100"
-              style={{
-                width: tocPath.width,
-                height: tocPath.height,
-                maskImage: `url("data:image/svg+xml,${encodeURIComponent(
-                  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${tocPath.width} ${tocPath.height}'><path d='${tocPath.path}' stroke='black' stroke-width='1' fill='none'/></svg>`
-                )}")`,
-                WebkitMaskImage: `url("data:image/svg+xml,${encodeURIComponent(
-                  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${tocPath.width} ${tocPath.height}'><path d='${tocPath.path}' stroke='black' stroke-width='1' fill='none'/></svg>`
-                )}")`
+      <ul ref={listRef} className="max-h-[calc(100vh-16rem)] list-none overflow-y-auto xl:max-h-[calc(100vh-20rem)]">
+        {dynamicItems.map((item) => (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              onClick={() => setMobileOpen(false)}
+              ref={(node) => {
+                itemRefs.current[item.href] = node
               }}
+              className={cn(
+                "relative block py-1.5 leading-snug transition-colors duration-fast ease-standard",
+                item.depth === 3 ? "pl-[1.625rem] text-[12px]" : "pl-4 text-[13px]",
+                activeHref === item.href
+                  ? "font-medium text-foreground"
+                  : "text-neutral-500 hover:text-foreground dark:text-neutral-400 dark:hover:text-neutral-200"
+              )}
             >
-              <div className="absolute inset-0 bg-neutral-300/45 dark:bg-white/14" />
-              <div
-                className="absolute left-0 top-0 w-full bg-neutral-500 transition-[height] duration-200 ease-linear dark:bg-white/70"
-                style={{
-                  height: `${progressHeight}px`,
-                  maskImage: "linear-gradient(to bottom, black 0%, black calc(100% - 8px), transparent 100%)",
-                  WebkitMaskImage:
-                    "linear-gradient(to bottom, black 0%, black calc(100% - 8px), transparent 100%)"
-                }}
-              />
+              <span className="truncate">{item.label}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+
+  const bottomActions = (
+    <div className="mt-4 flex items-center justify-between border-t border-neutral-200/50 pt-3 dark:border-white/[0.06]">
+      {previous ? (
+        <Link
+          href={`/docs/components/${implementation}/${previous}`}
+          className="group inline-flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-neutral-400 transition-colors hover:bg-white/20 hover:text-foreground dark:text-neutral-500 dark:hover:bg-white/[0.04] dark:hover:text-neutral-300"
+        >
+          <ArrowLeft className="size-3 transition-transform group-hover:-translate-x-0.5" />
+          {primitiveTitles[previous]}
+        </Link>
+      ) : <span />}
+
+      <button
+        type="button"
+        onClick={scrollToTop}
+        className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-neutral-400 transition-colors hover:bg-white/20 hover:text-foreground dark:text-neutral-500 dark:hover:bg-white/[0.04] dark:hover:text-neutral-300"
+      >
+        <ArrowUp className="size-3" />
+        Top
+      </button>
+
+      {next ? (
+        <Link
+          href={`/docs/components/${implementation}/${next}`}
+          className="group inline-flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-neutral-400 transition-colors hover:bg-white/20 hover:text-foreground dark:text-neutral-500 dark:hover:bg-white/[0.04] dark:hover:text-neutral-300"
+        >
+          {primitiveTitles[next]}
+          <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      ) : <span />}
+    </div>
+  )
+
+  return (
+    <>
+      {/* ── Desktop TOC ────────────────────────────────────────────── */}
+      <aside className="hidden xl:block">
+        <div className="sticky top-6">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 dark:text-neutral-500">
+            {title}
+          </p>
+          {tocNav}
+          {componentId && (previous || next) ? bottomActions : (
+            <div className="mt-4 border-t border-neutral-200/50 pt-3 dark:border-white/[0.06]">
+              <button
+                type="button"
+                onClick={scrollToTop}
+                className="inline-flex items-center gap-1 text-[11px] text-neutral-400 transition-colors hover:text-foreground dark:text-neutral-500 dark:hover:text-neutral-300"
+              >
+                <ArrowUp className="size-3" />
+                Back to top
+              </button>
             </div>
-          ) : null}
+          )}
+        </div>
+      </aside>
 
-          <ul ref={listRef} className="max-h-[calc(100vh-16rem)] list-none overflow-y-auto">
-            {dynamicItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  ref={(node) => {
-                    itemRefs.current[item.href] = node
-                  }}
-                  className={cn(
-                    "relative block py-1.5 leading-snug transition-colors duration-fast ease-standard",
-                    item.depth === 3 ? "pl-[1.625rem] text-[12px]" : "pl-4 text-[13px]",
-                    activeHref === item.href
-                      ? "font-medium text-foreground"
-                      : "text-neutral-500 hover:text-foreground dark:text-neutral-400 dark:hover:text-neutral-200"
-                  )}
-                >
-                  <span className="truncate">{item.label}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
+      {/* ── Mobile TOC fab + drawer ────────────────────────────────── */}
+      <div className="xl:hidden">
         <button
           type="button"
-          onClick={() => {
-            const scrollRoot = document.querySelector<HTMLElement>("[data-docs-scroll-root]")
-
-            if (window.location.hash) {
-              window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`)
-            }
-
-            const scrollToTop = (behavior: ScrollBehavior) => {
-              if (scrollRoot) {
-                scrollRoot.scrollTo({ top: 0, behavior })
-              }
-              window.scrollTo({ top: 0, behavior })
-            }
-
-            scrollToTop("smooth")
-            window.setTimeout(() => scrollToTop("auto"), 360)
-          }}
-          className="mt-5 inline-flex items-center gap-1 text-[12px] text-neutral-400 transition-colors hover:text-foreground dark:text-neutral-500 dark:hover:text-neutral-300"
+          onClick={() => setMobileOpen((o) => !o)}
+          aria-label="Table of contents"
+          className={cn(
+            "fixed bottom-5 right-5 z-50 inline-flex size-11 items-center justify-center rounded-full border shadow-lg backdrop-blur-xl transition-all duration-normal ease-standard",
+            mobileOpen
+              ? "border-white/20 bg-neutral-900/80 text-white dark:border-white/15 dark:bg-neutral-800/90"
+              : "border-white/25 [border-top-color:var(--glass-refraction-top)] bg-[var(--glass-4-surface)] text-foreground shadow-[var(--shadow-glass-md)]"
+          )}
         >
-          <ArrowUp className="size-3" />
-          Back to top
+          {mobileOpen ? <X className="size-4" /> : <List className="size-4" />}
         </button>
 
-        {componentId && (previous || next) ? (
-          <nav aria-label="Right rail pagination" className="mt-4 space-y-2 border-t border-neutral-200/70 pt-4 dark:border-white/[0.08]">
-            {previous ? (
-              <Link
-                href={`/docs/components/${implementation}/${previous}`}
-                className="inline-flex w-full items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs text-neutral-500 transition-colors hover:bg-white/30 hover:text-foreground dark:text-neutral-400 dark:hover:bg-white/[0.05] dark:hover:text-neutral-200"
-              >
-                <ArrowLeft className="size-3.5" />
-                <span className="truncate">Previous: {primitiveTitles[previous]}</span>
-              </Link>
-            ) : null}
-
-            {next ? (
-              <Link
-                href={`/docs/components/${implementation}/${next}`}
-                className="inline-flex w-full items-center justify-end gap-1.5 rounded-lg px-2 py-1.5 text-xs text-neutral-500 transition-colors hover:bg-white/30 hover:text-foreground dark:text-neutral-400 dark:hover:bg-white/[0.05] dark:hover:text-neutral-200"
-              >
-                <span className="truncate">Next: {primitiveTitles[next]}</span>
-                <ArrowRight className="size-3.5" />
-              </Link>
-            ) : null}
-          </nav>
+        {mobileOpen ? (
+          <>
+            <div
+              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+              onClick={() => setMobileOpen(false)}
+              aria-hidden="true"
+            />
+            <div className="fixed bottom-20 right-5 z-50 w-64 max-h-[70vh] overflow-y-auto rounded-2xl border border-white/15 [border-top-color:var(--glass-refraction-top)] bg-[var(--glass-4-surface)] p-4 shadow-[var(--shadow-glass-lg)] backdrop-blur-2xl backdrop-saturate-[180%]">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 dark:text-neutral-500">
+                {title}
+              </p>
+              {tocNav}
+              {componentId && (previous || next) ? bottomActions : null}
+            </div>
+          </>
         ) : null}
       </div>
-    </aside>
+    </>
   )
 }
 

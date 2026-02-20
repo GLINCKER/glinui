@@ -1,0 +1,130 @@
+import { getRegistryItem } from "@glinui/registry"
+import { WordRotate } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("word-rotate")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Word Rotate - Glin UI",
+  description: item?.description ?? "Cycles through an array of words with animated slide transitions."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="word-rotate"
+  implementation="css"
+  title="Word Rotate"
+  description={item?.description ?? "Cycles through an array of words with animated slide transitions."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add word-rotate"} />
+
+  ## Usage
+
+  `WordRotate` is a `"use client"` component. Place it inline inside headings or body copy to cycle through a list of words with a slide-up/slide-down transition. Each word is shown for `duration` milliseconds before animating to the next.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`"use client"
+import { WordRotate } from "@glinui/ui"
+
+export function WordRotateDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-3xl font-bold">
+        Build with{" "}
+        <WordRotate
+          words={["React", "Next.js", "Tailwind", "Glin UI"]}
+          className="text-accent"
+        />
+      </h2>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-3xl font-bold">
+        Build with{" "}
+        <WordRotate
+          words={["React", "Next.js", "Tailwind", "Glin UI"]}
+          className="text-accent"
+        />
+      </h2>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Fast Rotation
+
+  Lower `duration` for a rapid, high-energy cycling effect.
+
+  <ExampleBlock
+    code={`"use client"
+import { WordRotate } from "@glinui/ui"
+
+export function WordRotateFastDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-3xl font-bold">
+        Powered by{" "}
+        <WordRotate
+          words={["speed", "precision", "glass", "motion"]}
+          duration={1500}
+          className="text-accent"
+        />
+      </h2>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-3xl font-bold">
+        Powered by{" "}
+        <WordRotate
+          words={["speed", "precision", "glass", "motion"]}
+          duration={1500}
+          className="text-accent"
+        />
+      </h2>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - The component renders with `aria-live="polite"` so screen readers announce each new word as it appears.
+  - The outgoing word is removed from the DOM after its exit animation, preventing duplicate announcements.
+  - Surrounding static text is not affected by the live region and is read normally.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion: reduce` is active, word cycling stops and the first word in the `words` array is displayed statically without any animation.
+
+  ## API Reference
+
+  <PropsTable componentId="word-rotate" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { WordRotate } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

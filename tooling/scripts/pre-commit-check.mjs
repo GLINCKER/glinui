@@ -45,24 +45,24 @@ const touchesAny = (candidates) => candidates.some((candidate) => stagedFiles.in
 const commands = []
 
 if (touches("packages/ui")) {
-  commands.push("pnpm --filter @glinr/ui typecheck")
-  commands.push("pnpm --filter @glinr/ui test")
+  commands.push("pnpm --filter @glinui/ui typecheck")
+  commands.push("pnpm --filter @glinui/ui test")
 }
 
 if (touches("packages/tokens")) {
-  commands.push("pnpm --filter @glinr/tokens typecheck")
+  commands.push("pnpm --filter @glinui/tokens typecheck")
 }
 
 if (touches("packages/motion")) {
-  commands.push("pnpm --filter @glinr/motion typecheck")
+  commands.push("pnpm --filter @glinui/motion typecheck")
 }
 
 if (touches("packages/registry")) {
-  commands.push("pnpm --filter @glinr/registry typecheck")
+  commands.push("pnpm --filter @glinui/registry typecheck")
 }
 
 if (touches("apps/docs")) {
-  commands.push("pnpm --filter @glinr/docs typecheck")
+  commands.push("pnpm --filter @glinui/docs typecheck")
 
   const docsBuildSensitive =
     touches("apps/docs/src/app") ||
@@ -76,7 +76,7 @@ if (touches("apps/docs")) {
     ])
 
   if (docsBuildSensitive) {
-    commands.push("pnpm --filter @glinr/docs build")
+    commands.push("pnpm --filter @glinui/docs build")
   }
 }
 

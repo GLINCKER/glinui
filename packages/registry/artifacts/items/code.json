@@ -1,0 +1,19 @@
+{
+  "name": "code",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Code",
+  "description": "Inline code element for commands, snippets, and tokenized literals.",
+  "docsPath": "/docs/components/code",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/code.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add code"
+  }
+}

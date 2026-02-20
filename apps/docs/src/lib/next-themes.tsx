@@ -29,16 +29,16 @@ export function ThemeProvider({
   attribute = "class",
   defaultTheme = "system",
   enableSystem = true,
-  storageKey = "glinr-docs-theme"
+  storageKey = "glinui-docs-theme"
 }: ThemeProviderProps) {
   const [theme, setThemeState] = React.useState<Theme>(defaultTheme)
   const [systemTheme, setSystemTheme] = React.useState<"light" | "dark">("light")
+  // Delay class mutations until we've read the real state from localStorage.
+  // The blocking <script> in layout.tsx already applied the correct class before
+  // first paint, so we must NOT toggle it until React state is hydrated.
+  const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
-    if (typeof window === "undefined") {
-      return
-    }
-
     const mediaQuery = window.matchMedia(QUERY)
     const updateSystemTheme = () => {
       setSystemTheme(mediaQuery.matches ? "dark" : "light")
@@ -53,27 +53,27 @@ export function ThemeProvider({
       setThemeState(defaultTheme)
     }
 
-    if (typeof mediaQuery.addEventListener === "function") {
-      mediaQuery.addEventListener("change", updateSystemTheme)
-      return () => mediaQuery.removeEventListener("change", updateSystemTheme)
-    }
+    // Mark as ready — React batches these state updates, so the class
+    // toggle effect below will only fire once with the correct values.
+    setMounted(true)
 
-    mediaQuery.addListener(updateSystemTheme)
-    return () => mediaQuery.removeListener(updateSystemTheme)
+    mediaQuery.addEventListener("change", updateSystemTheme)
+    return () => mediaQuery.removeEventListener("change", updateSystemTheme)
   }, [defaultTheme, storageKey])
 
   const resolvedTheme: "light" | "dark" =
     theme === "system" ? (enableSystem ? systemTheme : "light") : theme
 
+  // Sync the class attribute with resolved theme — only after mounted to
+  // avoid overwriting the blocking script's initial class application.
   React.useEffect(() => {
-    if (typeof document === "undefined") {
-      return
-    }
+    if (!mounted) return
 
     if (attribute === "class") {
       document.documentElement.classList.toggle("dark", resolvedTheme === "dark")
+      document.documentElement.style.colorScheme = resolvedTheme
     }
-  }, [attribute, resolvedTheme])
+  }, [attribute, mounted, resolvedTheme])
 
   const setTheme = React.useCallback(
     (nextTheme: Theme) => {

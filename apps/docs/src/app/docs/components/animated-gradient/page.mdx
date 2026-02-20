@@ -1,0 +1,117 @@
+import { getRegistryItem } from "@glinui/registry"
+import { AnimatedGradient } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { PropsTable } from "@/components/docs/props-table"
+import { getComponentSources } from "@/lib/get-component-source"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("animated-gradient")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Animated Gradient - Glin UI",
+  description: item?.description ?? "Animated color-shifting gradient background."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="animated-gradient"
+  implementation="css"
+  title="Animated Gradient"
+  description={item?.description ?? "Animated color-shifting gradient background."}
+>
+  ## Installation
+
+  <InstallTabs command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} sources={sources} />
+
+  ## Usage
+
+  Use as a background container. The gradient shifts colors smoothly via CSS `background-position` animation.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { AnimatedGradient } from "@glinui/ui"
+
+export function AnimatedGradientDemo() {
+  return (
+    <AnimatedGradient className="flex h-48 w-full items-center justify-center rounded-xl">
+      <span className="text-sm font-medium">Animated Gradient</span>
+    </AnimatedGradient>
+  )
+}`}
+  >
+    <AnimatedGradient className="flex h-48 w-full items-center justify-center rounded-xl">
+      <span className="text-sm font-medium">Animated Gradient</span>
+    </AnimatedGradient>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Variants
+
+  <ExampleBlock
+    code={`import { AnimatedGradient } from "@glinui/ui"
+
+export function AnimatedGradientVariantsDemo() {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      <AnimatedGradient variant="warm" className="flex h-32 items-center justify-center rounded-xl">
+        <span className="text-sm font-medium">Warm</span>
+      </AnimatedGradient>
+      <AnimatedGradient variant="cool" className="flex h-32 items-center justify-center rounded-xl">
+        <span className="text-sm font-medium">Cool</span>
+      </AnimatedGradient>
+      <AnimatedGradient variant="aurora" className="flex h-32 items-center justify-center rounded-xl">
+        <span className="text-sm font-medium text-white">Aurora</span>
+      </AnimatedGradient>
+      <AnimatedGradient variant="glass" className="flex h-32 items-center justify-center rounded-xl">
+        <span className="text-sm font-medium">Glass</span>
+      </AnimatedGradient>
+    </div>
+  )
+}`}
+  >
+    <div className="grid grid-cols-2 gap-4">
+      <AnimatedGradient variant="warm" className="flex h-32 items-center justify-center rounded-xl">
+        <span className="text-sm font-medium">Warm</span>
+      </AnimatedGradient>
+      <AnimatedGradient variant="cool" className="flex h-32 items-center justify-center rounded-xl">
+        <span className="text-sm font-medium">Cool</span>
+      </AnimatedGradient>
+      <AnimatedGradient variant="aurora" className="flex h-32 items-center justify-center rounded-xl">
+        <span className="text-sm font-medium text-white">Aurora</span>
+      </AnimatedGradient>
+      <AnimatedGradient variant="glass" className="flex h-32 items-center justify-center rounded-xl">
+        <span className="text-sm font-medium">Glass</span>
+      </AnimatedGradient>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Decorative background container — content inside remains accessible.
+  - No interactive elements in the gradient itself.
+
+  ## Reduced Motion
+
+  Animation uses `motion-reduce:animate-none`. Under `prefers-reduced-motion`, the gradient renders as a static background.
+
+  ## API Reference
+
+  <PropsTable componentId="animated-gradient" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { AnimatedGradient } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

@@ -1,0 +1,111 @@
+import { getRegistryItem } from "@glinui/registry"
+import { RevealText } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("reveal-text")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Reveal Text - Glin UI",
+  description: item?.description ?? "Text that reveals through a clip-path wipe animation triggered on view."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="reveal-text"
+  implementation="css"
+  title="Reveal Text"
+  description={item?.description ?? "Text that reveals through a clip-path wipe animation triggered on view."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add reveal-text"} />
+
+  ## Usage
+
+  `RevealText` is a `"use client"` component. It reveals text with a CSS `clip-path` wipe when scrolled into view via `IntersectionObserver`.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`"use client"
+import { RevealText } from "@glinui/ui"
+
+export function RevealTextDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-4xl font-bold">
+        <RevealText text="Welcome to Glin UI" />
+      </h2>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <h2 className="text-4xl font-bold">
+        <RevealText text="Welcome to Glin UI" triggerOnView={false} />
+      </h2>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Directions
+
+  <ExampleBlock
+    code={`"use client"
+import { RevealText } from "@glinui/ui"
+
+export function RevealTextDirectionsDemo() {
+  return (
+    <div className="flex flex-col items-center gap-4 p-8">
+      <h3 className="text-2xl font-bold"><RevealText text="From Left" direction="left" /></h3>
+      <h3 className="text-2xl font-bold"><RevealText text="From Right" direction="right" delay={200} /></h3>
+      <h3 className="text-2xl font-bold"><RevealText text="From Top" direction="top" delay={400} /></h3>
+      <h3 className="text-2xl font-bold"><RevealText text="From Bottom" direction="bottom" delay={600} /></h3>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-col items-center gap-4 p-8">
+      <h3 className="text-2xl font-bold"><RevealText text="From Left" direction="left" triggerOnView={false} /></h3>
+      <h3 className="text-2xl font-bold"><RevealText text="From Right" direction="right" triggerOnView={false} delay={200} /></h3>
+      <h3 className="text-2xl font-bold"><RevealText text="From Top" direction="top" triggerOnView={false} delay={400} /></h3>
+      <h3 className="text-2xl font-bold"><RevealText text="From Bottom" direction="bottom" triggerOnView={false} delay={600} /></h3>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - The text content is always present in the DOM for screen readers.
+  - The animation is purely visual via `clip-path`.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion: reduce` is active, the text is shown immediately with no animation.
+
+  ## API Reference
+
+  <PropsTable componentId="reveal-text" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { RevealText } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

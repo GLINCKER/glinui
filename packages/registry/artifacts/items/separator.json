@@ -1,0 +1,20 @@
+{
+  "name": "separator",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Separator",
+  "description": "Visual divider for grouping content with orientation support.",
+  "docsPath": "/docs/components/separator",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/separator.tsx",
+    "packages/ui/src/tests/separator.test.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add separator"
+  }
+}

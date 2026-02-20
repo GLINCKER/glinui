@@ -1,0 +1,164 @@
+import { getRegistryItem } from "@glinui/registry"
+import { GlowBorder } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("glow-border")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Glow Border - Glin UI",
+  description: item?.description ?? "Rotating conic-gradient glow effect around a container border."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="glow-border"
+  implementation="css"
+  title="Glow Border"
+  description={item?.description ?? "Rotating conic-gradient glow effect around a container border."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add glow-border"} />
+
+  ## Usage
+
+  Wrap any content with `GlowBorder` to apply a continuously rotating conic-gradient glow along the border. The glow is rendered via a CSS `@property`-animated conic gradient positioned behind the content.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { GlowBorder } from "@glinui/ui"
+
+export function GlowBorderDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <GlowBorder>
+        <div className="p-6">
+          <h3 className="text-lg font-semibold">Glow Border</h3>
+          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            Rotating conic-gradient glow around the border.
+          </p>
+        </div>
+      </GlowBorder>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <GlowBorder>
+        <div className="p-6">
+          <h3 className="text-lg font-semibold">Glow Border</h3>
+          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            Rotating conic-gradient glow around the border.
+          </p>
+        </div>
+      </GlowBorder>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Custom Glow Color
+
+  Pass any valid CSS color to `glowColor` to match your brand palette.
+
+  <ExampleBlock
+    code={`import { GlowBorder } from "@glinui/ui"
+
+export function GlowBorderColorDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <GlowBorder glowColor="#6366f1">
+        <div className="p-6">
+          <h3 className="text-lg font-semibold">Indigo Glow</h3>
+          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            Custom glow color via the glowColor prop.
+          </p>
+        </div>
+      </GlowBorder>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <GlowBorder glowColor="#6366f1">
+        <div className="p-6">
+          <h3 className="text-lg font-semibold">Indigo Glow</h3>
+          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            Custom glow color via the glowColor prop.
+          </p>
+        </div>
+      </GlowBorder>
+    </div>
+  </ExampleBlock>
+
+  ### Slow Duration
+
+  Increase `duration` to create a more subtle, languid rotation effect.
+
+  <ExampleBlock
+    code={`import { GlowBorder } from "@glinui/ui"
+
+export function GlowBorderSlowDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <GlowBorder duration={8}>
+        <div className="p-6">
+          <h3 className="text-lg font-semibold">Slow Glow</h3>
+          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            8-second rotation for a calm, ambient effect.
+          </p>
+        </div>
+      </GlowBorder>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <GlowBorder duration={8}>
+        <div className="p-6">
+          <h3 className="text-lg font-semibold">Slow Glow</h3>
+          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            8-second rotation for a calm, ambient effect.
+          </p>
+        </div>
+      </GlowBorder>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - The glow pseudo-element is purely decorative and carries `aria-hidden` semantics — it does not affect the accessibility tree.
+  - `GlowBorder` does not alter the focusability or tab order of its children.
+  - Keyboard navigation passes through to child content unchanged.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion: reduce` is active, the rotating glow animation is hidden entirely so that users sensitive to motion are not affected.
+
+  ## API Reference
+
+  <PropsTable componentId="glow-border" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { GlowBorder } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

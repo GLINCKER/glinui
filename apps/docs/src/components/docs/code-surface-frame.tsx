@@ -4,7 +4,7 @@ import * as React from "react"
 import type { ReactNode } from "react"
 import { Check, Copy } from "lucide-react"
 
-import { cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@glinr/ui"
+import { cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@glinui/ui"
 import { WindowControls } from "@/components/docs/window-controls"
 
 type CodeSurfaceFrameProps = {

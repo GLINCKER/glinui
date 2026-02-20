@@ -1,0 +1,123 @@
+import { getRegistryItem } from "@glinui/registry"
+import { AuroraBackground } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("aurora-background")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Aurora Background - Glin UI",
+  description: item?.description ?? "Animated gradient mesh backdrop with floating blurred blobs."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="aurora-background"
+  implementation="css"
+  title="Aurora Background"
+  description={item?.description ?? "Animated gradient mesh backdrop with floating blurred blobs."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add aurora-background"} />
+
+  ## Usage
+
+  Place `AuroraBackground` inside a relative container. It renders blurred gradient blobs that float with CSS animations. Perfect for hero sections and landing pages.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { AuroraBackground } from "@glinui/ui"
+
+export function AuroraBackgroundDemo() {
+  return (
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      <AuroraBackground />
+      <span className="relative z-10 text-3xl font-bold text-white">Aurora</span>
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      <AuroraBackground />
+      <span className="relative z-10 text-3xl font-bold text-white">Aurora</span>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Custom Colors
+
+  <ExampleBlock
+    code={`import { AuroraBackground } from "@glinui/ui"
+
+export function AuroraColorsDemo() {
+  return (
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      <AuroraBackground colors={["#06b6d4", "#3b82f6", "#8b5cf6"]} intensity={0.5} />
+      <span className="relative z-10 text-3xl font-bold text-white">Cool Tones</span>
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      <AuroraBackground colors={["#06b6d4", "#3b82f6", "#8b5cf6"]} intensity={0.5} />
+      <span className="relative z-10 text-3xl font-bold text-white">Cool Tones</span>
+    </div>
+  </ExampleBlock>
+
+  ### More Blobs
+
+  <ExampleBlock
+    code={`import { AuroraBackground } from "@glinui/ui"
+
+export function AuroraManyBlobsDemo() {
+  return (
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      <AuroraBackground blobCount={5} duration={12} blur={100} />
+      <span className="relative z-10 text-2xl font-bold text-white">Dense Aurora</span>
+    </div>
+  )
+}`}
+  >
+    <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800">
+      <AuroraBackground blobCount={5} duration={12} blur={100} />
+      <span className="relative z-10 text-2xl font-bold text-white">Dense Aurora</span>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - The component renders with `aria-hidden` — invisible to assistive technologies.
+  - Purely decorative; carries no semantic meaning.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion: reduce` is active, all blob animations are paused via `motion-reduce:[animation:none]`. The static gradient blobs remain visible.
+
+  ## API Reference
+
+  <PropsTable componentId="aurora-background" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { AuroraBackground } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

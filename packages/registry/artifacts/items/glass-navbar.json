@@ -1,0 +1,19 @@
+{
+  "name": "glass-navbar",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Glass Navbar",
+  "description": "Translucent navigation bar that responds to scroll with blur intensity.",
+  "docsPath": "/docs/components/glass-navbar",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/glass-navbar.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add glass-navbar"
+  }
+}

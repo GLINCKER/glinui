@@ -4,7 +4,7 @@ import Link from "next/link"
 import * as React from "react"
 import { ArrowUp, ChevronRight, FilePenLine } from "lucide-react"
 
-import { cn } from "@glinr/ui"
+import { cn } from "@glinui/ui"
 
 type FloatingComponentChromeProps = {
   badgeLabel: string

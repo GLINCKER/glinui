@@ -1,0 +1,19 @@
+{
+  "name": "shimmer-button",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Shimmer Button",
+  "description": "Button with animated shimmer sweep overlay and glass-aware variants.",
+  "docsPath": "/docs/components/shimmer-button",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/shimmer-button.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add shimmer-button"
+  }
+}

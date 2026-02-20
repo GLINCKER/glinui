@@ -1,0 +1,20 @@
+{
+  "name": "accordion",
+  "namespace": "@glinui",
+  "type": "primitive",
+  "title": "Accordion",
+  "description": "Expandable content sections with smooth disclosure behavior.",
+  "docsPath": "/docs/components/accordion",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/accordion.tsx",
+    "packages/ui/src/tests/accordion.test.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add accordion"
+  }
+}

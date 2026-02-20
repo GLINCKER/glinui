@@ -1,5 +1,5 @@
 /**
- * Glinr UI — Glass Design Tokens (Apple Liquid Glass spec)
+ * Glin UI — Glass Design Tokens (Apple Liquid Glass spec)
  *
  * Key principles:
  * - saturate(180%) always paired with blur in backdrop-filter
@@ -23,38 +23,69 @@
   --glass-blur-md: 16px;
   --glass-blur-lg: 24px;
   --glass-blur-xl: 40px;
-  --glass-saturate: 180%;
-  --glass-saturate-subtle: 130%;
 
-  --glass-surface: rgba(255, 255, 255, 0.18);
-  --glass-border: rgba(255, 255, 255, 0.20);
-  --glass-border-strong: rgba(255, 255, 255, 0.35);
-  --glass-refraction-top: rgba(255, 255, 255, 0.40);
+  --glass-adapt-surface-multiplier: 1;
+  --glass-adapt-border-multiplier: 1;
+  --glass-adapt-refraction-multiplier: 1;
+  --glass-adapt-saturate-multiplier: 1;
+
+  --glass-base-rgb: 255 255 255;
+  --glass-saturate-base: 180%;
+  --glass-saturate-subtle-base: 130%;
+  --glass-saturate: calc(var(--glass-saturate-base) * var(--glass-adapt-saturate-multiplier));
+  --glass-saturate-subtle: calc(var(--glass-saturate-subtle-base) * var(--glass-adapt-saturate-multiplier));
+
+  --glass-border-alpha: 0.20;
+  --glass-border-strong-alpha: 0.35;
+  --glass-refraction-top-alpha: 0.40;
+  --glass-surface: rgb(var(--glass-base-rgb) / calc(0.18 * var(--glass-adapt-surface-multiplier)));
+  --glass-border: rgb(255 255 255 / calc(var(--glass-border-alpha) * var(--glass-adapt-border-multiplier)));
+  --glass-border-strong: rgb(255 255 255 / calc(var(--glass-border-strong-alpha) * var(--glass-adapt-border-multiplier)));
+  --glass-refraction-top: rgb(255 255 255 / calc(var(--glass-refraction-top-alpha) * var(--glass-adapt-refraction-multiplier)));
+
+  /* ── Glass opacity scale (crystal -> frosted) ───── */
+  --glass-opacity-1: 0.06;
+  --glass-opacity-2: 0.08;
+  --glass-opacity-3: 0.10;
+  --glass-opacity-4: 0.12;
+  --glass-opacity-5: 0.16;
+  --glass-opacity-6: 0.18;
+  --glass-opacity-7: 0.22;
+  --glass-opacity-8: 0.25;
+  --glass-opacity-9: 0.30;
+  --glass-opacity-10: 0.35;
+
+  /* ── Glass performance hints ─────────────────────── */
+  --glass-gpu-transform: translateZ(0);
+  --glass-gpu-backface-visibility: hidden;
+  --glass-gpu-will-change: transform, opacity;
+  --glass-heavy-will-change: backdrop-filter, transform, opacity;
+  --glass-heavy-contain: paint;
 
   /* ── Glass levels (blur + surface + shadow) ──────── */
   --glass-1-blur: 8px;
-  --glass-1-opacity: 0.08;
-  --glass-1-surface: rgba(255, 255, 255, 0.08);
+  --glass-1-opacity: var(--glass-opacity-2);
+  --glass-1-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-1-opacity) * var(--glass-adapt-surface-multiplier)));
   --glass-1-shadow: var(--shadow-glass-sm);
 
   --glass-2-blur: 12px;
-  --glass-2-opacity: 0.12;
-  --glass-2-surface: rgba(255, 255, 255, 0.12);
+  --glass-2-opacity: var(--glass-opacity-4);
+  --glass-2-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-2-opacity) * var(--glass-adapt-surface-multiplier)));
   --glass-2-shadow: var(--shadow-glass-sm);
 
   --glass-3-blur: 16px;
-  --glass-3-opacity: 0.18;
-  --glass-3-surface: rgba(255, 255, 255, 0.18);
+  --glass-3-opacity: var(--glass-opacity-6);
+  --glass-3-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-3-opacity) * var(--glass-adapt-surface-multiplier)));
   --glass-3-shadow: var(--shadow-glass-md);
 
   --glass-4-blur: 24px;
-  --glass-4-opacity: 0.25;
-  --glass-4-surface: rgba(255, 255, 255, 0.25);
+  --glass-4-opacity: var(--glass-opacity-8);
+  --glass-4-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-4-opacity) * var(--glass-adapt-surface-multiplier)));
   --glass-4-shadow: var(--shadow-glass-lg);
 
   --glass-5-blur: 40px;
-  --glass-5-opacity: 0.35;
-  --glass-5-surface: rgba(255, 255, 255, 0.35);
+  --glass-5-opacity: var(--glass-opacity-10);
+  --glass-5-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-5-opacity) * var(--glass-adapt-surface-multiplier)));
   --glass-5-shadow: var(--shadow-glass-lg);
 
   /* ── Radius ──────────────────────────────────────── */
@@ -98,25 +129,37 @@
   --color-accent: oklch(0.74 0.19 252);
   --color-accent-foreground: oklch(0.15 0.01 252);
 
-  --glass-surface: rgba(0, 0, 0, 0.40);
-  --glass-border: rgba(255, 255, 255, 0.10);
-  --glass-border-strong: rgba(255, 255, 255, 0.18);
-  --glass-refraction-top: rgba(255, 255, 255, 0.15);
+  --glass-base-rgb: 0 0 0;
+  --glass-border-alpha: 0.10;
+  --glass-border-strong-alpha: 0.18;
+  --glass-refraction-top-alpha: 0.15;
+  --glass-surface: rgb(var(--glass-base-rgb) / calc(0.40 * var(--glass-adapt-surface-multiplier)));
 
-  --glass-1-opacity: 0.20;
-  --glass-1-surface: rgba(0, 0, 0, 0.20);
+  --glass-opacity-1: 0.16;
+  --glass-opacity-2: 0.20;
+  --glass-opacity-3: 0.25;
+  --glass-opacity-4: 0.30;
+  --glass-opacity-5: 0.35;
+  --glass-opacity-6: 0.40;
+  --glass-opacity-7: 0.48;
+  --glass-opacity-8: 0.55;
+  --glass-opacity-9: 0.62;
+  --glass-opacity-10: 0.70;
 
-  --glass-2-opacity: 0.30;
-  --glass-2-surface: rgba(0, 0, 0, 0.30);
+  --glass-1-opacity: var(--glass-opacity-2);
+  --glass-1-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-1-opacity) * var(--glass-adapt-surface-multiplier)));
 
-  --glass-3-opacity: 0.40;
-  --glass-3-surface: rgba(0, 0, 0, 0.40);
+  --glass-2-opacity: var(--glass-opacity-4);
+  --glass-2-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-2-opacity) * var(--glass-adapt-surface-multiplier)));
 
-  --glass-4-opacity: 0.55;
-  --glass-4-surface: rgba(0, 0, 0, 0.55);
+  --glass-3-opacity: var(--glass-opacity-6);
+  --glass-3-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-3-opacity) * var(--glass-adapt-surface-multiplier)));
 
-  --glass-5-opacity: 0.70;
-  --glass-5-surface: rgba(0, 0, 0, 0.70);
+  --glass-4-opacity: var(--glass-opacity-8);
+  --glass-4-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-4-opacity) * var(--glass-adapt-surface-multiplier)));
+
+  --glass-5-opacity: var(--glass-opacity-10);
+  --glass-5-surface: rgb(var(--glass-base-rgb) / calc(var(--glass-5-opacity) * var(--glass-adapt-surface-multiplier)));
 
   color-scheme: dark;
 }
@@ -167,6 +210,44 @@
   backdrop-filter: saturate(var(--glass-saturate)) blur(var(--glass-5-blur));
   -webkit-backdrop-filter: saturate(var(--glass-saturate)) blur(var(--glass-5-blur));
   box-shadow: var(--glass-5-shadow);
+}
+
+.glass-gpu-hint {
+  transform: var(--glass-gpu-transform);
+  backface-visibility: var(--glass-gpu-backface-visibility);
+  will-change: var(--glass-gpu-will-change);
+}
+
+.glass-heavy {
+  transform: var(--glass-gpu-transform);
+  backface-visibility: var(--glass-gpu-backface-visibility);
+  will-change: var(--glass-heavy-will-change);
+  contain: var(--glass-heavy-contain);
+}
+
+/* ── Background luminance adaptation ──────────────── */
+.glass-adapt-neutral,
+[data-glass-luminance="neutral"] {
+  --glass-adapt-surface-multiplier: 1;
+  --glass-adapt-border-multiplier: 1;
+  --glass-adapt-refraction-multiplier: 1;
+  --glass-adapt-saturate-multiplier: 1;
+}
+
+.glass-adapt-bright,
+[data-glass-luminance="bright"] {
+  --glass-adapt-surface-multiplier: 1.16;
+  --glass-adapt-border-multiplier: 1.08;
+  --glass-adapt-refraction-multiplier: 1.14;
+  --glass-adapt-saturate-multiplier: 1.04;
+}
+
+.glass-adapt-dim,
+[data-glass-luminance="dim"] {
+  --glass-adapt-surface-multiplier: 0.9;
+  --glass-adapt-border-multiplier: 1.15;
+  --glass-adapt-refraction-multiplier: 1.22;
+  --glass-adapt-saturate-multiplier: 0.96;
 }
 
 /* ── Reduced transparency ──────────────────────────── */

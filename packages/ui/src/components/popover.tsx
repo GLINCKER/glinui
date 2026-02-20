@@ -10,7 +10,8 @@ const popoverTriggerVariants = cva(
     variants: {
       variant: {
         default: "bg-[var(--color-surface)] text-[var(--color-foreground)] border border-[var(--color-border)]",
-        glass: "backdrop-blur-md bg-surface/80 border border-white/10 text-[var(--color-foreground)]",
+        glass: "backdrop-blur-xl backdrop-saturate-[180%] bg-[var(--glass-3-surface)] border border-white/20 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-sm)] dark:border-white/[0.1] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.05)_inset,0_8px_24px_rgb(0_0_0_/_0.35)] text-[var(--color-foreground)]",
+        frosted: "backdrop-blur-[40px] backdrop-saturate-[200%] bg-[var(--glass-4-surface)] border border-white/30 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.15)_inset,0_0_16px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-md)] dark:border-white/[0.14] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.07)_inset,0_0_16px_rgb(255_255_255_/_0.03)_inset,0_8px_24px_rgb(0_0_0_/_0.4)] text-[var(--color-foreground)]",
         outline: "bg-transparent border border-[var(--color-border)] text-[var(--color-foreground)]",
         ghost: "bg-transparent border border-transparent text-[var(--color-foreground)]"
       },
@@ -31,7 +32,8 @@ const popoverContentVariants = cva("z-50 rounded-md border p-4 shadow-md outline
   variants: {
     variant: {
       default: "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-foreground)]",
-      glass: "backdrop-blur-md bg-surface/80 border border-white/10 text-[var(--color-foreground)]",
+      glass: "backdrop-blur-xl backdrop-saturate-[180%] bg-[var(--glass-3-surface)] border border-white/20 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-sm)] dark:border-white/[0.1] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.05)_inset,0_8px_24px_rgb(0_0_0_/_0.35)] text-[var(--color-foreground)]",
+      frosted: "backdrop-blur-[40px] backdrop-saturate-[200%] bg-[var(--glass-4-surface)] border border-white/30 [border-top-color:var(--glass-refraction-top)] shadow-[0_0_0_1px_rgb(255_255_255_/_0.15)_inset,0_0_16px_rgb(255_255_255_/_0.1)_inset,var(--shadow-glass-md)] dark:border-white/[0.14] dark:shadow-[0_0_0_1px_rgb(255_255_255_/_0.07)_inset,0_0_16px_rgb(255_255_255_/_0.03)_inset,0_8px_24px_rgb(0_0_0_/_0.4)] text-[var(--color-foreground)]",
       outline: "bg-transparent border-[var(--color-border)] text-[var(--color-foreground)]",
       ghost: "bg-transparent border-transparent text-[var(--color-foreground)]"
     },
@@ -47,12 +49,17 @@ const popoverContentVariants = cva("z-50 rounded-md border p-4 shadow-md outline
   }
 })
 
+export type PopoverProps = React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Root>
+
 export const Popover = PopoverPrimitive.Root
+
+export type PopoverTriggerProps =
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger> &
+  VariantProps<typeof popoverTriggerVariants>
 
 export const PopoverTrigger = React.forwardRef<
   React.ComponentRef<typeof PopoverPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger> &
-    VariantProps<typeof popoverTriggerVariants>
+  PopoverTriggerProps
 >(({ className, variant, size, ...props }, ref) => (
   <PopoverPrimitive.Trigger
     ref={ref}
@@ -63,10 +70,13 @@ export const PopoverTrigger = React.forwardRef<
 
 PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName
 
+export type PopoverContentProps =
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> &
+  VariantProps<typeof popoverContentVariants>
+
 export const PopoverContent = React.forwardRef<
   React.ComponentRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> &
-    VariantProps<typeof popoverContentVariants>
+  PopoverContentProps
 >(({ className, align = "center", sideOffset = 8, variant, size, ...props }, ref) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content

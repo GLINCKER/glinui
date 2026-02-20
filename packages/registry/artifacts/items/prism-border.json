@@ -1,0 +1,19 @@
+{
+  "name": "prism-border",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Prism Border",
+  "description": "Animated rainbow refraction border using a shifting linear gradient.",
+  "docsPath": "/docs/components/prism-border",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/prism-border.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add prism-border"
+  }
+}

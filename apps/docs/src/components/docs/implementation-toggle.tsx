@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { cn } from "@glinr/ui"
+import { cn } from "@glinui/ui"
 import { type DocsImplementation } from "@/lib/docs-route"
 import { type PrimitiveComponentId } from "@/lib/primitives"
 

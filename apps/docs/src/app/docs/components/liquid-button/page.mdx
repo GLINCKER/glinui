@@ -1,0 +1,124 @@
+import { getRegistryItem } from "@glinui/registry"
+import { LiquidButton } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("liquid-button")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Liquid Button - Glin UI",
+  description: item?.description ?? "Button with fluid hover lift, press squish, and radial shine."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Atom"
+  componentId="liquid-button"
+  implementation="css"
+  title="Liquid Button"
+  description={item?.description ?? "Button with fluid hover lift, press squish, and radial shine."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add liquid-button"} />
+
+  ## Usage
+
+  `LiquidButton` extends `Button` with stronger transform and brightness motion — intended for premium call-to-action moments. It supports all `Button` props and adds an `intensity` prop to control the effect level.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { LiquidButton } from "@glinui/ui"
+
+export function LiquidButtonDemo() {
+  return <LiquidButton variant="liquid">Start Free Trial</LiquidButton>
+}`}
+  >
+    <LiquidButton variant="liquid">Start Free Trial</LiquidButton>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Intensity Variants
+
+  The `intensity` prop controls how pronounced the hover lift, press squish, and radial shine effects are.
+
+  <ExampleBlock
+    code={`import { LiquidButton } from "@glinui/ui"
+
+export function LiquidButtonIntensityDemo() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <LiquidButton variant="liquid" intensity="soft">Soft</LiquidButton>
+      <LiquidButton variant="liquid" intensity="strong">Strong</LiquidButton>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-wrap gap-3">
+      <LiquidButton variant="liquid" intensity="soft">Soft</LiquidButton>
+      <LiquidButton variant="liquid" intensity="strong">Strong</LiquidButton>
+    </div>
+  </ExampleBlock>
+
+  ### Combined with Button Variants
+
+  `LiquidButton` accepts all inherited `Button` variant and size props, making it composable with any variant in the design system.
+
+  <ExampleBlock
+    code={`import { LiquidButton } from "@glinui/ui"
+
+export function LiquidButtonVariantsDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <LiquidButton variant="default" intensity="soft" size="sm">Default / Soft / SM</LiquidButton>
+      <LiquidButton variant="liquid" intensity="soft" size="md">Liquid / Soft / MD</LiquidButton>
+      <LiquidButton variant="liquid" intensity="strong" size="lg">Liquid / Strong / LG</LiquidButton>
+      <LiquidButton variant="glass" intensity="soft" size="md">Glass / Soft / MD</LiquidButton>
+    </div>
+  )
+}`}
+  >
+    <div className="flex flex-wrap items-center gap-3">
+      <LiquidButton variant="default" intensity="soft" size="sm">Default / Soft / SM</LiquidButton>
+      <LiquidButton variant="liquid" intensity="soft" size="md">Liquid / Soft / MD</LiquidButton>
+      <LiquidButton variant="liquid" intensity="strong" size="lg">Liquid / Strong / LG</LiquidButton>
+      <LiquidButton variant="glass" intensity="soft" size="md">Glass / Soft / MD</LiquidButton>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Inherits native `<button>` semantics and full keyboard interaction from `Button`.
+  - The radial shine is a decorative `::after` pseudo-element and is invisible to assistive technology.
+  - Keep CTA labels descriptive — avoid generic text like "Click here".
+
+  ## Reduced Motion
+
+  `transform` and `filter` transitions used for hover lift, press squish, and shine fade are all disabled when `prefers-reduced-motion` is active.
+
+  ## API Reference
+
+  <PropsTable componentId="liquid-button" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { LiquidButton } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

@@ -1,0 +1,134 @@
+import { getRegistryItem } from "@glinui/registry"
+import { GlassBreadcrumb } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("glass-breadcrumb")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Glass Breadcrumb - Glin UI",
+  description: item?.description ?? "Pill-style breadcrumb with glass indicators and collapsible items."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="glass-breadcrumb"
+  implementation="css"
+  title="Glass Breadcrumb"
+  description={item?.description ?? "Pill-style breadcrumb with glass indicators and collapsible items."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add glass-breadcrumb"} />
+
+  ## Usage
+
+  Pass an array of `items` with `id`, `label`, and optional `href`. The last item is highlighted as the current page.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { GlassBreadcrumb } from "@glinui/ui"
+
+export function GlassBreadcrumbDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <GlassBreadcrumb
+        items={[
+          { id: "home", label: "Home", href: "/" },
+          { id: "docs", label: "Docs", href: "/docs" },
+          { id: "components", label: "Components", href: "/docs/components" },
+          { id: "breadcrumb", label: "Breadcrumb" }
+        ]}
+      />
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <GlassBreadcrumb
+        items={[
+          { id: "home", label: "Home", href: "/" },
+          { id: "docs", label: "Docs", href: "/docs" },
+          { id: "components", label: "Components", href: "/docs/components" },
+          { id: "breadcrumb", label: "Breadcrumb" }
+        ]}
+      />
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Collapsed
+
+  Use `maxItems` to collapse middle items into an ellipsis.
+
+  <ExampleBlock
+    code={`import { GlassBreadcrumb } from "@glinui/ui"
+
+export function GlassBreadcrumbCollapsedDemo() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <GlassBreadcrumb
+        maxItems={3}
+        items={[
+          { id: "home", label: "Home", href: "/" },
+          { id: "docs", label: "Docs", href: "/docs" },
+          { id: "components", label: "Components", href: "/docs/components" },
+          { id: "signature", label: "Signature", href: "/docs/components" },
+          { id: "breadcrumb", label: "Breadcrumb" }
+        ]}
+      />
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8">
+      <GlassBreadcrumb
+        maxItems={3}
+        items={[
+          { id: "home", label: "Home", href: "/" },
+          { id: "docs", label: "Docs", href: "/docs" },
+          { id: "components", label: "Components", href: "/docs/components" },
+          { id: "signature", label: "Signature", href: "/docs/components" },
+          { id: "breadcrumb", label: "Breadcrumb" }
+        ]}
+      />
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Renders as `<nav aria-label="Breadcrumb">` with an `<ol>` list.
+  - The current page has `aria-current="page"`.
+  - Separators are `aria-hidden`.
+
+  ## Reduced Motion
+
+  No animations — the component is fully static.
+
+  ## API Reference
+
+  <PropsTable componentId="glass-breadcrumb" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { GlassBreadcrumb } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>

@@ -1,0 +1,19 @@
+{
+  "name": "glass-dock",
+  "namespace": "@glinui",
+  "type": "signature",
+  "title": "Glass Dock",
+  "description": "macOS-style dock with proximity magnification and frosted glass surface.",
+  "docsPath": "/docs/components/glass-dock",
+  "importPath": "@glinui/ui",
+  "dependencies": [
+    "@glinui/ui"
+  ],
+  "files": [
+    "packages/ui/src/components/glass-dock.tsx"
+  ],
+  "install": {
+    "package": "npm install @glinui/ui @glinui/tokens",
+    "registry": "pnpm dlx @glinui/cli@latest add glass-dock"
+  }
+}

@@ -1,0 +1,131 @@
+import { getRegistryItem } from "@glinui/registry"
+import { ChromaticText } from "@glinui/ui"
+import { ComponentDocLayout } from "@/components/docs/component-doc-layout"
+import { ExampleBlock } from "@/components/docs/example-block"
+import { InstallTabs } from "@/components/docs/install-tabs"
+import { getComponentSources } from "@/lib/get-component-source"
+import { PropsTable } from "@/components/docs/props-table"
+
+export const dynamic = "force-static"
+export const item = getRegistryItem("chromatic-text")
+export const sources = getComponentSources(item?.files)
+export const metadata = {
+  title: "Chromatic Text - Glin UI",
+  description: item?.description ?? "Text with chromatic aberration effect — RGB channel splitting."
+}
+
+<ComponentDocLayout
+  badgeLabel="Signature / Molecule"
+  componentId="chromatic-text"
+  implementation="css"
+  title="Chromatic Text"
+  description={item?.description ?? "Text with chromatic aberration effect — RGB channel splitting."}
+>
+  ## Installation
+
+  <InstallTabs sources={sources} command={item?.install.package ?? "pnpm add @glinui/ui @glinui/tokens"} />
+
+  ### Registry
+
+  <InstallTabs command={item?.install.registry ?? "pnpm dlx @glinui/cli@latest add chromatic-text"} />
+
+  ## Usage
+
+  Wrap text in `ChromaticText` to apply RGB channel splitting. Pass a string as `children` — the component renders ghost layers with offset colors.
+
+  ### Basic
+
+  <ExampleBlock
+    codeDefaultOpen
+    code={`import { ChromaticText } from "@glinui/ui"
+
+export function ChromaticTextDemo() {
+  return (
+    <div className="flex items-center justify-center p-8 bg-neutral-950 rounded-xl">
+      <h2 className="text-4xl font-bold text-white">
+        <ChromaticText>Glin UI</ChromaticText>
+      </h2>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8 bg-neutral-950 rounded-xl">
+      <h2 className="text-4xl font-bold text-white">
+        <ChromaticText>Glin UI</ChromaticText>
+      </h2>
+    </div>
+  </ExampleBlock>
+
+  ## Examples
+
+  ### Animated
+
+  Set `duration` to enable continuous chromatic animation.
+
+  <ExampleBlock
+    code={`import { ChromaticText } from "@glinui/ui"
+
+export function ChromaticTextAnimatedDemo() {
+  return (
+    <div className="flex items-center justify-center p-8 bg-neutral-950 rounded-xl">
+      <h2 className="text-4xl font-bold text-white">
+        <ChromaticText duration={3} offset={3}>Glitch</ChromaticText>
+      </h2>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8 bg-neutral-950 rounded-xl">
+      <h2 className="text-4xl font-bold text-white">
+        <ChromaticText duration={3} offset={3}>Glitch</ChromaticText>
+      </h2>
+    </div>
+  </ExampleBlock>
+
+  ### Custom Colors
+
+  <ExampleBlock
+    code={`import { ChromaticText } from "@glinui/ui"
+
+export function ChromaticTextColorsDemo() {
+  return (
+    <div className="flex items-center justify-center p-8 bg-neutral-950 rounded-xl">
+      <h2 className="text-4xl font-bold text-white">
+        <ChromaticText colors={["#06b6d4", "#f97316"]} offset={4}>Neon</ChromaticText>
+      </h2>
+    </div>
+  )
+}`}
+  >
+    <div className="flex items-center justify-center p-8 bg-neutral-950 rounded-xl">
+      <h2 className="text-4xl font-bold text-white">
+        <ChromaticText colors={["#06b6d4", "#f97316"]} offset={4}>Neon</ChromaticText>
+      </h2>
+    </div>
+  </ExampleBlock>
+
+  ## Accessibility
+
+  - Ghost layers are `aria-hidden="true"` — screen readers only see the base text.
+  - The base text remains fully readable and accessible.
+
+  ## Reduced Motion
+
+  When `prefers-reduced-motion: reduce` is active, the animated chromatic shift is paused via `motion-reduce:[animation:none]`. The static offset layers remain visible.
+
+  ## API Reference
+
+  <PropsTable componentId="chromatic-text" autoAppendGenerated />
+
+  ## Source
+
+  ```tsx
+  import { ChromaticText } from "@glinui/ui"
+  ```
+
+  {item?.files?.map((file) => (
+    <div key={file} className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
+      {file}
+    </div>
+  ))}
+</ComponentDocLayout>
